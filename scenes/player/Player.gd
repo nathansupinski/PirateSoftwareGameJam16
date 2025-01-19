@@ -10,6 +10,8 @@ func _init():
 	currentHealth = maxHealth
 
 func _ready():
+	print("init state machine " + str(stateMachine))
+	stateMachine = CharacterStateMachine.new()
 	stateMachine.Initialize(self)
 
 func _process(delta):

@@ -4,6 +4,7 @@ signal healthChanged
 
 @export var speed: float = 70
 @export var maxHealth: int = 3
+@export var characterName: String = 'Char1'
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var effectsAnimations = $EffectsAnimationPlayer
@@ -22,12 +23,13 @@ func _init():
 	pass
 
 func _ready():
+	print("init state machine " + str(stateMachine))
 	stateMachine.Initialize(self)
 
 func _process(delta):
 	pass
 	
-func _physics_process(delta):
+func _physics_process(delta): #TODO: need to cleanup the function overloads in Player and Enemy class so we arent duplicating. 
 	move_and_slide()
 	handleCollision()
 	

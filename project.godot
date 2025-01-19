@@ -21,6 +21,11 @@ Enums="*res://globals/Enums.gd"
 Utils="*res://globals/Utils.gd"
 LevelManager="*res://globals/LevelManager.gd"
 
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
 [input]
 
 up={
