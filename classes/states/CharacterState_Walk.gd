@@ -1,0 +1,32 @@
+class_name CharacterState_Walk extends CharacterState
+
+@export var move_speed : float = 70.00
+@onready var idleState: CharacterState = $"../idle"
+
+# Called when the player enters this state
+func Enter() -> void:
+	print('Entered Walk State')
+	character.UpdateAnimation(Enums.CHARACTER_STATE_NAMES.WALK)
+
+# Called when the player leaves this state
+func Exit() -> void:
+	pass
+
+# what happens during the process update in this state
+func Process(delta: float) -> CharacterState:
+	if character.direction == Vector2.ZERO:
+		return idleState
+		
+	character.velocity = character.direction * move_speed
+	
+	if character.SetDirection():
+		character.UpdateAnimation(Enums.CHARACTER_STATE_NAMES.WALK)
+	return null
+
+# what happens during the _physics_process update in this state
+func Physics(delta: float) -> CharacterState:
+	return null
+
+# what happens with input events in this state
+func HandleInput(event: InputEvent) -> CharacterState:
+	return null
