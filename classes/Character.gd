@@ -4,6 +4,7 @@ signal healthChanged
 
 @export var speed: float = 70
 @export var maxHealth: int = 3
+@export var characterName: String = 'Char1'
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var effectsAnimations = $EffectsAnimationPlayer
@@ -22,20 +23,18 @@ func _init():
 	pass
 
 func _ready():
+	print("init state machine " + str(stateMachine))
 	stateMachine.Initialize(self)
 
 func _process(delta):
 	pass
 	
-func _physics_process(delta):
+func _physics_process(delta): #TODO: need to cleanup the function overloads in Player and Enemy class so we arent duplicating. 
 	move_and_slide()
 	handleCollision()
 	
 func handleCollision():
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-		print_debug(collider.name)
+	pass
 
 
 func _on_hurt_box_area_entered(area): pass
@@ -58,7 +57,7 @@ func SetDirection() -> bool:
 	
 	cardinal_direction = new_direction
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1 #flips the sprite left or right but also flips any child sprites. Use flip setting on the sprite instead if you dont want this behavior
-	
+	print("update direction")
 	return true
 	
 func UpdateAnimation(state: Enums.CHARACTER_STATE_NAMES) -> void:

@@ -5,7 +5,7 @@ class_name CharacterState_Walk extends CharacterState
 
 # Called when the player enters this state
 func Enter() -> void:
-	print('Entered Walk State')
+	print(character.characterName + ' Entered Walk State')
 	character.UpdateAnimation(Enums.CHARACTER_STATE_NAMES.WALK)
 
 # Called when the player leaves this state
@@ -20,6 +20,7 @@ func Process(delta: float) -> CharacterState:
 	character.velocity = character.direction * move_speed
 	
 	if character.SetDirection():
+		print("call update animation walk")
 		character.UpdateAnimation(Enums.CHARACTER_STATE_NAMES.WALK)
 	return null
 

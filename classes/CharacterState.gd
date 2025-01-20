@@ -1,7 +1,7 @@
 class_name CharacterState extends Node
 
 #stores a ref to the Character that this state belongs to
-static var character: Character
+var character: Character
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

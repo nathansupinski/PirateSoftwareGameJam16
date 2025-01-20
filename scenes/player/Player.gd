@@ -32,9 +32,10 @@ func handleCollision():
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-		print_debug(collider.name)
+		#print_debug(collider.name)
 
 func hurtByEnemy(area):
+	print("player hurt")
 	currentHealth -= 1
 	if currentHealth < 0:
 		currentHealth = maxHealth
@@ -55,8 +56,11 @@ func knockback(enemyVelocity: Vector2):
 
 #temp overload parent class until we get rid of placeholder animations
 func UpdateAnimation(state: Enums.CHARACTER_STATE_NAMES) -> void:
+	print('state:', state)
 	match state:
 		Enums.CHARACTER_STATE_NAMES.WALK:
+			print("update to: walk_" + AnimDirection())
 			animation_player.play("walk_" + AnimDirection())
 		Enums.CHARACTER_STATE_NAMES.IDLE:
+			print("update to: idle_" + AnimDirection())
 			animation_player.play("idle_down") #temp
