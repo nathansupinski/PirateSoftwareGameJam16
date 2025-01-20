@@ -55,8 +55,11 @@ func knockback(enemyVelocity: Vector2):
 
 #temp overload parent class until we get rid of placeholder animations
 func UpdateAnimation(state: Enums.CHARACTER_STATE_NAMES) -> void:
+	print('state:', state)
 	match state:
 		Enums.CHARACTER_STATE_NAMES.WALK:
+			print("update to: walk_" + AnimDirection())
 			animation_player.play("walk_" + AnimDirection())
 		Enums.CHARACTER_STATE_NAMES.IDLE:
+			print("update to: idle_" + AnimDirection())
 			animation_player.play("idle_down") #temp

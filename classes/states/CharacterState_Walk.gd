@@ -20,6 +20,7 @@ func Process(delta: float) -> CharacterState:
 	character.velocity = character.direction * move_speed
 	
 	if character.SetDirection():
+		print("call update animation walk")
 		character.UpdateAnimation(Enums.CHARACTER_STATE_NAMES.WALK)
 	return null
 
