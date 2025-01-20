@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://4ntwb1ehol58"]
+[gd_scene load_steps=9 format=4 uid="uid://4ntwb1ehol58"]
 
 [ext_resource type="PackedScene" uid="uid://2xun3rd2y6uf" path="res://scenes/player/player.tscn" id="1_ba5lr"]
 [ext_resource type="Texture2D" uid="uid://d3m8r4kjxaxm5" path="res://scenes/main/sprites/tilesets/Tileset-Terrain.png" id="1_ih86g"]
 [ext_resource type="Script" path="res://scenes/main/main_scene.gd" id="1_ujghv"]
 [ext_resource type="Script" path="res://scenes/main/pause_menu.gd" id="4_t81ws"]
 [ext_resource type="FontFile" uid="uid://c0twuvkqjtx5x" path="res://asssets/fonts/Audiowide-Regular.ttf" id="5_pq5kg"]
+[ext_resource type="Script" path="res://scenes/main/PlayerHud.gd" id="6_u17mt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wky0j"]
 texture = ExtResource("1_ih86g")
@@ -9377,6 +9378,21 @@ theme_override_font_sizes/font_size = 40
 text = "Quit"
 
 [node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="PlayerHUD" type="CanvasLayer" parent="."]
+script = ExtResource("6_u17mt")
+
+[node name="HealthBar" type="Label" parent="PlayerHUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "999"
 
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/SettingsButton" to="PauseMenu" method="_on_settings_button_pressed"]

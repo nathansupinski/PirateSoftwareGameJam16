@@ -32,9 +32,10 @@ func handleCollision():
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-		print_debug(collider.name)
+		#print_debug(collider.name)
 
 func hurtByEnemy(area):
+	print("player hurt")
 	currentHealth -= 1
 	if currentHealth < 0:
 		currentHealth = maxHealth

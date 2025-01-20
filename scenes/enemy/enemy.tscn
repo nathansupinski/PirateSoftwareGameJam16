@@ -7,8 +7,11 @@
 [ext_resource type="Script" path="res://classes/states/CharacterState_Walk.gd" id="5_5ulvf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tavrd"]
+size = Vector2(25, 10)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_erpkc"]
+radius = 24.0
+height = 54.0
 
 [sub_resource type="Animation" id="Animation_mukle"]
 length = 0.001
@@ -385,6 +388,8 @@ _data = {
 }
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_db6ri")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -394,6 +399,7 @@ vframes = 9
 frame = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 21)
 shape = SubResource("RectangleShape2D_tavrd")
 
 [node name="StateMachine" type="Node2D" parent="."]
@@ -406,8 +412,19 @@ script = ExtResource("4_ve62r")
 script = ExtResource("5_5ulvf")
 
 [node name="hurtBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox"]
+position = Vector2(-2, 2)
+shape = SubResource("CapsuleShape2D_erpkc")
+
+[node name="hitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+position = Vector2(-2, 2)
 shape = SubResource("CapsuleShape2D_erpkc")
 
 [node name="hurtTimer" type="Timer" parent="."]
