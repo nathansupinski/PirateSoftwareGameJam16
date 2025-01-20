@@ -22,6 +22,7 @@ func Exit() -> void:
 
 # what happens during the process update in this state
 func Process(delta: float) -> CharacterState:
+	print("Base class process running")
 	return null
 
 # what happens during the _physics_process update in this state

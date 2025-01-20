@@ -11,7 +11,7 @@ func _init():
 
 func _ready():
 	print("init state machine " + str(stateMachine))
-	stateMachine = CharacterStateMachine.new()
+	#stateMachine = CharacterStateMachine.new()
 	stateMachine.Initialize(self)
 
 func _process(delta):
