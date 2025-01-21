@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://lyfrw73ld1qk"]
+
+[ext_resource type="Script" path="res://scenes/weapons/Weapon.gd" id="1_y3cl3"]
+[ext_resource type="Script" path="res://scenes/weapons/WeaponData.gd" id="2_xhvbt"]
+[ext_resource type="PackedScene" uid="uid://b1a2x0pow6dkw" path="res://scenes/weapons/projectiles/BasicProjectile.tscn" id="3_tjqdh"]
+[ext_resource type="Script" path="res://scenes/weapons/SpawnPosition.gd" id="4_hyvwb"]
+
+[sub_resource type="Resource" id="Resource_kmk61"]
+script = ExtResource("2_xhvbt")
+name = "null"
+tags = Array[String]([])
+cooldown = 0.66
+rawDamage = 1.0
+damageType = 0
+projectileSpeed = 300.0
+projectileChain = 0
+areaOfAffect = 0.0
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_y3cl3")
+weaponData = SubResource("Resource_kmk61")
+projectile = ExtResource("3_tjqdh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="SpawnPosition" type="Node2D" parent="Sprite2D"]
+script = ExtResource("4_hyvwb")
