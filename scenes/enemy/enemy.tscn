@@ -390,6 +390,8 @@ _data = {
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 5
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_db6ri")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -436,3 +438,11 @@ one_shot = true
 libraries = {
 "": SubResource("AnimationLibrary_jwkrc")
 }
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="NavTickTimer" type="Timer" parent="NavigationAgent2D"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="NavigationAgent2D/NavTickTimer" to="." method="_on_nav_tick_timer_timeout"]

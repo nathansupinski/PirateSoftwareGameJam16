@@ -33,7 +33,7 @@ func Initialize(characterInput: Character ) -> void:
 		ChangeState(states[0]) #TODO: refactor to get idle state directly so the order of children doesnt matter
 		process_mode = Node.PROCESS_MODE_INHERIT
 	
-	print(character.characterName + " Inited " + str(states.size()) + " character states.")
+	#print(character.characterName + " Inited " + str(states.size()) + " character states.")
 
 func ChangeState(new_state: CharacterState) -> void:
 	if new_state == null || new_state == cur_state:
