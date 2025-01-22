@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scenes/main/pause_menu.gd" id="4_t81ws"]
 [ext_resource type="FontFile" uid="uid://c0twuvkqjtx5x" path="res://asssets/fonts/Audiowide-Regular.ttf" id="5_pq5kg"]
 [ext_resource type="Script" path="res://scenes/main/PlayerHud.gd" id="6_u17mt"]
-[ext_resource type="PackedScene" uid="uid://b1a2x0pow6dkw" path="res://scenes/weapons/projectiles/BasicProjectile.tscn" id="7_pcn8b"]
+[ext_resource type="PackedScene" uid="uid://b1a2x0pow6dkw" path="res://scenes/weapons/projectiles/Bullet.tscn" id="7_pcn8b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wky0j"]
 texture = ExtResource("1_ih86g")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://lyfrw73ld1qk"]
+[gd_scene load_steps=9 format=3 uid="uid://lyfrw73ld1qk"]
 
 [ext_resource type="Script" path="res://scenes/weapons/Weapon.gd" id="1_y3cl3"]
 [ext_resource type="Script" path="res://scenes/weapons/WeaponData.gd" id="2_xhvbt"]
-[ext_resource type="PackedScene" uid="uid://b1a2x0pow6dkw" path="res://scenes/weapons/projectiles/BasicProjectile.tscn" id="3_tjqdh"]
+[ext_resource type="PackedScene" uid="uid://bskcxandhwv37" path="res://scenes/weapons/projectiles/projectile.tscn" id="3_wu30u"]
 [ext_resource type="Script" path="res://scenes/weapons/SpawnPosition.gd" id="4_hyvwb"]
+[ext_resource type="Texture2D" uid="uid://cvnv67ltdmxgn" path="res://icon.svg" id="4_tjtl7"]
 
 [sub_resource type="Resource" id="Resource_kmk61"]
 script = ExtResource("2_xhvbt")
@@ -13,15 +14,38 @@ cooldown = 0.66
 rawDamage = 1.0
 damageType = 0
 projectileSpeed = 300.0
+projectileCount = 0.0
 projectileChain = 0
 areaOfAffect = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06ejh"]
+size = Vector2(12, 12)
+
+[sub_resource type="PackedScene" id="PackedScene_tnjap"]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Projectile", "projectileData", "Sprite2D", "scale", "texture", "CollisionShape2D", "shape"),
+"node_count": 3,
+"node_paths": [NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 1073741824, -1, 2147483647, 262146, -1, 2, 3, 2, 4, 3, 0, 1073741825, -1, 2147483647, 524293, -1, 1, 6, 4, 0),
+"variants": [ExtResource("3_wu30u"), ExtResource("4_tjtl7"), Vector2(0.1, 0.1), ExtResource("4_tjtl7"), SubResource("RectangleShape2D_06ejh")],
+"version": 3
+}
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_y3cl3")
 weaponData = SubResource("Resource_kmk61")
-projectile = ExtResource("3_tjqdh")
+projectile = SubResource("PackedScene_tnjap")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.02, 0.11)
+texture = ExtResource("4_tjtl7")
 
 [node name="SpawnPosition" type="Node2D" parent="Sprite2D"]
+position = Vector2(0, -63.6364)
 script = ExtResource("4_hyvwb")
+
+[node name="AttackTimer" type="Timer" parent="."]

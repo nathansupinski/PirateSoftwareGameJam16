@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Enums="*res://globals/Enums.gd"
 Utils="*res://globals/Utils.gd"
 LevelManager="*res://globals/LevelManager.gd"
+ProjectileContainer="*res://globals/ProjectileContainer.tscn"
 
 [editor]
 

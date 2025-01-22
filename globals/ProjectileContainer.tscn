@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://chmppa25v83ta"]
+
+[ext_resource type="Script" path="res://globals/ProjectileContainer.gd" id="1_ojgnf"]
+
+[node name="ProjectileContainer" type="Node"]
+script = ExtResource("1_ojgnf")
+
+[node name="PlayerProjectiles" type="Node" parent="."]
+
+[node name="EnemyProjectiles" type="Node" parent="."]
