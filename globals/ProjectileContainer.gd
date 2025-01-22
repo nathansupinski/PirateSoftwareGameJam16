@@ -1,5 +1,17 @@
-class_name ProjectileContainer extends Node
+extends Node
 
 
 func ClearPlayerProjectiles():
-	$PlayerProjectiles.queue_free()
+	for node in $PlayerProjectiles.get_children():
+		node.queue_free()
+
+
+
+
+func ClearEnemyProjectiles():
+	for node in $EnemyProjectiles.get_children():
+		node.queue_free()
+
+
+func AddToPlayerProjectiles(projectile : Projectile):
+	$PlayerProjectiles.add_child(projectile)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://4ntwb1ehol58"]
+[gd_scene load_steps=9 format=4 uid="uid://4ntwb1ehol58"]
 
 [ext_resource type="PackedScene" uid="uid://2xun3rd2y6uf" path="res://scenes/player/player.tscn" id="1_ba5lr"]
 [ext_resource type="Texture2D" uid="uid://d3m8r4kjxaxm5" path="res://scenes/main/sprites/tilesets/Tileset-Terrain.png" id="1_ih86g"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://scenes/main/pause_menu.gd" id="4_t81ws"]
 [ext_resource type="FontFile" uid="uid://c0twuvkqjtx5x" path="res://asssets/fonts/Audiowide-Regular.ttf" id="5_pq5kg"]
 [ext_resource type="Script" path="res://scenes/main/PlayerHud.gd" id="6_u17mt"]
-[ext_resource type="PackedScene" uid="uid://b1a2x0pow6dkw" path="res://scenes/weapons/projectiles/Bullet.tscn" id="7_pcn8b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wky0j"]
 texture = ExtResource("1_ih86g")
@@ -9394,10 +9393,6 @@ offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "999"
-
-[node name="Projectile" parent="." instance=ExtResource("7_pcn8b")]
-
-[node name="Projectile2" parent="." instance=ExtResource("7_pcn8b")]
 
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/SettingsButton" to="PauseMenu" method="_on_settings_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://2xun3rd2y6uf"]
+[gd_scene load_steps=21 format=3 uid="uid://2xun3rd2y6uf"]
 
 [ext_resource type="Texture2D" uid="uid://dvmryty0ujuc2" path="res://scenes/player/sprites/movement and beta attacks.png" id="1_a0g4d"]
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_mb422"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cvnv67ltdmxgn" path="res://icon.svg" id="6_o85yx"]
 [ext_resource type="Script" path="res://scenes/player/aim_indicator.gd" id="7_lkym7"]
 [ext_resource type="Script" path="res://scenes/player/Equipment.gd" id="8_2q1at"]
+[ext_resource type="PackedScene" uid="uid://c3dt0kf8iwmwh" path="res://scenes/weapons/AutoRifle.tscn" id="9_w3hrb"]
 
 [sub_resource type="Animation" id="Animation_o2uoc"]
 length = 0.001
@@ -326,10 +327,6 @@ _data = {
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_mb422")
-knockbackPower = null
-speed = null
-maxHealth = null
-characterName = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 clip_children = 2
@@ -393,5 +390,9 @@ texture = ExtResource("6_o85yx")
 script = ExtResource("7_lkym7")
 radius = 25.0
 
-[node name="Equipment" type="Node2D" parent="."]
+[node name="Equipment" type="Node2D" parent="." node_paths=PackedStringArray("weapon1")]
 script = ExtResource("8_2q1at")
+weapon1 = NodePath("Weapon")
+
+[node name="Weapon" parent="Equipment" instance=ExtResource("9_w3hrb")]
+position = Vector2(-7, 0)

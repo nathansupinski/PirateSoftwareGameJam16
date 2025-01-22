@@ -26,7 +26,8 @@ func _physics_process(delta):
 	
 	## Weapon
 	
-	if Input.action_press()
+	if Input.is_action_pressed("weapon1"):
+		equipment.weapon1.Shoot(Vector2.from_angle(aimIndicator.rotation))
 	
 	if !isHurt:
 		for area in hurtBox.get_overlapping_areas():

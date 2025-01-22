@@ -12,7 +12,7 @@ var _upgradeCount : = 0 :
 	set(value):
 		upgrades_changed.emit(_upgrades.duplicate())
 		_upgradeCount = value
-var weapon1 : Weapon 
+@export var weapon1 : Weapon 
 var weapon2 : Weapon : 
 	get():
 		return weapon2
