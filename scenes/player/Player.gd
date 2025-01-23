@@ -1,7 +1,8 @@
 class_name Player extends Character
 
 @export var knockbackPower: int = 1500
-
+@onready var aimIndicator : Node2D = $AimIndicator
+@onready var equipment : Equipment = $Equipment
 #init player specific properties
 func _init():
 	super()
@@ -19,14 +20,27 @@ func _physics_process(delta):
 	move_and_slide()
 	handleCollision()
 
+	##Aim Indicator
+	var mousePos : Vector2 = get_local_mouse_position()
+	aimIndicator.rotation = mousePos.angle()
+	
+	## Weapon
+	
+	if Input.is_action_pressed("weapon1"):
+		equipment.weapon1.Shoot(Vector2.from_angle(aimIndicator.rotation))
+	
 	if !isHurt:
 		for area in hurtBox.get_overlapping_areas():
 			if area.name == "hitBox":
 				hurtByEnemy(area)
+				
+	
 
 func handleInput():
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	
+	
 	
 func handleCollision():
 	for i in get_slide_collision_count():

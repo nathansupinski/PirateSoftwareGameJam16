@@ -5603,7 +5603,6 @@ texture_region_size = Vector2i(32, 32)
 23:67/0 = 0
 24:67/0 = 0
 25:67/0 = 0
-30:67/0 = 0
 31:67/0 = 0
 32:67/0 = 0
 33:67/0 = 0
@@ -9638,6 +9637,7 @@ texture_region_size = Vector2i(32, 32)
 27:139/0 = 0
 28:139/0 = 0
 29:139/0 = 0
+30:67/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_vtias"]
 tile_size = Vector2i(32, 32)
