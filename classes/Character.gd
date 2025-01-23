@@ -74,3 +74,12 @@ func AnimDirection() -> String:
 		return "up"
 	else: 
 		return "side"
+
+func destroy() -> void:
+	self.queue_free()
+		
+func dealDamage(damage: float):
+	currentHealth = currentHealth - damage
+	print(characterName + ": damaged(" + str(damage) + ") hpLeft:" + str(currentHealth))
+	if(currentHealth <= 0):
+		destroy()

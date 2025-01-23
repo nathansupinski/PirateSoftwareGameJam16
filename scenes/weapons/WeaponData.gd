@@ -10,7 +10,7 @@ enum DamageType {KINETIC,FIRE, ENERGY}
 @export var range : float = 500
 @export_range(0.05,2) var cooldown : float = 0.66
 @export_group("damage")
-@export var rawDamage : float = 1.0
+@export var rawDamage : float = 50.0
 @export var damageType : DamageType = DamageType.KINETIC
 @export_group("projectile")
 @export var projectileSpeed : float = 300

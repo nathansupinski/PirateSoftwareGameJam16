@@ -10,6 +10,7 @@ static var OnDestroy : Callable = func(projectile : Projectile) -> void:
 
 
 signal projectile_destroyed(projectile)
+@onready var collider: CollisionShape2D = $CollisionShape2D
 
 var source : Weapon = null 
 var direction : Vector2 = Vector2.ZERO
@@ -22,7 +23,7 @@ func Reset():
 	
 #@onready var sprite : Sprite2D = $Sprite2D
 func _ready() -> void:
-	pass # Replace with function body.
+	connect("area_entered",_on_area_entered)
 
 func _exit_tree() -> void:
 	print(self, " Destroyed")
@@ -38,3 +39,8 @@ func _process(delta: float) -> void:
 	#print("Delta pos: ", deltaPos)
 	_traveled += deltaPos.length()
 	position += deltaPos
+
+func _on_area_entered(area):
+	if area.name == "hurtBox" and area.get_parent() is Enemy:
+		area.get_parent().dealDamage(source.weaponData.rawDamage)
+		projectile_destroyed.emit(self)
