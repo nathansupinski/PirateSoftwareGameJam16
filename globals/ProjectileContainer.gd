@@ -5,7 +5,12 @@ func ClearPlayerProjectiles():
 	for node in $PlayerProjectiles.get_children():
 		node.queue_free()
 
-
+func _ready():
+	SignalBus.playerDied.connect(
+		func(obj):
+			ClearPlayerProjectiles()
+			ClearEnemyProjectiles()
+	)
 
 
 func ClearEnemyProjectiles():

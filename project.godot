@@ -21,13 +21,16 @@ Enums="*res://globals/Enums.gd"
 Utils="*res://globals/Utils.gd"
 LevelManager="*res://globals/LevelManager.gd"
 ProjectileContainer="*res://globals/ProjectileContainer.tscn"
-
 SignalBus="*res://globals/SignalBus.gd"
 
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[global_group]
+
+Enemy="A bad guy"
 
 [input]
 

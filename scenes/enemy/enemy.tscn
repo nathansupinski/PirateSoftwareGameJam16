@@ -387,7 +387,7 @@ _data = {
 "walk_up": SubResource("Animation_sy4ij")
 }
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 13
 motion_mode = 1

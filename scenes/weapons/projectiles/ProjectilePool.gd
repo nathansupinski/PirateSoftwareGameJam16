@@ -1,19 +1,10 @@
 class_name ProjectilePool extends Node2D
 
 #arbitrary
-const MAX_PROJECTILES = 200
+const MAX_PROJECTILES = 1000
 
 var projectiles : Array[Projectile] = []
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func resetProjectile(projectile : Projectile):
 	projectile.Reset()
@@ -22,6 +13,9 @@ func resetProjectile(projectile : Projectile):
 	#projectiles.append(projectile)
 	
 func Shoot(direction : Vector2):
+	if projectiles.is_empty():
+		print("Empty projectile pool!")
+		return
 	var proj = projectiles.pop_front()
 	while not is_instance_valid(proj):
 		proj = projectiles.pop_front()

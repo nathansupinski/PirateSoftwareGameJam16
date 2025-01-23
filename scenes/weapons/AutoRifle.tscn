@@ -1,22 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3dt0kf8iwmwh"]
+[gd_scene load_steps=4 format=3 uid="uid://c3dt0kf8iwmwh"]
 
 [ext_resource type="PackedScene" uid="uid://lyfrw73ld1qk" path="res://scenes/weapons/Weapon.tscn" id="1_e3yjn"]
-[ext_resource type="Script" path="res://scenes/weapons/WeaponData.gd" id="2_baegv"]
+[ext_resource type="Resource" uid="uid://dypqh73kpkshb" path="res://scenes/weapons/WeaponData.tres" id="2_qikgq"]
 [ext_resource type="PackedScene" uid="uid://bdcl00k0mkqsg" path="res://scenes/weapons/projectiles/Bullet.tscn" id="3_t21oj"]
 
-[sub_resource type="Resource" id="Resource_onhv4"]
-script = ExtResource("2_baegv")
-name = "Auto Rifle"
-tags = Array[String]([])
-range = 500.0
-cooldown = 0.05
-rawDamage = 50.0
-damageType = 0
-projectileSpeed = 300.0
-projectileCount = 1.0
-projectileChain = 0
-areaOfAffect = 0.0
-
 [node name="Weapon" instance=ExtResource("1_e3yjn")]
-weaponData = SubResource("Resource_onhv4")
+weaponData = ExtResource("2_qikgq")
 projectile = ExtResource("3_t21oj")
