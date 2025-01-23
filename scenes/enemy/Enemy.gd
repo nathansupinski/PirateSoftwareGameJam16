@@ -5,6 +5,8 @@ const my_scene = preload("res://scenes/enemy/enemy.tscn")
 @export var player: Player
 @onready var navigationAgent: NavigationAgent2D = $NavigationAgent2D
 
+var xp_container: Node2D
+
 
 func _init():
 	super()
@@ -13,6 +15,7 @@ func _init():
 func _ready() -> void:
 	#print(characterName + "init state machine " + str(stateMachine))
 	stateMachine.Initialize(self)
+	xp_container = get_node("../../PickupContainer/xpContainer") #is there a better way to init this?  @onready didnt seem to find it correctly
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,3 +45,8 @@ func _on_nav_tick_timer_timeout() -> void:
 
 func PathToPlayer() -> void:
 	navigationAgent.target_position =  player.global_position
+	
+func destroy() -> void:
+	print("xp container", xp_container)
+	xp_container.add_child(XpPickup.new_xpPickup(position))
+	super()

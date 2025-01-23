@@ -3,15 +3,28 @@ class_name Player extends Character
 @export var knockbackPower: int = 1500
 @onready var aimIndicator : Node2D = $AimIndicator
 @onready var equipment : Equipment = $Equipment
+@onready var xp_bar: ProgressBar = $"../PlayerHUD/MarginContainer/HBoxContainer/MarginContainer/xpBar"
+@onready var level_hud: Label = $"../PlayerHUD/MarginContainer/HBoxContainer/level"
+@onready var hurt_box: Area2D = $hurtBox
+
+var totalXp:int = 0
+var xpThisLevel = 0
+var xpToLevel: int = 10
+var level: int = 1
+var xpScaleFactor: float = 1.3
+
 #init player specific properties
 func _init():
 	super()
-	speed = 80
+	speed = 100
 	maxHealth = 100
 	currentHealth = maxHealth
 
 func _ready():
 	stateMachine.Initialize(self)
+	xp_bar.max_value = xpToLevel
+	xp_bar.value = xpThisLevel
+	hurt_box.connect("area_entered", _on_area_entered)
 
 func _process(delta):
 	handleInput()
@@ -76,3 +89,21 @@ func UpdateAnimation(state: Enums.CHARACTER_STATE_NAMES) -> void:
 			animation_player.play("walk_" + AnimDirection())
 		Enums.CHARACTER_STATE_NAMES.IDLE:
 			animation_player.play("idle_down") #temp
+			
+func applyXp(xp: int) -> void:
+	totalXp += xp
+	xpThisLevel += xp
+	xp_bar.value = xpThisLevel
+	
+	if xpThisLevel >= xpToLevel:
+		var remainder = xpThisLevel - xpToLevel
+		level += 1
+		xpThisLevel = remainder
+		xpToLevel = ceil(xpToLevel * xpScaleFactor)
+		xp_bar.max_value = xpToLevel
+		xp_bar.value = xpThisLevel
+		level_hud.text = str(level)
+
+func _on_area_entered(area: Area2D) -> void: #wanted to keep this code in Pickup class but seems more performant to have the player do the checking
+	if area is Pickup:
+		area.apply(self)

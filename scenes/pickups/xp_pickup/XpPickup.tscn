@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjwtc0rxjfwvd"]
+
+[ext_resource type="PackedScene" uid="uid://cn0ohha8keyl1" path="res://scenes/pickups/Pickup.tscn" id="1_s3fuj"]
+[ext_resource type="Script" path="res://scenes/pickups/xp_pickup/XpPickup.gd" id="2_pc2dx"]
+[ext_resource type="Texture2D" uid="uid://bijieh006twrm" path="res://scenes/pickups/xp_pickup/sprites/GEM 1 - BLUE - Spritesheet.png" id="3_bvwg3"]
+
+[sub_resource type="Animation" id="Animation_keqkn"]
+resource_name = "glint"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_pdu0o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5wqfj"]
+_data = {
+"RESET": SubResource("Animation_pdu0o"),
+"glint": SubResource("Animation_keqkn")
+}
+
+[node name="xpPickup" instance=ExtResource("1_s3fuj")]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("2_pc2dx")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_bvwg3")
+hframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_5wqfj")
+}
