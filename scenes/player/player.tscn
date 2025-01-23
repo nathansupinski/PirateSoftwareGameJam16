@@ -324,7 +324,7 @@ _data = {
 "hurtBlink": SubResource("Animation_1s4us")
 }
 
-[sub_resource type="Resource" id="Resource_eatci"]
+[sub_resource type="Resource" id="Resource_e7qgv"]
 resource_local_to_scene = true
 script = ExtResource("10_km6v6")
 name = "null"
@@ -411,4 +411,4 @@ weapon1 = NodePath("Weapon")
 
 [node name="Weapon" parent="Equipment" instance=ExtResource("9_w3hrb")]
 position = Vector2(-7, 0)
-weaponData = SubResource("Resource_eatci")
+weaponData = SubResource("Resource_e7qgv")
