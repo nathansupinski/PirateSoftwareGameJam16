@@ -7,11 +7,15 @@ class_name Player extends Character
 @onready var level_hud: Label = $"../PlayerHUD/MarginContainer/HBoxContainer/level"
 @onready var hurt_box: Area2D = $hurtBox
 
+signal energyChanged
+
 var totalXp:int = 0
 var xpThisLevel = 0
 var xpToLevel: int = 10
 var level: int = 1
 var xpScaleFactor: float = 1.3
+var currentEnergy: int = 60
+var maxEnergy: int = 150
 
 #init player specific properties
 func _init():

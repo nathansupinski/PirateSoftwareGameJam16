@@ -32,6 +32,10 @@ version_control/autoload_on_startup=true
 
 Enemy="A bad guy"
 
+[gui]
+
+theme/custom_font="res://asssets/fonts/Audiowide-Regular.ttf"
+
 [input]
 
 up={

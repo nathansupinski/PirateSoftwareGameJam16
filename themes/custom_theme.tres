@@ -1,6 +1,55 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ccfliqn2c76xo"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://ccfliqn2c76xo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d83e0"]
+bg_color = Color(0.6, 0.6, 0.6, 0.423529)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rdr08"]
+bg_color = Color(0.33022, 0.655906, 0.714329, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yie3m"]
+bg_color = Color(0.6, 0.6, 0.6, 0.423529)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dt6lj"]
+bg_color = Color(0.247463, 0.709554, 0.266058, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i02w6"]
+bg_color = Color(0.6, 0.6, 0.6, 0.423529)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7i5hy"]
+bg_color = Color(0.759028, 0, 0.198097, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jhvx6"]
+bg_color = Color(0.6, 0.6, 0.6, 0.423529)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -16,6 +65,15 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
 [resource]
+EnergyBar/base_type = &"ProgressBar"
+EnergyBar/styles/background = SubResource("StyleBoxFlat_d83e0")
+EnergyBar/styles/fill = SubResource("StyleBoxFlat_rdr08")
+HealthBarHigh/base_type = &"ProgressBar"
+HealthBarHigh/styles/background = SubResource("StyleBoxFlat_yie3m")
+HealthBarHigh/styles/fill = SubResource("StyleBoxFlat_dt6lj")
+HealthBarLow/base_type = &"ProgressBar"
+HealthBarLow/styles/background = SubResource("StyleBoxFlat_i02w6")
+HealthBarLow/styles/fill = SubResource("StyleBoxFlat_7i5hy")
 XpBar/base_type = &"ProgressBar"
 XpBar/styles/background = SubResource("StyleBoxFlat_jhvx6")
 XpBar/styles/fill = SubResource("StyleBoxFlat_gegfb")

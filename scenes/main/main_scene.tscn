@@ -9707,18 +9707,6 @@ text = "Quit"
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 script = ExtResource("6_u17mt")
 
-[node name="HealthBar" type="Label" parent="PlayerHUD"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "999"
-
 [node name="MarginContainer" type="MarginContainer" parent="PlayerHUD"]
 anchors_preset = 5
 anchor_left = 0.5
@@ -9748,6 +9736,73 @@ show_percentage = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "1"
+
+[node name="MarginContainer2" type="MarginContainer" parent="PlayerHUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerHUD/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerHUD/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+theme = ExtResource("7_82jcc")
+theme_type_variation = &"HealthBarHigh"
+value = 50.0
+show_percentage = false
+
+[node name="HealthText" type="Label" parent="PlayerHUD/MarginContainer2/VBoxContainer/HealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.5
+offset_top = -10.5
+offset_right = 40.5
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "100/100"
+
+[node name="EnergyBar" type="ProgressBar" parent="PlayerHUD/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+theme = ExtResource("7_82jcc")
+theme_type_variation = &"EnergyBar"
+value = 50.0
+show_percentage = false
+
+[node name="EnergyText" type="Label" parent="PlayerHUD/MarginContainer2/VBoxContainer/EnergyBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.5
+offset_top = -10.5
+offset_right = 40.5
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "100/100"
 
 [node name="DeathScreen" type="CanvasLayer" parent="."]
 visible = false
