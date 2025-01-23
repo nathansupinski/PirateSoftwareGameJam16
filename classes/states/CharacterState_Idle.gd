@@ -2,7 +2,7 @@ class_name CharacterState_Idle extends CharacterState
 @onready var walk = $"../walk"
 # Called when the character enters this state
 func Enter() -> void:
-	print(character.characterName + ' Entered Idle State')
+	#print(character.characterName + ' Entered Idle State')
 	character.UpdateAnimation(Enums.CHARACTER_STATE_NAMES.IDLE)
 
 # Called when the character leaves this state

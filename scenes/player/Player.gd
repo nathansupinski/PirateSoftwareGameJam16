@@ -49,10 +49,11 @@ func handleCollision():
 		#print_debug(collider.name)
 
 func hurtByEnemy(area):
-	print("player hurt")
-	currentHealth -= 1
-	if currentHealth < 0:
-		currentHealth = maxHealth
+	currentHealth -= area.get_parent().collisionDamage
+	SignalBus.playerDamaged.emit(area.get_parent(), area.get_parent().collisionDamage)
+	if currentHealth <= 0:
+		SignalBus.playerDied.emit(area.get_parent())
+		print('death signal emited')
 	healthChanged.emit(currentHealth)
 	isHurt = true
 	
@@ -70,11 +71,8 @@ func knockback(enemyVelocity: Vector2):
 
 #temp overload parent class until we get rid of placeholder animations
 func UpdateAnimation(state: Enums.CHARACTER_STATE_NAMES) -> void:
-	print('state:', state)
 	match state:
 		Enums.CHARACTER_STATE_NAMES.WALK:
-			print("update to: walk_" + AnimDirection())
 			animation_player.play("walk_" + AnimDirection())
 		Enums.CHARACTER_STATE_NAMES.IDLE:
-			print("update to: idle_" + AnimDirection())
 			animation_player.play("idle_down") #temp

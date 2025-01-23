@@ -5,6 +5,7 @@ signal healthChanged
 @export var speed: float = 70
 @export var maxHealth: int = 3
 @export var characterName: String = 'Char1'
+@export var collisionDamage: int = 0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var effectsAnimations = $EffectsAnimationPlayer
@@ -23,7 +24,7 @@ func _init():
 	pass
 
 func _ready():
-	print("init state machine " + str(stateMachine))
+	#print("init state machine " + str(stateMachine))
 	stateMachine.Initialize(self)
 
 func _process(delta):
@@ -57,7 +58,6 @@ func SetDirection() -> bool:
 	
 	cardinal_direction = new_direction
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1 #flips the sprite left or right but also flips any child sprites. Use flip setting on the sprite instead if you dont want this behavior
-	print("update direction")
 	return true
 	
 func UpdateAnimation(state: Enums.CHARACTER_STATE_NAMES) -> void:
