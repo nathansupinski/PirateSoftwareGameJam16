@@ -83,4 +83,4 @@ func dealDamage(damage: float):
 	currentHealth = currentHealth - damage
 	print(characterName + ": damaged(" + str(damage) + ") hpLeft:" + str(currentHealth))
 	if(currentHealth <= 0):
-		destroy()
+		call_deferred("destroy")

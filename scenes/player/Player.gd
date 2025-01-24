@@ -48,8 +48,8 @@ var pickupRadius : float = 100 :
 #init player specific properties
 func _init():
 	super()
-	speed = 100
-	maxHealth = 100
+	speed = 400
+	maxHealth = 120
 	currentHealth = maxHealth
 	
 
