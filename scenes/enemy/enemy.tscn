@@ -440,7 +440,6 @@ libraries = {
 }
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-simplify_path = true
 
 [node name="NavTickTimer" type="Timer" parent="NavigationAgent2D"]
 wait_time = 0.5

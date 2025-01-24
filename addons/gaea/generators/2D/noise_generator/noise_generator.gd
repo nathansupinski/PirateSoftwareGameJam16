@@ -42,6 +42,7 @@ func generate(starting_grid: GaeaGrid = null) -> void:
 
 	grid_updated.emit()
 	generation_finished.emit()
+	SignalBus.procGenDone.emit()
 
 
 func generate_chunk(chunk_position: Vector2i, starting_grid: GaeaGrid = null) -> void:

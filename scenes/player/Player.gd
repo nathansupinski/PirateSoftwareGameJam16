@@ -49,7 +49,7 @@ var pickupRadius : float = 100 :
 func _init():
 	super()
 	speed = 400
-	maxHealth = 120
+	maxHealth = 800
 	currentHealth = maxHealth
 	
 

@@ -5,6 +5,8 @@ extends Node2D
 @onready var enemy_container: Node2D = $EnemyContainer
 @onready var death_screen: CanvasLayer = $DeathScreen
 
+var totalEnemies: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().paused = false
@@ -24,8 +26,31 @@ func _ready():
 	
 	SignalBus.playerDied.connect(_on_player_died)
 	SignalBus.playerDamaged.connect(_on_player_damaged)
+	SignalBus.procGenDone.connect(_on_gen_finished)
 	pass
 
+func _on_gen_finished():
+	print("proc gen done. Baking nav mesh...")
+	var nav_region = NavigationRegion2D.new()
+	add_child(nav_region)
+
+	# Create a new NavigationPolygon
+	var nav_polygon = NavigationPolygon.new()
+
+	# Define the polygon's geometry (example shape)
+	var polygon_points = PackedVector2Array([
+		Vector2(0, 0),
+		Vector2(4096, 0),
+		Vector2(4096, 4096),
+		Vector2(0, 4096)
+	])
+	nav_polygon.add_outline(polygon_points)
+	nav_polygon.make_polygons_from_outlines()
+
+	# Assign the NavigationPolygon to the NavigationRegion2D
+	nav_region.navigation_polygon = nav_polygon
+	
+	print("nav mesh done.")
 
 # Called every frame. 'delta' is the elapswed time since the previous frame.
 func _process(delta):
@@ -63,8 +88,9 @@ func spawnEnemiesInRing(enemyClass: Script, numberToSpawn: int, randomizeOffsets
 
 		# Spawn the instance
 		enemy_container.add_child(enemyClass.new_enemy(player, 'Enemy'+str(i), 50, 100, 100, 20, spawnLoc))
-	print("spawned " + str(numberToSpawn) + " enemies")
+	totalEnemies += numberToSpawn
+	print("spawned " + str(numberToSpawn) + " enemies. (" + str(totalEnemies) + " total)")
 		
 func spawnWave() -> void:
 	print("spawning wave")
-	spawnEnemiesInRing(Enemy, 20, true)
+	spawnEnemiesInRing(Enemy, 50, true)
