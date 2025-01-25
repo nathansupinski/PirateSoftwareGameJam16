@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c3dt0kf8iwmwh"]
 
 [ext_resource type="PackedScene" uid="uid://lyfrw73ld1qk" path="res://scenes/weapons/Weapon.tscn" id="1_e3yjn"]
-[ext_resource type="Resource" path="res://scenes/weapons/WeaponData.tres" id="2_qikgq"]
+[ext_resource type="Resource" uid="uid://dypqh73kpkshb" path="res://scenes/weapons/WeaponData.tres" id="2_qikgq"]
 [ext_resource type="PackedScene" uid="uid://bdcl00k0mkqsg" path="res://scenes/weapons/projectiles/Bullet.tscn" id="3_t21oj"]
 
 [node name="Weapon" instance=ExtResource("1_e3yjn")]

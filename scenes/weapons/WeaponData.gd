@@ -1,6 +1,6 @@
 class_name WeaponData extends Resource
 
-enum DamageType {KINETIC,FIRE, ENERGY}
+
 
 ##Arbitrary max projectile count
 const MAX_PROJECTILE_COUNT = 10
@@ -12,10 +12,10 @@ const MIN_PROJECTILE_COUNT = 1
 @export var name : String = "null"
 @export var tags : Array[String] = []
 @export var weaponRange : float = 500
-@export_range(0.05,2) var cooldown : float = 0.66
+@export_range(0.05,2) var fireRate : float = 0.66
 @export_group("damage")
 @export var rawDamage : float = 50.0
-@export var damageType : DamageType = DamageType.KINETIC
+@export var damageType : Enums.DamageType = Enums.DamageType.KINETIC
 @export_group("projectile")
 @export var projectileSpeed : float = 300
 

@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnrhxasvmpu8n"]
+
+[ext_resource type="PackedScene" uid="uid://bjij5to5h5sye" path="res://scenes/UI/UpgradePanel.tscn" id="1_tpnox"]
+
+[node name="UpgradeMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Upgrade" parent="." instance=ExtResource("1_tpnox")]
+layout_mode = 1
+offset_left = -411.0
+offset_top = -205.0
+offset_right = -211.0
+offset_bottom = 95.0
+
+[node name="Upgrade2" parent="." instance=ExtResource("1_tpnox")]
+layout_mode = 1
+offset_left = -104.0
+offset_top = -194.0
+offset_right = 96.0
+offset_bottom = 106.0

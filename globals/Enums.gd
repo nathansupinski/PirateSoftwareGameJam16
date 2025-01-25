@@ -4,14 +4,20 @@ extends Node
 
 enum CHARACTER_STATE_NAMES {IDLE, WALK}
 
-enum UPGRADE_CATEGORY{
+enum UpgradeCategory{
 	GLOBAL,
 	WEAPON,
 }
-enum UPGRADE_TYPE{
-	DAMAGE,
-	SPEED,
-	RANGE,
-	AOE,
-	
+
+enum DamageType {
+	KINETIC,
+	FIRE, 
+	ENERGY,
 }
+#enum UPGRADE_TYPE{
+	#DAMAGE,
+	#SPEED,
+	#RANGE,
+	#AOE,
+	#
+#}

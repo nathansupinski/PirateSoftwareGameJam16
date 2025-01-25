@@ -38,9 +38,9 @@ func handleCollision():
 	pass
 
 
-func _on_hurt_box_area_entered(area): pass
+func _on_hurt_box_area_entered(_area): pass
 		
-func _on_hurt_box_area_exited(area): pass
+func _on_hurt_box_area_exited(_area): pass
 
 # returns true if the animation needs to be updated
 func SetDirection() -> bool: 
