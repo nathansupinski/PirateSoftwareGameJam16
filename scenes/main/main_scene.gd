@@ -27,7 +27,12 @@ func _ready():
 	SignalBus.playerDied.connect(_on_player_died)
 	SignalBus.playerDamaged.connect(_on_player_damaged)
 	SignalBus.procGenDone.connect(_on_gen_finished)
+	SignalBus.procGenChunkGenerated.connect(_on_gen_chunk_generated)
 	pass
+
+func _on_gen_chunk_generated(chunkPosition: Vector2i):
+	print("chunk created at ", chunkPosition * 16)
+	#print("chunk rect at ", Rect2i(chunkPosition * 556, 256))
 
 func _on_gen_finished():
 	print("proc gen done. Baking nav mesh...")
@@ -49,7 +54,7 @@ func _on_gen_finished():
 
 	# Assign the NavigationPolygon to the NavigationRegion2D
 	nav_region.navigation_polygon = nav_polygon
-	
+	NavigationServer3D.set_debug_enabled(true)
 	print("nav mesh done.")
 
 # Called every frame. 'delta' is the elapswed time since the previous frame.

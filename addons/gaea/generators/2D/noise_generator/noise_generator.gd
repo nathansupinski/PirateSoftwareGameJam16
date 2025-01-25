@@ -72,6 +72,7 @@ func generate_chunk(chunk_position: Vector2i, starting_grid: GaeaGrid = null) ->
 
 	(func(): chunk_updated.emit(chunk_position)).call_deferred()  # Deferred for thread-safety.
 	(func(): chunk_generation_finished.emit(chunk_position)).call_deferred()  # Deferred for thread-safety.
+	(func(): SignalBus.procGenChunkGenerated.emit(chunk_position)).call_deferred()  # Deferred for thread-safety.
 
 
 func _set_grid() -> void:

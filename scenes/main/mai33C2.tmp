@@ -166,8 +166,7 @@ resource_name = "Settings"
 script = ExtResource("4_wgp10")
 tiles = Array[ExtResource("5_j3c85")]([SubResource("Resource_n48ye"), SubResource("Resource_k45ln"), SubResource("Resource_20v7u"), SubResource("Resource_6m286"), SubResource("Resource_dsdwc")])
 noise = SubResource("FastNoiseLite_ma8l8")
-infinite = false
-world_size = Vector2i(256, 256)
+infinite = true
 falloff_enabled = false
 modifiers = Array[ExtResource("3_3r5g0")]([SubResource("Resource_dd3nq")])
 
