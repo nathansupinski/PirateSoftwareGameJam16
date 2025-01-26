@@ -2,6 +2,7 @@ class_name Equipment extends Node2D
 
 
 
+
 signal weapon2_changed(weapon)
 signal upgrades_changed(upgrades)
 ## organize by tag

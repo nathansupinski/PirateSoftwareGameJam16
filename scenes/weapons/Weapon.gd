@@ -3,7 +3,9 @@ class_name Weapon extends Node2D
 @export var weaponData : WeaponData
 @export var projectile : PackedScene
 @export var projectileSprite : Texture2D
+@export var shotSound : AudioStreamWAV
 @onready var _attackTimer : Timer = $AttackTimer
+
 
 var projectilePool : ProjectilePool
 
@@ -12,6 +14,7 @@ func _ready() -> void:
 	_attackTimer.wait_time = weaponData.fireRate
 	projectilePool = ProjectilePool.Create(projectile,200,self)
 	$"Sprite2D/SpawnPosition".add_child(projectilePool)
+	$AudioStreamPlayer.stream = weaponData.shotSound
 
 
 func Shoot(direction : Vector2):
@@ -20,8 +23,8 @@ func Shoot(direction : Vector2):
 		const maxSpread = deg_to_rad(60)
 		var step : float = maxSpread / float(count)
 		for i in range(-count/2,count/2+1,1):
-			#print(i)
 			projectilePool.Shoot(direction.rotated(i*step))
-		projectilePool.Shoot(direction)
+		$AudioStreamPlayer.play()
+		#projectilePool.Shoot(direction)
 		_attackTimer.start()
 	

@@ -12,6 +12,7 @@ const MIN_PROJECTILE_COUNT = 1
 @export var name : String = "null"
 @export var tags : Array[String] = []
 @export var weaponRange : float = 500
+@export var shotSound : AudioStreamWAV
 @export_range(0.05,2) var fireRate : float = 0.66
 @export_group("damage")
 @export var rawDamage : float = 50.0

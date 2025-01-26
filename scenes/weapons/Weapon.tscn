@@ -11,7 +11,7 @@ script = ExtResource("2_xhvbt")
 name = "null"
 tags = Array[String]([])
 weaponRange = 500.0
-cooldown = 0.66
+fireRate = 0.66
 rawDamage = 50.0
 damageType = 0
 projectileSpeed = 300.0
@@ -46,8 +46,11 @@ scale = Vector2(0.02, 0.11)
 texture = ExtResource("4_tjtl7")
 
 [node name="SpawnPosition" type="Node2D" parent="Sprite2D"]
+unique_name_in_owner = true
 position = Vector2(0, -63.6364)
 script = ExtResource("4_hyvwb")
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

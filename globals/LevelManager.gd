@@ -2,6 +2,10 @@
 extends Node
 
 
+#
+
+
+
 var current_tilemap_bounds : Array [ Vector2 ]
 signal TileMapBoundsChanged(bounds: Array [ Vector2 ])
 

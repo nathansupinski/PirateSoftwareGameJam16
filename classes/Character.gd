@@ -57,7 +57,8 @@ func SetDirection() -> bool:
 		return false
 	
 	cardinal_direction = new_direction
-	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1 #flips the sprite left or right but also flips any child sprites. Use flip setting on the sprite instead if you dont want this behavior
+	if not is_instance_of(self,Player):
+		sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1 #flips the sprite left or right but also flips any child sprites. Use flip setting on the sprite instead if you dont want this behavior
 	return true
 	
 func UpdateAnimation(state: Enums.CHARACTER_STATE_NAMES) -> void:

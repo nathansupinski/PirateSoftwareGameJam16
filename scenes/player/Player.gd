@@ -1,6 +1,21 @@
 class_name Player extends Character
 
 const ROTATION_IMAGES = 40
+const UP = Vector2.UP
+const UP_LEFT = Vector2(-1,-1)
+const LEFT = Vector2.LEFT
+const DOWN_LEFT = Vector2(-1,1)
+const DOWN = Vector2.DOWN
+const DOWN_RIGHT = Vector2(1,1)
+const RIGHT = Vector2.RIGHT
+const UP_RIGHT = Vector2(1,-1)
+
+const SPRITE_UP = preload("res://scenes/player/sprites/playerLegs/movement/upUp/upUp.png")
+const SPRITE_SIDE = preload("res://scenes/player/sprites/playerLegs/movement/leftLeft/leftLeft.png")
+const SPRITE_UP_SIDE = preload("res://scenes/player/sprites/playerLegs/movement/upLeft/upLeft.png")
+const SPRITE_DOWN = preload("res://scenes/player/sprites/playerLegs/movement/downDown/downDown.png")
+const SPRITE_DOWN_SIDE = preload("res://scenes/player/sprites/playerLegs/movement/downLeft/downLeft.png")
+
 
 @export var knockbackPower: int = 1500
 @onready var aimIndicator : Node2D = $AimIndicator
@@ -8,6 +23,9 @@ const ROTATION_IMAGES = 40
 @onready var xp_bar: ProgressBar = $"../PlayerHUD/MarginContainer/HBoxContainer/MarginContainer/xpBar"
 @onready var level_hud: Label = $"../PlayerHUD/MarginContainer/HBoxContainer/level"
 @onready var hurt_box: Area2D = $hurtBox
+
+
+
 
 signal energyChanged
 
@@ -35,13 +53,15 @@ func _init():
 	currentHealth = maxHealth
 	
 
+	#$AnimationTree.set("parameters",not stateMachine.cur_state.name=="walk" and not direction.x !=0)
+
+
 func _ready():
 	stateMachine.Initialize(self)
 	if xp_bar:
 		xp_bar.max_value = xpToLevel
 		xp_bar.value = xpThisLevel
 	hurt_box.connect("area_entered", _on_area_entered)
-	#$"PickupArea".body_entered.connect(handlePickupArea)
 
 func _process(delta):
 	handleInput()
@@ -61,20 +81,32 @@ func rotationToTorsoIndex(radians : float) -> int:
 		out += ROTATION_IMAGES
 		
 	return out
+	
+	
 func _physics_process(delta):
 	move_and_slide()
 	handleCollision()
 
 	##Aim Indicator
 	var mousePos : Vector2 = get_local_mouse_position()
+	var mouseAngle = mousePos.angle()
 	aimIndicator.rotation = mousePos.angle()
-	$Sprite2D.frame = rotationToTorsoIndex(aimIndicator.rotation)
-
 	
+	$Torso.frame = rotationToTorsoIndex(aimIndicator.rotation)
+	var bspawn = find_child("SpawnPosition")
+	bspawn.position = Vector2.from_angle(aimIndicator.rotation-PI/4)*60
+	$"Equipment".weapon1.find_child("Sprite2D").frame = $Torso.frame
+	
+	$Sprite2D.flip_h = true if direction.x ==1 else false
 	## Weapon
 	
+	if Input.is_action_just_pressed("left"):
+		pass
 	if Input.is_action_pressed("weapon1"):
 		equipment.weapon1.Shoot(Vector2.from_angle(aimIndicator.rotation))
+	if Input.is_action_just_pressed("weapon2"):
+		if equipment.weapon2:
+			equipment.weapon2.Shoot(Vector2.from_angle(aimIndicator.rotation))
 	
 	if !isHurt:
 		for area in hurtBox.get_overlapping_areas():
@@ -87,6 +119,31 @@ func _physics_process(delta):
 func handleInput():
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	
+	#print(direction)
+	if direction != Vector2.ZERO:
+		$AnimationPlayer.play("move")
+	if direction==UP_LEFT or direction==UP_RIGHT:
+		$Sprite2D.texture = SPRITE_UP_SIDE
+		pass
+	elif direction==LEFT or direction==RIGHT:
+		$Sprite2D.texture = SPRITE_SIDE
+		pass
+	elif direction == DOWN_LEFT or direction== DOWN_RIGHT:
+		$Sprite2D.texture = SPRITE_DOWN_SIDE
+		pass
+	elif direction == DOWN:
+		$Sprite2D.texture = SPRITE_DOWN
+		pass
+	elif direction == UP:
+		$Sprite2D.texture = SPRITE_UP
+		pass
+	elif direction == Vector2.ZERO:
+		$AnimationPlayer.play("idle")
+	
+		
+	
+	#print(animation_state.get_current_node())
 	
 	
 	
@@ -119,11 +176,18 @@ func knockback(enemyVelocity: Vector2):
 
 #temp overload parent class until we get rid of placeholder animations
 func UpdateAnimation(state: Enums.CHARACTER_STATE_NAMES) -> void:
+	
+	
 	match state:
 		Enums.CHARACTER_STATE_NAMES.WALK:
-			animation_player.play("walk_" + AnimDirection())
+
+			#animation_player.play("walk_" + AnimDirection())
+			pass
 		Enums.CHARACTER_STATE_NAMES.IDLE:
-			animation_player.play("idle_down") #temp
+
+			
+			#animation_player.play("idle_down") #temp
+			pass
 			
 func applyXp(xp: int) -> void:
 	totalXp += xp
