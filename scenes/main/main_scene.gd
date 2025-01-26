@@ -23,43 +23,13 @@ func _ready():
 	timer.timeout.connect(spawnWave)
 	timer.start()
 	
-	
+	var test = get_world_2d()
 	SignalBus.playerDied.connect(_on_player_died)
 	SignalBus.playerDamaged.connect(_on_player_damaged)
-	SignalBus.procGenDone.connect(_on_gen_finished)
-	SignalBus.procGenChunkGenerated.connect(_on_gen_chunk_generated)
 	pass
-
-func _on_gen_chunk_generated(chunkPosition: Vector2i):
-	print("chunk created at ", chunkPosition * 16)
-	#print("chunk rect at ", Rect2i(chunkPosition * 556, 256))
-
-func _on_gen_finished():
-	print("proc gen done. Baking nav mesh...")
-	var nav_region = NavigationRegion2D.new()
-	add_child(nav_region)
-
-	# Create a new NavigationPolygon
-	var nav_polygon = NavigationPolygon.new()
-
-	# Define the polygon's geometry (example shape)
-	var polygon_points = PackedVector2Array([
-		Vector2(0, 0),
-		Vector2(4096, 0),
-		Vector2(4096, 4096),
-		Vector2(0, 4096)
-	])
-	nav_polygon.add_outline(polygon_points)
-	nav_polygon.make_polygons_from_outlines()
-
-	# Assign the NavigationPolygon to the NavigationRegion2D
-	nav_region.navigation_polygon = nav_polygon
-	NavigationServer3D.set_debug_enabled(true)
-	print("nav mesh done.")
 
 # Called every frame. 'delta' is the elapswed time since the previous frame.
 func _process(delta):
-	
 	pass
 
 func _unhandled_input(event):

@@ -37,6 +37,7 @@ func erase_chunk(chunk_position: Vector2i) -> void:
 
 	(func(): chunk_updated.emit(chunk_position)).call_deferred()  # deferred for threadability
 	(func(): chunk_erased.emit(chunk_position)).call_deferred()  # deferred for threadability
+	(func(): SignalBus.procGenChunkErased.emit(chunk_position)).call_deferred()  # deferred for threadability
 
 
 func _apply_modifiers_chunk(modifiers: Array[Modifier2D], chunk_position: Vector2i) -> void:
