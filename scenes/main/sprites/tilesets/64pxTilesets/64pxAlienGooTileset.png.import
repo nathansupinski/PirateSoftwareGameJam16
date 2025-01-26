@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3m8r4kjxaxm5"
-path="res://.godot/imported/Tileset-Terrain.png-17a3a098bf63a8d909f53d308da129bc.ctex"
+uid="uid://w0uta44ckdfy"
+path="res://.godot/imported/64pxAlienGooTileset.png-14fcb3d215ff4c2c0e4b80271b148d2f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/main/sprites/tilesets/Tileset-Terrain.png"
-dest_files=["res://.godot/imported/Tileset-Terrain.png-17a3a098bf63a8d909f53d308da129bc.ctex"]
+source_file="res://scenes/main/sprites/tilesets/64pxTilesets/64pxAlienGooTileset.png"
+dest_files=["res://.godot/imported/64pxAlienGooTileset.png-14fcb3d215ff4c2c0e4b80271b148d2f.ctex"]
 
 [params]
 

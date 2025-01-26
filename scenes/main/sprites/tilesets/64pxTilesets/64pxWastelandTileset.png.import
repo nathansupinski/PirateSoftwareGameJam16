@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpq0imsqb5muw"
-path="res://.godot/imported/Tree_02.png-2e0c756edc796dda64913f5ca7d6b4ba.ctex"
+uid="uid://ce2nrar32whiq"
+path="res://.godot/imported/64pxWastelandTileset.png-23dfb7054072dfba28869d845c5c63d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/main/sprites/tilesets/Tree_02.png"
-dest_files=["res://.godot/imported/Tree_02.png-2e0c756edc796dda64913f5ca7d6b4ba.ctex"]
+source_file="res://scenes/main/sprites/tilesets/64pxTilesets/64pxWastelandTileset.png"
+dest_files=["res://.godot/imported/64pxWastelandTileset.png-23dfb7054072dfba28869d845c5c63d2.ctex"]
 
 [params]
 

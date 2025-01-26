@@ -9,7 +9,7 @@ func _ready() -> void:
 	SignalBus.procGenChunkGenerated.connect(_on_gen_chunk_generated)
 	#SignalBus.procGenChunkRendered.connect(_on_gen_chunk_generated)
 	SignalBus.procGenChunkErased.connect(_on_gen_chunk_erased)
-	NavigationServer3D.set_debug_enabled(true)
+	NavigationServer3D.set_debug_enabled(false)
 	pass # Replace with function body.
 
 
@@ -110,7 +110,7 @@ func _on_gen_chunk_erased(chunkPosition: Vector2i):
 
 func _on_gen_chunk_generated(chunkPosition: Vector2i):
 	var chunkSize = 16.00
-	var tileSize = 16.00
+	var tileSize = 64.00
 	var globalChunkPosition = chunkPosition * chunkSize * tileSize
 	var chunkRect = Rect2i(globalChunkPosition, Vector2(chunkSize * tileSize,chunkSize * tileSize))
 	#print("chunk created at ", chunkPosition * chunkSize * tileSize)
@@ -164,7 +164,7 @@ func createRegion(chunkRect: Rect2i, chunkPosition: Vector2i):
 func oldCreateRegion(chunkRect: Rect2i, chunkPosition: Vector2i, globalChunkPosition) -> void:
 	await get_tree().physics_frame
 
-	var collisionChecker: VisibleArea2D = create_area(globalChunkPosition,Vector2(16 * 16,16 * 16))
+	var collisionChecker: VisibleArea2D = create_area(globalChunkPosition,Vector2(64 * 64,64 * 64))
 	print("area cords", collisionChecker.position)
 	collisionChecker.set_collision_mask_value(1, true)
 	await get_tree().physics_frame

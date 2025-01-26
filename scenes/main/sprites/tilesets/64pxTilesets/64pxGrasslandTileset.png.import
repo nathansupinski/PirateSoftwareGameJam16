@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgjnqgjhta07n"
-path="res://.godot/imported/kek.jpg-2f346c9f0ef09d60d51450a9d549f7b6.ctex"
+uid="uid://cc5ix24ycuhho"
+path="res://.godot/imported/64pxGrasslandTileset.png-0f2b5f5f3aa78e5b7ccb0517a7fcbb8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asssets/kek.jpg"
-dest_files=["res://.godot/imported/kek.jpg-2f346c9f0ef09d60d51450a9d549f7b6.ctex"]
+source_file="res://scenes/main/sprites/tilesets/64pxTilesets/64pxGrasslandTileset.png"
+dest_files=["res://.godot/imported/64pxGrasslandTileset.png-0f2b5f5f3aa78e5b7ccb0517a7fcbb8b.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4huobquy2kfb"
-path="res://.godot/imported/ArtForTOPDOWN-GaeaTutorial.png-c599333a508e4babf9a5e83b5edfafcd.ctex"
+uid="uid://dve0rslp7hfkb"
+path="res://.godot/imported/64pxAlienNestTileset.png-239cfd195d1e0ebf5ee5b11db4ee084e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/main/sprites/tilesets/ArtForTOPDOWN-GaeaTutorial.png"
-dest_files=["res://.godot/imported/ArtForTOPDOWN-GaeaTutorial.png-c599333a508e4babf9a5e83b5edfafcd.ctex"]
+source_file="res://scenes/main/sprites/tilesets/64pxTilesets/64pxAlienNestTileset.png"
+dest_files=["res://.godot/imported/64pxAlienNestTileset.png-239cfd195d1e0ebf5ee5b11db4ee084e.ctex"]
 
 [params]
 
