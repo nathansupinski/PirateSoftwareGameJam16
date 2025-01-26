@@ -5,6 +5,8 @@ extends Node2D
 @onready var enemy_container: Node2D = $EnemyContainer
 @onready var death_screen: CanvasLayer = $DeathScreen
 
+var totalEnemies: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().paused = false
@@ -21,15 +23,13 @@ func _ready():
 	timer.timeout.connect(spawnWave)
 	timer.start()
 	
-	
+	var test = get_world_2d()
 	SignalBus.playerDied.connect(_on_player_died)
 	SignalBus.playerDamaged.connect(_on_player_damaged)
 	pass
 
-
 # Called every frame. 'delta' is the elapswed time since the previous frame.
 func _process(delta):
-	
 	pass
 
 func _unhandled_input(event):
@@ -63,8 +63,9 @@ func spawnEnemiesInRing(enemyClass: Script, numberToSpawn: int, randomizeOffsets
 
 		# Spawn the instance
 		enemy_container.add_child(enemyClass.new_enemy(player, 'Enemy'+str(i), 50, 100, 100, 20, spawnLoc))
-	print("spawned " + str(numberToSpawn) + " enemies")
+	totalEnemies += numberToSpawn
+	print("spawned " + str(numberToSpawn) + " enemies. (" + str(totalEnemies) + " total)")
 		
 func spawnWave() -> void:
 	print("spawning wave")
-	spawnEnemiesInRing(Enemy, 20, true)
+	spawnEnemiesInRing(Enemy, 50, true)

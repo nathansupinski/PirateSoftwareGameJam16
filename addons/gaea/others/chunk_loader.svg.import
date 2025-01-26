@@ -2,16 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3m8r4kjxaxm5"
-path="res://.godot/imported/Tileset-Terrain.png-17a3a098bf63a8d909f53d308da129bc.ctex"
+uid="uid://ecx786duynns"
+path="res://.godot/imported/chunk_loader.svg-c05989f93d0a2438882e41dd35d6cd42.ctex"
 metadata={
+"has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/main/sprites/tilesets/Tileset-Terrain.png"
-dest_files=["res://.godot/imported/Tileset-Terrain.png-17a3a098bf63a8d909f53d308da129bc.ctex"]
+source_file="res://addons/gaea/others/chunk_loader.svg"
+dest_files=["res://.godot/imported/chunk_loader.svg-c05989f93d0a2438882e41dd35d6cd42.ctex"]
 
 [params]
 
@@ -32,3 +33,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=true
+editor/convert_colors_with_editor_theme=true

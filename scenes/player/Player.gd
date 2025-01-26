@@ -48,8 +48,8 @@ var pickupRadius : float = 100 :
 #init player specific properties
 func _init():
 	super()
-	speed = 100
-	maxHealth = 100
+	speed = 400
+	maxHealth = 800
 	currentHealth = maxHealth
 	
 
@@ -154,20 +154,21 @@ func handleCollision():
 		#print_debug(collider.name)
 
 func hurtByEnemy(area):
-	currentHealth -= area.get_parent().collisionDamage
-	SignalBus.playerDamaged.emit(area.get_parent(), area.get_parent().collisionDamage)
-	if currentHealth <= 0:
-		SignalBus.playerDied.emit(area.get_parent())
-		print('death signal emited')
-	healthChanged.emit(currentHealth)
-	isHurt = true
+	#currentHealth -= area.get_parent().collisionDamage
+	#SignalBus.playerDamaged.emit(area.get_parent(), area.get_parent().collisionDamage)
+	#if currentHealth <= 0:
+		#SignalBus.playerDied.emit(area.get_parent())
+		#print('death signal emited')
+	#healthChanged.emit(currentHealth)
+	#isHurt = true
 	
-	knockback(area.get_parent().velocity)
-	effectsAnimations.play("hurtBlink")
-	hurtTimer.start()
-	await hurtTimer.timeout
-	effectsAnimations.play("RESET")
-	isHurt = false
+	#knockback(area.get_parent().velocity)
+	#effectsAnimations.play("hurtBlink")
+	#hurtTimer.start()
+	#await hurtTimer.timeout
+	#effectsAnimations.play("RESET")
+	#isHurt = false
+	pass
 
 func knockback(enemyVelocity: Vector2):
 	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
