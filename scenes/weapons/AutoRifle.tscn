@@ -31,4 +31,5 @@ hframes = 7
 vframes = 7
 
 [node name="SpawnPosition" parent="Sprite2D" index="0"]
+unique_name_in_owner = false
 position = Vector2(60, 0)
