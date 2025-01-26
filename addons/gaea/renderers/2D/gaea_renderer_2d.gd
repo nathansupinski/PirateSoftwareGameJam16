@@ -17,6 +17,8 @@ func _draw_area(area: Rect2i) -> void:
 func _draw_chunk(chunk_position: Vector2i) -> void:
 	_draw_area(Rect2i(chunk_position * generator.chunk_size, generator.chunk_size))
 	chunk_rendered.emit(chunk_position)
+	#SignalBus.procGenChunkRendered.emit(chunk_position)
+	(func(): SignalBus.procGenChunkRendered.emit(chunk_position)).call_deferred()
 
 
 ## Draws the whole grid.
