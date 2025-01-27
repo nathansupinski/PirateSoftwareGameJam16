@@ -29,6 +29,10 @@ Global="*res://globals/Global.gd"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gaea/plugin.cfg")
+
 [global_group]
 
 Enemy="A bad guy"
@@ -86,3 +90,7 @@ weapon2={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="PlayerProjectile"
 2d_physics/layer_5="Pickups"
+
+[navigation]
+
+2d/default_edge_connection_margin=2.0

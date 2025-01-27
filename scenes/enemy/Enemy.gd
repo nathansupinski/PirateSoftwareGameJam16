@@ -4,6 +4,7 @@ const my_scene = preload("res://scenes/enemy/enemy.tscn")
 
 @export var player: Player
 @onready var navigationAgent: NavigationAgent2D = $NavigationAgent2D
+@onready var nav_tick_timer: Timer = $NavigationAgent2D/NavTickTimer
 
 var xp_container: Node2D
 
@@ -16,7 +17,7 @@ func _ready() -> void:
 	#print(characterName + "init state machine " + str(stateMachine))
 	stateMachine.Initialize(self)
 	xp_container = get_node("../../PickupContainer/xpContainer") #is there a better way to init this?  @onready didnt seem to find it correctly
-	pass
+	nav_tick_timer.wait_time = randf_range(.5,.7)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -28,7 +28,8 @@ func _ready() -> void:
 	connect("area_entered",_on_area_entered)
 
 func _exit_tree() -> void:
-	print(self, " Destroyed")
+	#print(self, " Destroyed")
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
