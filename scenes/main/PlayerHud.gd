@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var player: Player = $"../Player"
+@onready var player: Player = %Player
 @onready var health_bar: ProgressBar = $MarginContainer2/VBoxContainer/HealthBar
 @onready var health_text: Label = $MarginContainer2/VBoxContainer/HealthBar/HealthText
 @onready var energy_bar: ProgressBar = $MarginContainer2/VBoxContainer/EnergyBar
@@ -12,6 +12,7 @@ func _ready() -> void:
 	player.energyChanged.connect(UpdateEnergy)
 	UpdateEnergy(player.currentHealth)
 	UpdateHealth(player.currentEnergy)
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

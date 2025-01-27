@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var player = $Player
+@onready var player = %Player
 @onready var pauseMenu = $PauseMenu
-@onready var enemy_container: Node2D = $EnemyContainer
+@onready var enemy_container: Node2D = %EnemyContainer
 @onready var death_screen: CanvasLayer = $DeathScreen
 
 var totalEnemies: int = 0

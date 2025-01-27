@@ -191,12 +191,12 @@ _data = {
 "move": SubResource("Animation_k671k")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3i843"]
-size = Vector2(9.25, 4.75)
+[sub_resource type="CircleShape2D" id="CircleShape2D_grx5w"]
+radius = 40.45
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7dv52"]
-radius = 6.0
-height = 26.0
+radius = 48.0
+height = 124.0
 
 [sub_resource type="Animation" id="Animation_n4jfd"]
 length = 0.001
@@ -236,7 +236,7 @@ _data = {
 "hurtBlink": SubResource("Animation_1s4us")
 }
 
-[sub_resource type="Resource" id="Resource_b1vpo"]
+[sub_resource type="Resource" id="Resource_hq05c"]
 resource_local_to_scene = true
 script = ExtResource("10_km6v6")
 name = "null"
@@ -291,8 +291,8 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 11)
-shape = SubResource("RectangleShape2D_3i843")
+position = Vector2(-1, 37)
+shape = SubResource("CircleShape2D_grx5w")
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource("2_28vnp")
@@ -308,7 +308,8 @@ collision_layer = 2
 collision_mask = 21
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox"]
-position = Vector2(0, 1)
+visible = false
+position = Vector2(4, 15)
 shape = SubResource("CapsuleShape2D_7dv52")
 
 [node name="hurtTimer" type="Timer" parent="."]
@@ -332,13 +333,14 @@ weapon1 = NodePath("Weapon")
 
 [node name="Weapon" parent="Equipment" instance=ExtResource("9_w3hrb")]
 position = Vector2(-7, 0)
-weaponData = SubResource("Resource_b1vpo")
+weaponData = SubResource("Resource_hq05c")
 
 [node name="PickupArea" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+visible = false
 shape = SubResource("CircleShape2D_pgf1h")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

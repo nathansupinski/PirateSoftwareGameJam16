@@ -16,7 +16,7 @@ func _init():
 func _ready() -> void:
 	#print(characterName + "init state machine " + str(stateMachine))
 	stateMachine.Initialize(self)
-	xp_container = get_node("../../PickupContainer/xpContainer") #is there a better way to init this?  @onready didnt seem to find it correctly
+	xp_container = get_node("../../../PickupContainer/xpContainer") #is there a better way to init this?  @onready didnt seem to find it correctly
 	nav_tick_timer.wait_time = randf_range(.5,.7)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
