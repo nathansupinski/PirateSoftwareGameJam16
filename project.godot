@@ -22,6 +22,7 @@ Utils="*res://globals/Utils.gd"
 LevelManager="*res://globals/LevelManager.gd"
 SignalBus="*res://globals/SignalBus.gd"
 ProjectileContainer="*res://globals/ProjectileContainer.tscn"
+Global="*res://globals/Global.gd"
 
 [editor]
 

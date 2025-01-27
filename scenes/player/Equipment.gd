@@ -4,17 +4,9 @@ class_name Equipment extends Node2D
 
 
 signal weapon2_changed(weapon)
-signal upgrades_changed(upgrades)
-## organize by tag
-var _upgrades : Dictionary = {}
-var _upgradeCount : = 0 : 
-	get():
-		return _upgradeCount
-	set(value):
-		upgrades_changed.emit(_upgrades.duplicate())
-		_upgradeCount = value
+
 @export var weapon1 : Weapon 
-var weapon2 : Weapon : 
+@export var weapon2 : Weapon : 
 	get():
 		return weapon2
 	set(value):
@@ -23,7 +15,8 @@ var weapon2 : Weapon :
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if weapon2:
+		weapon2.sprite.texture = Global.weapons[weapon2.weaponData.name]["right"]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

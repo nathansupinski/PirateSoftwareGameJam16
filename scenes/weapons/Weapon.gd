@@ -2,10 +2,8 @@ class_name Weapon extends Node2D
 
 @export var weaponData : WeaponData
 @export var projectile : PackedScene
-@export var projectileSprite : Texture2D
-@export var shotSound : AudioStreamWAV
 @onready var _attackTimer : Timer = $AttackTimer
-
+@onready var sprite = $Sprite2D
 
 var projectilePool : ProjectilePool
 

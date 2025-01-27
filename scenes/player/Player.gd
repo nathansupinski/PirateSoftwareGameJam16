@@ -25,8 +25,6 @@ const SPRITE_DOWN_SIDE = preload("res://scenes/player/sprites/playerLegs/movemen
 @onready var hurt_box: Area2D = $hurtBox
 
 
-
-
 signal energyChanged
 
 var totalXp:int = 0
@@ -95,7 +93,9 @@ func _physics_process(delta):
 	$Torso.frame = rotationToTorsoIndex(aimIndicator.rotation)
 	var bspawn = find_child("SpawnPosition")
 	bspawn.position = Vector2.from_angle(aimIndicator.rotation-PI/4)*60
-	$"Equipment".weapon1.find_child("Sprite2D").frame = $Torso.frame
+	$"Equipment".weapon1.sprite.frame = $Torso.frame
+	if $Equipment.weapon2:
+		$Equipment.weapon2.sprite.frame = $Torso.frame
 	
 	$Sprite2D.flip_h = true if direction.x ==1 else false
 	## Weapon
@@ -104,7 +104,7 @@ func _physics_process(delta):
 		pass
 	if Input.is_action_pressed("weapon1"):
 		equipment.weapon1.Shoot(Vector2.from_angle(aimIndicator.rotation))
-	if Input.is_action_just_pressed("weapon2"):
+	if Input.is_action_pressed("weapon2"):
 		if equipment.weapon2:
 			equipment.weapon2.Shoot(Vector2.from_angle(aimIndicator.rotation))
 	

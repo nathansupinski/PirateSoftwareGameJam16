@@ -311,11 +311,15 @@ texture = ExtResource("6_o85yx")
 script = ExtResource("7_lkym7")
 radius = 25.0
 
-[node name="Equipment" type="Node2D" parent="." node_paths=PackedStringArray("weapon1")]
+[node name="Equipment" type="Node2D" parent="." node_paths=PackedStringArray("weapon1", "weapon2")]
 script = ExtResource("8_2q1at")
 weapon1 = NodePath("Weapon")
+weapon2 = NodePath("Weapon2")
 
 [node name="Weapon" parent="Equipment" instance=ExtResource("9_w3hrb")]
+position = Vector2(-7, 0)
+
+[node name="Weapon2" parent="Equipment" instance=ExtResource("9_w3hrb")]
 position = Vector2(-7, 0)
 
 [node name="PickupArea" type="Area2D" parent="."]
