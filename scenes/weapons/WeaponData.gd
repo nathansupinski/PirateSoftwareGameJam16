@@ -19,7 +19,6 @@ const MIN_PROJECTILE_COUNT = 1
 @export var damageType : Enums.DamageType = Enums.DamageType.KINETIC
 @export_group("projectile")
 @export var projectileSpeed : float = 300
-
 @export_range(MIN_PROJECTILE_COUNT,MAX_PROJECTILE_COUNT) var projectileCount : int = 1 :
 	get():
 		return projectileCount
@@ -29,4 +28,6 @@ const MIN_PROJECTILE_COUNT = 1
 		projectileCount = value
 		
 @export var projectileChain : int = 0
+@export_group("misc")
 @export var areaOfAffect : float = 0.0 #radius
+@export var chargeTime : float = 0.0

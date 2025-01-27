@@ -1,12 +1,7 @@
 class_name Projectile extends Area2D
 
 
-##If we need to change how projectiles are handled on death.
-##For now, just destroy projectile
-## NOT IN USE
-static var OnDestroy : Callable = func(projectile : Projectile) -> void:
-	projectile.queue_free()
-
+const CHAIN_REDUCTION = 0.8
 
 
 signal projectile_destroyed(projectile)
@@ -64,7 +59,7 @@ func _on_area_entered(area):
 			else:
 				self.direction = self.global_position.direction_to(enemies[1].global_position)
 				_chained+=1
-				finalDamage = (finalDamage*(pow(0.8,_chained))) ## temporary?
+				finalDamage = (finalDamage*(pow(CHAIN_REDUCTION,_chained))) ## temporary?
 		else:
 			projectile_destroyed.emit(self)
 		area.get_parent().dealDamage(finalDamage)

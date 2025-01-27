@@ -12,7 +12,7 @@ func _ready() -> void:
 	_attackTimer.wait_time = weaponData.fireRate
 	projectilePool = ProjectilePool.Create(projectile,200,self)
 	$"Sprite2D/SpawnPosition".add_child(projectilePool)
-	$AudioStreamPlayer.stream = weaponData.shotSound
+	
 
 
 func Shoot(direction : Vector2):
@@ -22,7 +22,11 @@ func Shoot(direction : Vector2):
 		var step : float = maxSpread / float(count)
 		for i in range(-count/2,count/2+1,1):
 			projectilePool.Shoot(direction.rotated(i*step))
+		$AudioStreamPlayer.stream = weaponData.shotSound
 		$AudioStreamPlayer.play()
 		#projectilePool.Shoot(direction)
 		_attackTimer.start()
 	
+
+func CancelCharge():
+	pass

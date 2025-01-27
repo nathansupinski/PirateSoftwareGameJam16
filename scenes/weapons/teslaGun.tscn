@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmxeb77pyqxx1"]
+
+[ext_resource type="PackedScene" uid="uid://lyfrw73ld1qk" path="res://scenes/weapons/Weapon.tscn" id="1_m6q0a"]
+[ext_resource type="Script" path="res://scenes/weapons/TeslaGun.gd" id="2_350vg"]
+[ext_resource type="Script" path="res://scenes/weapons/WeaponData.gd" id="3_glalt"]
+[ext_resource type="AudioStream" uid="uid://crcvai3vqbqi" path="res://sound/player/player_tesla_discharge.wav" id="4_n1cil"]
+[ext_resource type="PackedScene" uid="uid://bdcl00k0mkqsg" path="res://scenes/weapons/projectiles/Bullet.tscn" id="5_ls1sr"]
+[ext_resource type="Texture2D" uid="uid://yxwi175huq1i" path="res://scenes/weapons/teslaGunRight/teslaGunRight.png" id="6_nso4d"]
+
+[sub_resource type="Resource" id="Resource_4ddiv"]
+script = ExtResource("3_glalt")
+name = "teslaGun"
+tags = Array[String]([])
+weaponRange = 500.0
+shotSound = ExtResource("4_n1cil")
+fireRate = 0.66
+rawDamage = 50.0
+damageType = 0
+projectileSpeed = 300.0
+projectileCount = 1
+projectileChain = 0
+areaOfAffect = 0.0
+chargeTime = 0.5
+
+[node name="Weapon" instance=ExtResource("1_m6q0a")]
+script = ExtResource("2_350vg")
+weaponData = SubResource("Resource_4ddiv")
+projectile = ExtResource("5_ls1sr")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("6_nso4d")
+
+[node name="AudioStreamPlayer" parent="." index="2"]
+max_polyphony = 2
+bus = &"FX"
+
+[node name="ChargeTimer" type="Timer" parent="." index="3"]
+one_shot = true

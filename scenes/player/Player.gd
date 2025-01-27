@@ -100,13 +100,8 @@ func _physics_process(delta):
 	$Sprite2D.flip_h = true if direction.x ==1 else false
 	## Weapon
 	
-	if Input.is_action_just_pressed("left"):
-		pass
-	if Input.is_action_pressed("weapon1"):
-		equipment.weapon1.Shoot(Vector2.from_angle(aimIndicator.rotation))
-	if Input.is_action_pressed("weapon2"):
-		if equipment.weapon2:
-			equipment.weapon2.Shoot(Vector2.from_angle(aimIndicator.rotation))
+	
+	
 	
 	if !isHurt:
 		for area in hurtBox.get_overlapping_areas():
@@ -120,6 +115,15 @@ func handleInput():
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	
+	##TODO CHANGE aimIndicator stuff
+	if Input.is_action_pressed("weapon1"):
+		equipment.FireWeapon1(Vector2.from_angle(aimIndicator.rotation))
+	elif Input.is_action_just_released("weapon1"):
+		equipment.CancelChargeWeapon1()
+	if Input.is_action_pressed("weapon2"):
+		equipment.FireWeapon2(Vector2.from_angle(aimIndicator.rotation))
+	elif Input.is_action_just_released("weapon2"):
+		equipment.CancelChargeWeapon2()
 	#print(direction)
 	if direction != Vector2.ZERO:
 		$AnimationPlayer.play("move")
@@ -143,9 +147,7 @@ func handleInput():
 	
 		
 	
-	#print(animation_state.get_current_node())
-	
-	
+
 	
 func handleCollision():
 	for i in get_slide_collision_count():

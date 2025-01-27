@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://dmjmhhp4doowm"]
+
+[ext_resource type="AudioStream" uid="uid://dxe3n36gxi4jl" path="res://sound/player/player_stomp_1.wav" id="1_apu8r"]
+[ext_resource type="AudioStream" uid="uid://butmgd486h5ks" path="res://sound/player/player_stomp_2.wav" id="2_0rehe"]
+
+[resource]
+playback_mode = 2
+random_pitch = 1.3
+streams_count = 2
+stream_0/stream = ExtResource("1_apu8r")
+stream_1/stream = ExtResource("2_0rehe")

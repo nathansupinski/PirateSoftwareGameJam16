@@ -28,12 +28,16 @@ func AddUpgrade(tag : String, upgrade) -> void:
 	
 	pass
 
-func FireWeapon1() -> void:
-	for tag in weapon1.weaponData.tags:
-		pass
-	pass
+func FireWeapon1(direction : Vector2) -> void:
+	weapon1.Shoot(direction)
 
-func FireWeapon2() -> void:
-	for tag in weapon2.weaponData.tags:
-		pass
-	pass
+func CancelChargeWeapon1() -> void:
+	weapon1.CancelCharge()
+
+func FireWeapon2(direction : Vector2) -> void:
+	if weapon2:
+		weapon2.Shoot(direction)
+
+func CancelChargeWeapon2() -> void:
+	if weapon2:
+		weapon2.CancelCharge()

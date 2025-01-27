@@ -5,14 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://cokg2uxg1jxt4" path="res://scenes/player/sprites/playerLegs/idle/idle.png" id="2_aae6f"]
 [ext_resource type="Texture2D" uid="uid://dw0gchk1ex5dp" path="res://scenes/player/sprites/Torso Nopack/TorsoNoPack.png" id="2_tuhl2"]
 [ext_resource type="Script" path="res://classes/states/CharacterState_Walk.gd" id="3_cjgww"]
-[ext_resource type="AudioStream" uid="uid://dxe3n36gxi4jl" path="res://sound/player/player_stomp_1.wav" id="4_5y2ko"]
+[ext_resource type="AudioStream" uid="uid://dmjmhhp4doowm" path="res://scenes/weapons/stomp_audio_randomizer.tres" id="4_htkbc"]
 [ext_resource type="Script" path="res://classes/states/CharacterState_Idle.gd" id="4_ko4ab"]
 [ext_resource type="Texture2D" uid="uid://cvnv67ltdmxgn" path="res://icon.svg" id="6_o85yx"]
 [ext_resource type="Script" path="res://scenes/player/aim_indicator.gd" id="7_lkym7"]
 [ext_resource type="Script" path="res://scenes/player/Equipment.gd" id="8_2q1at"]
-[ext_resource type="AudioStream" uid="uid://butmgd486h5ks" path="res://sound/player/player_stomp_2.wav" id="8_hsuim"]
-[ext_resource type="PackedScene" uid="uid://c3dt0kf8iwmwh" path="res://scenes/weapons/AutoRifle.tscn" id="9_w3hrb"]
+[ext_resource type="PackedScene" uid="uid://c3dt0kf8iwmwh" path="res://scenes/weapons/120mmCannon.tscn" id="9_w3hrb"]
 [ext_resource type="Script" path="res://scenes/weapons/WeaponData.gd" id="10_km6v6"]
+[ext_resource type="PackedScene" uid="uid://dmxeb77pyqxx1" path="res://scenes/weapons/teslaGun.tscn" id="13_82hvc"]
 
 [sub_resource type="Animation" id="Animation_vj1n8"]
 length = 0.001
@@ -159,28 +159,20 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/path = NodePath("AudioStreamPlayer")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "clips": [{
-"end_offset": 0.15814,
+"end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("4_5y2ko")
+"stream": ExtResource("4_htkbc")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": null
-}, {
-"end_offset": 0.00245179,
-"start_offset": 0.0,
-"stream": ExtResource("8_hsuim")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": null
+"stream": ExtResource("4_htkbc")
 }],
-"times": PackedFloat32Array(0.4, 0.6, 0.966667, 1.2)
+"times": PackedFloat32Array(0.366667, 1)
 }
 tracks/3/use_blend = true
 
@@ -236,7 +228,7 @@ _data = {
 "hurtBlink": SubResource("Animation_1s4us")
 }
 
-[sub_resource type="Resource" id="Resource_t88qj"]
+[sub_resource type="Resource" id="Resource_d7k5a"]
 resource_local_to_scene = true
 script = ExtResource("10_km6v6")
 name = "null"
@@ -249,6 +241,7 @@ projectileSpeed = 300.0
 projectileCount = 1
 projectileChain = 1
 areaOfAffect = 0.0
+chargeTime = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pgf1h"]
 radius = 50.0
@@ -329,13 +322,13 @@ radius = 25.0
 [node name="Equipment" type="Node2D" parent="." node_paths=PackedStringArray("weapon1", "weapon2")]
 script = ExtResource("8_2q1at")
 weapon1 = NodePath("Weapon")
-weapon2 = NodePath("Weapon2")
+weapon2 = NodePath("Weapon3")
 
 [node name="Weapon" parent="Equipment" instance=ExtResource("9_w3hrb")]
 position = Vector2(-7, 0)
-weaponData = SubResource("Resource_t88qj")
+weaponData = SubResource("Resource_d7k5a")
 
-[node name="Weapon2" parent="Equipment" instance=ExtResource("9_w3hrb")]
+[node name="Weapon3" parent="Equipment" instance=ExtResource("13_82hvc")]
 position = Vector2(-7, 0)
 
 [node name="PickupArea" type="Area2D" parent="."]
@@ -345,8 +338,8 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource("CircleShape2D_pgf1h")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 max_polyphony = 3
-playback_type = 1
+bus = &"FX"
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
