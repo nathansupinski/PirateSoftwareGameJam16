@@ -84,3 +84,12 @@ func dealDamage(damage: float):
 	print(characterName + ": damaged(" + str(damage) + ") hpLeft:" + str(currentHealth))
 	if(currentHealth <= 0):
 		call_deferred("destroy")
+
+func setMaxHealth(newMaxHealth: int):
+	maxHealth = newMaxHealth
+	healthChanged.emit(currentHealth)
+	
+func setCurrentHealth(newCurrentHealth: int):
+	currentHealth = newCurrentHealth
+	healthChanged.emit(currentHealth)
+	

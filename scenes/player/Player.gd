@@ -51,8 +51,8 @@ func _init():
 	speed = 400
 	maxHealth = 800
 	currentHealth = maxHealth
-	
-
+	healthChanged.emit(currentHealth)
+	print("init hp", currentHealth)
 	#$AnimationTree.set("parameters",not stateMachine.cur_state.name=="walk" and not direction.x !=0)
 
 
@@ -62,6 +62,8 @@ func _ready():
 		xp_bar.max_value = xpToLevel
 		xp_bar.value = xpThisLevel
 	hurt_box.connect("area_entered", _on_area_entered)
+	healthChanged.connect(func(hp): print("hp changed",hp))
+	print("rdy hp", currentHealth)
 
 func _process(delta):
 	handleInput()
@@ -154,20 +156,20 @@ func handleCollision():
 		#print_debug(collider.name)
 
 func hurtByEnemy(area):
-	#currentHealth -= area.get_parent().collisionDamage
-	#SignalBus.playerDamaged.emit(area.get_parent(), area.get_parent().collisionDamage)
-	#if currentHealth <= 0:
-		#SignalBus.playerDied.emit(area.get_parent())
-		#print('death signal emited')
-	#healthChanged.emit(currentHealth)
-	#isHurt = true
+	currentHealth -= area.get_parent().collisionDamage
+	SignalBus.playerDamaged.emit(area.get_parent(), area.get_parent().collisionDamage)
+	if currentHealth <= 0:
+		SignalBus.playerDied.emit(area.get_parent())
+		print('death signal emited')
+	healthChanged.emit(currentHealth)
+	isHurt = true
 	
-	#knockback(area.get_parent().velocity)
-	#effectsAnimations.play("hurtBlink")
-	#hurtTimer.start()
-	#await hurtTimer.timeout
-	#effectsAnimations.play("RESET")
-	#isHurt = false
+	knockback(area.get_parent().velocity)
+	effectsAnimations.play("hurtBlink")
+	hurtTimer.start()
+	await hurtTimer.timeout
+	effectsAnimations.play("RESET")
+	isHurt = false
 	pass
 
 func knockback(enemyVelocity: Vector2):
@@ -211,8 +213,8 @@ func _on_area_entered(area: Area2D) -> void: #wanted to keep this code in Pickup
 
 func _on_pickup_area_area_entered(area: Area2D) -> void:
 	print(area)
-	if is_instance_of(area,XpPickup):
-		print("XP PICKUP")
+	if is_instance_of(area,Pickup):
+		print("PICKUP")
 		var tween = get_tree().create_tween()
 		tween.tween_property(area,"position",self.position,0.2)
 		#get_tree().root.add_child(tween)
