@@ -82,6 +82,9 @@ func _update_loading(actor_position: Vector2i) -> void:
 	for required in required_chunks:
 		if not generator.has_chunk(required):
 			generator.generate_chunk(required)
+			
+	if _last_run == 0:
+		SignalBus.procGenFirstChunkLoadDone.emit()
 
 
 func _get_actors_position() -> Vector2i:
