@@ -228,7 +228,7 @@ _data = {
 "hurtBlink": SubResource("Animation_1s4us")
 }
 
-[sub_resource type="Resource" id="Resource_d7k5a"]
+[sub_resource type="Resource" id="Resource_b1vpo"]
 resource_local_to_scene = true
 script = ExtResource("10_km6v6")
 name = "null"
@@ -326,10 +326,7 @@ weapon2 = NodePath("Weapon3")
 
 [node name="Weapon" parent="Equipment" instance=ExtResource("9_w3hrb")]
 position = Vector2(-7, 0)
-weaponData = SubResource("Resource_d7k5a")
-
-[node name="Weapon3" parent="Equipment" instance=ExtResource("13_82hvc")]
-position = Vector2(-7, 0)
+weaponData = SubResource("Resource_b1vpo")
 
 [node name="PickupArea" type="Area2D" parent="."]
 collision_layer = 32
