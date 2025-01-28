@@ -2,7 +2,7 @@ class_name Upgrade extends Resource
 
 
 
-class Modifier:
+class GameModifier:
 	var category : Enums.UpgradeCategory
 	var tags : Array[String]
 	var value : float

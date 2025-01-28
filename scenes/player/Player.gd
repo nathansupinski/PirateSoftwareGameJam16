@@ -8,8 +8,8 @@ const ROTATION_IMAGES = 40
 @export var knockbackPower: int = 1500
 @onready var aimIndicator : Node2D = $AimIndicator
 @onready var equipment : Equipment = $Equipment
-@onready var xp_bar: ProgressBar = $"../../PlayerHUD/MarginContainer/HBoxContainer/MarginContainer/xpBar"
-@onready var level_hud: Label = $"../../PlayerHUD/MarginContainer/HBoxContainer/level"
+@onready var xp_bar: ProgressBar = %xpBar
+@onready var level_hud: Label = %level
 @onready var hurt_box: Area2D = $hurtBox
 
 
@@ -115,21 +115,6 @@ func handleInput():
 		equipment.FireWeapon2(Vector2.from_angle(aimIndicator.rotation))
 	elif Input.is_action_just_released("weapon2"):
 		equipment.CancelChargeWeapon2()
-	#print(direction)
-	#if direction != Vector2.ZERO:
-		#$AnimationPlayer.play("move")
-	#if direction==UP_LEFT or direction==UP_RIGHT:
-		#$Sprite2D.texture = spriteSheets.SPRITE_UP_SIDE
-	#elif direction==LEFT or direction==RIGHT:
-		#$Sprite2D.texture = spriteSheets.SPRITE_SIDE
-	#elif direction == DOWN_LEFT or direction== DOWN_RIGHT:
-		#$Sprite2D.texture = spriteSheets.SPRITE_DOWN_SIDE
-	#elif direction == DOWN:
-		#$Sprite2D.texture = spriteSheets.SPRITE_DOWN
-	#elif direction == UP:
-		#$Sprite2D.texture = spriteSheets.SPRITE_UP
-	#elif direction == Vector2.ZERO:
-		#$AnimationPlayer.play("idle")
 	
 		
 	
@@ -174,6 +159,9 @@ func UpdateAnimation(state: Enums.CHARACTER_STATE_NAMES) -> void:
 			pass
 			
 func applyXp(xp: int) -> void:
+	if not xp_bar:
+		print("No xp bar")
+		return
 	totalXp += xp
 	xpThisLevel += xp
 	xp_bar.value = xpThisLevel
@@ -186,9 +174,8 @@ func applyXp(xp: int) -> void:
 		xp_bar.max_value = xpToLevel
 		xp_bar.value = xpThisLevel
 		level_hud.text = str(level)
-
 func _on_area_entered(area: Area2D) -> void: #wanted to keep this code in Pickup class but seems more performant to have the player do the checking
-	if area is Pickup:
+	if is_instance_of(area, Pickup):
 		area.apply(self)
 
 
