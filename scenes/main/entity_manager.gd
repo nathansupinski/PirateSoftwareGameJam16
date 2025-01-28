@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var tile_map_layer: TileMapLayer = $"../GameTileMapLayers/TileMapLayer"
-@onready var tile_map_layer_props: TileMapLayer = $"../GameTileMapLayers/TileMapLayerProps"
-@onready var tile_map_layer_entities: TileMapLayer = $"../GameTileMapLayers/TileMapLayerEntities"
+@onready var tile_map_layer: TileMapLayer = $"../TileMapLayer"
+@onready var tile_map_layer_props: TileMapLayer = $"../TileMapLayerProps"
+@onready var tile_map_layer_entities: TileMapLayer = $"../TileMapLayerEntities"
 
 var chunkSize = 16
 var tileSize = 64
@@ -28,12 +28,9 @@ func _on_chunk_loaded(chunkPosition: Vector2i) -> void:
 	var globalChunkEndPosition = globalChunkPosition + Vector2i(chunkSize * tileSize - 1,chunkSize * tileSize - 1)
 	var tileMapChunkCoords = tile_map_layer.local_to_map(globalChunkPosition)
 	var tileMapChunkEndCoords = tile_map_layer.local_to_map(globalChunkEndPosition)
-	print("tileMapChunkCoords ", tileMapChunkCoords)
-	tile_map_layer.set_cell(tileMapChunkCoords, 6, Vector2i(3,3))
-	tile_map_layer.set_cell(tileMapChunkEndCoords, 4, Vector2i(3,3))
+	#tile_map_layer.set_cell(tileMapChunkCoords, 6, Vector2i(3,3))
+	#tile_map_layer.set_cell(tileMapChunkEndCoords, 4, Vector2i(3,3))
 	
-	
-	#tileData.modulate = Color(0, 1, 1, 1)
 	if chunkDic.has(chunkPosition):
 		var chunkEntities = chunkDic[chunkPosition].filter(func(entity): return is_instance_valid(entity))
 
@@ -52,11 +49,11 @@ func spawnChunkEntities(chunkEntities, globalChunkCenter: Vector2i) -> void:
 
 func spawnHp(chunkEntities, globalChunkCenter: Vector2i) -> void:
 	var roll = randf()
-	print("roll: ", roll)
 	if roll < .20:
 		var hpPickup = HpPickup.new_hpPickup(globalChunkCenter)
 		add_child(hpPickup)
 		chunkEntities.append(hpPickup)
+		print("hp spawned")
 
 func _on_chunk_unloaded(chunkPosition: Vector2i) -> void:
 	if chunkDic.has(chunkPosition):

@@ -8,8 +8,8 @@ const ROTATION_IMAGES = 40
 @export var knockbackPower: int = 1500
 @onready var aimIndicator : Node2D = $AimIndicator
 @onready var equipment : Equipment = $Equipment
-@onready var xp_bar: ProgressBar = $"../PlayerHUD/MarginContainer/HBoxContainer/MarginContainer/xpBar"
-@onready var level_hud: Label = $"../PlayerHUD/MarginContainer/HBoxContainer/level"
+@onready var xp_bar: ProgressBar = $"../../PlayerHUD/MarginContainer/HBoxContainer/MarginContainer/xpBar"
+@onready var level_hud: Label = $"../../PlayerHUD/MarginContainer/HBoxContainer/level"
 @onready var hurt_box: Area2D = $hurtBox
 
 

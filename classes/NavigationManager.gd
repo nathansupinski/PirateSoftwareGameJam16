@@ -1,7 +1,7 @@
 extends Node2D
 
 var navRegions = {}
-var debugNav = false # enable to turn on debug logging and visible nav mesh
+var debugNav = false # enable to turn on debug logging and visible nav mesh, need to adjust z-index on the tileset to get this to show
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

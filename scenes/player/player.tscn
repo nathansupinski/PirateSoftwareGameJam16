@@ -124,12 +124,12 @@ _data = {
 "move": SubResource("Animation_k671k")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3i843"]
-size = Vector2(61, 69)
+[sub_resource type="CircleShape2D" id="CircleShape2D_grx5w"]
+radius = 40.45
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7dv52"]
-radius = 26.0
-height = 54.0
+radius = 48.0
+height = 124.0
 
 [sub_resource type="Animation" id="Animation_n4jfd"]
 length = 0.001
@@ -168,6 +168,20 @@ _data = {
 "RESET": SubResource("Animation_n4jfd"),
 "hurtBlink": SubResource("Animation_1s4us")
 }
+
+[sub_resource type="Resource" id="Resource_hq05c"]
+resource_local_to_scene = true
+script = ExtResource("10_km6v6")
+name = "null"
+tags = Array[String]([])
+weaponRange = 500.0
+fireRate = 0.66
+rawDamage = 50.0
+damageType = 0
+projectileSpeed = 300.0
+projectileCount = 1
+projectileChain = 1
+areaOfAffect = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pgf1h"]
 radius = 100.0
@@ -212,8 +226,8 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3.5, -8.5)
-shape = SubResource("RectangleShape2D_3i843")
+position = Vector2(-1, 37)
+shape = SubResource("CircleShape2D_grx5w")
 debug_color = Color(0, 0.6, 0.701961, 0.733333)
 
 [node name="StateMachine" type="Node2D" parent="."]
@@ -230,7 +244,8 @@ collision_layer = 2
 collision_mask = 21
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox"]
-position = Vector2(0, 1)
+visible = false
+position = Vector2(4, 15)
 shape = SubResource("CapsuleShape2D_7dv52")
 debug_color = Color(0.996699, 0, 0.0353264, 0.42)
 
@@ -263,6 +278,7 @@ collision_layer = 32
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+visible = false
 shape = SubResource("CircleShape2D_pgf1h")
 debug_color = Color(0.598944, 0.543983, 3.85046e-07, 0.42)
 
