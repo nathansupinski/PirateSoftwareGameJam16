@@ -1,20 +1,8 @@
 class_name Player extends Character
 
 const ROTATION_IMAGES = 40
-const UP = Vector2.UP
-const UP_LEFT = Vector2(-1,-1)
-const LEFT = Vector2.LEFT
-const DOWN_LEFT = Vector2(-1,1)
-const DOWN = Vector2.DOWN
-const DOWN_RIGHT = Vector2(1,1)
-const RIGHT = Vector2.RIGHT
-const UP_RIGHT = Vector2(1,-1)
 
-const SPRITE_UP = preload("res://scenes/player/sprites/playerLegs/movement/upUp/upUp.png")
-const SPRITE_SIDE = preload("res://scenes/player/sprites/playerLegs/movement/leftLeft/leftLeft.png")
-const SPRITE_UP_SIDE = preload("res://scenes/player/sprites/playerLegs/movement/upLeft/upLeft.png")
-const SPRITE_DOWN = preload("res://scenes/player/sprites/playerLegs/movement/downDown/downDown.png")
-const SPRITE_DOWN_SIDE = preload("res://scenes/player/sprites/playerLegs/movement/downLeft/downLeft.png")
+
 
 
 @export var knockbackPower: int = 1500
@@ -64,15 +52,13 @@ func _ready():
 	print("rdy hp", currentHealth)
 
 func _process(delta):
+	super(delta)
 	handleInput()
 	
 	
 func rotationToTorsoIndex(radians : float) -> int:
 	#Angles in godot are funky, so this is to put the range back to [0,2*pi]
-	if radians < 0:
-		radians = -(radians)
-	elif radians > 0:
-		radians = abs(PI-radians)+PI
+	radians = Utils.vec_angle_correct(radians)
 	const step = 2*PI/ROTATION_IMAGES
 	const OFFSET = int(ceil(5*PI/4/step))
 	# first frame is a 225 degree angle, so offset by that (25 indexes)
@@ -82,6 +68,8 @@ func rotationToTorsoIndex(radians : float) -> int:
 		
 	return out
 	
+	
+
 	
 func _physics_process(delta):
 	move_and_slide()
@@ -93,13 +81,14 @@ func _physics_process(delta):
 	aimIndicator.rotation = mousePos.angle()
 	
 	$Torso.frame = rotationToTorsoIndex(aimIndicator.rotation)
-	var bspawn = find_child("SpawnPosition")
-	bspawn.position = Vector2.from_angle(aimIndicator.rotation-PI/4)*60
+	$Equipment.weapon1.spawnPos.position = Vector2.from_angle(aimIndicator.rotation-PI/4)*80
 	$"Equipment".weapon1.sprite.frame = $Torso.frame
 	if $Equipment.weapon2:
+		$Equipment.weapon2.spawnPos.position = Vector2.from_angle(aimIndicator.rotation+PI/4)*60
 		$Equipment.weapon2.sprite.frame = $Torso.frame
+		
 	
-	$Sprite2D.flip_h = true if direction.x ==1 else false
+	#$Sprite2D.flip_h = true if direction.x ==1 else false
 	## Weapon
 	
 	
@@ -127,25 +116,20 @@ func handleInput():
 	elif Input.is_action_just_released("weapon2"):
 		equipment.CancelChargeWeapon2()
 	#print(direction)
-	if direction != Vector2.ZERO:
-		$AnimationPlayer.play("move")
-	if direction==UP_LEFT or direction==UP_RIGHT:
-		$Sprite2D.texture = SPRITE_UP_SIDE
-		pass
-	elif direction==LEFT or direction==RIGHT:
-		$Sprite2D.texture = SPRITE_SIDE
-		pass
-	elif direction == DOWN_LEFT or direction== DOWN_RIGHT:
-		$Sprite2D.texture = SPRITE_DOWN_SIDE
-		pass
-	elif direction == DOWN:
-		$Sprite2D.texture = SPRITE_DOWN
-		pass
-	elif direction == UP:
-		$Sprite2D.texture = SPRITE_UP
-		pass
-	elif direction == Vector2.ZERO:
-		$AnimationPlayer.play("idle")
+	#if direction != Vector2.ZERO:
+		#$AnimationPlayer.play("move")
+	#if direction==UP_LEFT or direction==UP_RIGHT:
+		#$Sprite2D.texture = spriteSheets.SPRITE_UP_SIDE
+	#elif direction==LEFT or direction==RIGHT:
+		#$Sprite2D.texture = spriteSheets.SPRITE_SIDE
+	#elif direction == DOWN_LEFT or direction== DOWN_RIGHT:
+		#$Sprite2D.texture = spriteSheets.SPRITE_DOWN_SIDE
+	#elif direction == DOWN:
+		#$Sprite2D.texture = spriteSheets.SPRITE_DOWN
+	#elif direction == UP:
+		#$Sprite2D.texture = spriteSheets.SPRITE_UP
+	#elif direction == Vector2.ZERO:
+		#$AnimationPlayer.play("idle")
 	
 		
 	
@@ -181,17 +165,12 @@ func knockback(enemyVelocity: Vector2):
 
 #temp overload parent class until we get rid of placeholder animations
 func UpdateAnimation(state: Enums.CHARACTER_STATE_NAMES) -> void:
-	
-	
 	match state:
 		Enums.CHARACTER_STATE_NAMES.WALK:
-
-			#animation_player.play("walk_" + AnimDirection())
+			$AnimationPlayer.play("move")
 			pass
 		Enums.CHARACTER_STATE_NAMES.IDLE:
-
-			
-			#animation_player.play("idle_down") #temp
+			$AnimationPlayer.play("idle")
 			pass
 			
 func applyXp(xp: int) -> void:

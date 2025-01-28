@@ -15,3 +15,8 @@ const weapons : Dictionary = {
 		"right": preload("res://scenes/weapons/40mmGrenadelauncherRight/40mmGrenadelauncherRight.png"),
 	}
 }
+
+
+const enemies : Dictionary = {
+	"crab": preload("res://scenes/enemy/Crab.tscn"),
+}

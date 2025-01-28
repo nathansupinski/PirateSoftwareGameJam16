@@ -2,7 +2,7 @@ extends Node
 #Loaded globally in project settings->globals
 #Enums go here
 
-enum CHARACTER_STATE_NAMES {IDLE, WALK}
+enum CHARACTER_STATE_NAMES {IDLE, WALK,DEATH}
 
 enum UpgradeCategory{
 	GLOBAL,

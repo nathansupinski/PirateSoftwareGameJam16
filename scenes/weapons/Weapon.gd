@@ -4,6 +4,7 @@ class_name Weapon extends Node2D
 @export var projectile : PackedScene
 @onready var _attackTimer : Timer = $AttackTimer
 @onready var sprite = $Sprite2D
+@onready var spawnPos = %SpawnPosition
 
 var projectilePool : ProjectilePool
 

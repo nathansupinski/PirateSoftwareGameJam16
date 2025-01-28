@@ -27,7 +27,7 @@ func _exit_tree() -> void:
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not visible or not source:
 		return
 	if _traveled > source.weaponData.weaponRange:
@@ -39,9 +39,12 @@ func _process(delta: float) -> void:
 	position += deltaPos
 
 
+func enemyHit():
+	pass
 
 func _on_area_entered(area):
 	if area.name == "hurtBox" and area.get_parent() is Enemy:
+		call_deferred("enemyHit")
 		#TODO: Figure out how to calculate upgrade effect on damage
 		#TODO: Figure out if 'call_deferred' will take the value when set, or when actually called
 		var finalDamage = source.weaponData.rawDamage
@@ -50,14 +53,14 @@ func _on_area_entered(area):
 			var enemies = get_tree().get_nodes_in_group("Enemy")
 			enemies.sort_custom(
 			func(a,b):
-				var dist1 = self.global_position.distance_to(a.global_position)
-				var dist2 = self.global_position.distance_to(b.global_position)
+				var dist1 = $CollisionShape2D.global_position.distance_to(a.global_position)
+				var dist2 = $CollisionShape2D.global_position.distance_to(b.global_position)
 				return dist1 < dist2
 				)
 			if enemies.size() < 2:
 				print("No other enemy")
 			else:
-				self.direction = self.global_position.direction_to(enemies[1].global_position)
+				self.direction = $CollisionShape2D.global_position.direction_to(enemies[1].global_position)
 				_chained+=1
 				finalDamage = (finalDamage*(pow(CHAIN_REDUCTION,_chained))) ## temporary?
 		else:

@@ -30,4 +30,4 @@ const MIN_PROJECTILE_COUNT = 1
 @export var projectileChain : int = 0
 @export_group("misc")
 @export var areaOfAffect : float = 0.0 #radius
-@export var chargeTime : float = 0.0
+#@export var chargeTime : float = 0.0

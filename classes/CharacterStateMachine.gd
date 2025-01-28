@@ -7,7 +7,7 @@ var character: Character
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -30,7 +30,9 @@ func Initialize(characterInput: Character ) -> void:
 			
 	if states.size() > 0:
 		states[0].character = character
-		ChangeState(states[0]) #TODO: refactor to get idle state directly so the order of children doesnt matter
+		ChangeState(find_child("idle")) 
+		#Does this work?
+		#TODO: refactor to get idle state directly so the order of children doesnt matter
 		process_mode = Node.PROCESS_MODE_INHERIT
 	
 	#print(character.characterName + " Inited " + str(states.size()) + " character states.")

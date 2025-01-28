@@ -19,7 +19,6 @@ projectileSpeed = 300.0
 projectileCount = 3
 projectileChain = 1
 areaOfAffect = 0.0
-chargeTime = 0.0
 
 [node name="Weapon" instance=ExtResource("1_dpbae")]
 weaponData = SubResource("Resource_tb0eu")
@@ -29,7 +28,6 @@ projectile = ExtResource("4_a4r8w")
 texture = ExtResource("5_786ui")
 
 [node name="SpawnPosition" parent="Sprite2D" index="0"]
-unique_name_in_owner = false
 position = Vector2(60, 0)
 
 [node name="AudioStreamPlayer" parent="." index="2"]

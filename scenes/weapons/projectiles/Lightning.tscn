@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://citl87vwjw55f"]
+
+[ext_resource type="PackedScene" uid="uid://bskcxandhwv37" path="res://scenes/weapons/projectiles/projectile.tscn" id="1_aoyp0"]
+[ext_resource type="Script" path="res://scenes/weapons/projectiles/Lightning.gd" id="2_vcas8"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_dnti2"]
+
+[sub_resource type="Curve" id="Curve_ajrdr"]
+_data = [Vector2(0.25952, 1), 0.0, 0.0, 0, 0, Vector2(0.795487, 0.569686), 0.0, 0.0, 0, 0, Vector2(0.988717, 0.22673), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Projectile" instance=ExtResource("1_aoyp0")]
+script = ExtResource("2_vcas8")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("SegmentShape2D_dnti2")
+
+[node name="Line2D" type="Line2D" parent="." index="2"]
+width = 5.0
+width_curve = SubResource("Curve_ajrdr")
+default_color = Color(0.991606, 1, 0.496144, 1)

@@ -36,6 +36,7 @@ enabled=PackedStringArray("res://addons/gaea/plugin.cfg")
 [global_group]
 
 Enemy="A bad guy"
+player="player character"
 
 [gui]
 

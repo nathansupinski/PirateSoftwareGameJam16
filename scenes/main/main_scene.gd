@@ -13,7 +13,7 @@ func _ready():
 	
 	#TODO: abstract all spawning code into a wave manager or something
 	#spawn starting wave
-	spawnEnemiesInRing(Enemy, 20, true)
+	spawnEnemiesInRing(Crab, 20, true)
 
 	#spawn a wave every 10s
 	var timer : Timer = Timer.new()
@@ -68,4 +68,4 @@ func spawnEnemiesInRing(enemyClass: Script, numberToSpawn: int, randomizeOffsets
 		
 func spawnWave() -> void:
 	print("spawning wave")
-	spawnEnemiesInRing(Enemy, 50, true)
+	spawnEnemiesInRing(Crab, 50, true)
