@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://2xun3rd2y6uf"]
+[gd_scene load_steps=31 format=3 uid="uid://2xun3rd2y6uf"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_mb422"]
 [ext_resource type="Script" path="res://classes/CharacterStateMachine.gd" id="2_28vnp"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://scenes/player/Equipment.gd" id="8_2q1at"]
 [ext_resource type="PackedScene" uid="uid://dmxeb77pyqxx1" path="res://scenes/weapons/teslaGun.tscn" id="13_yae1s"]
 [ext_resource type="PackedScene" uid="uid://mcnq3xxu6nrp" path="res://scenes/weapons/40mmGrenadelauncher.tscn" id="18_gbncf"]
+[ext_resource type="PackedScene" uid="uid://ctjv6t8i0c6n" path="res://scenes/UI/LevelUpText.tscn" id="18_hby4a"]
 
 [sub_resource type="Resource" id="Resource_r6bhy"]
 script = ExtResource("7_ypp01")
@@ -145,6 +146,42 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_1s4us"]
 resource_name = "hurtBlink"
@@ -163,10 +200,51 @@ tracks/0/keys = {
 "values": [Color(1, 0, 0, 0.494118), Color(1, 0.607017, 0.54818, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_yyppk"]
+resource_name = "levelUp"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 4.59479),
+"update": 0,
+"values": [Vector2(-50, -30), Vector2(-50, -150)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.239216), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uewki"]
 _data = {
 "RESET": SubResource("Animation_n4jfd"),
-"hurtBlink": SubResource("Animation_1s4us")
+"hurtBlink": SubResource("Animation_1s4us"),
+"levelUp": SubResource("Animation_yyppk")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pgf1h"]
@@ -259,5 +337,13 @@ debug_color = Color(0.598944, 0.543983, 3.85046e-07, 0.42)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 max_polyphony = 3
 bus = &"FX"
+
+[node name="Panel" parent="." instance=ExtResource("18_hby4a")]
+visible = false
+offset_left = -50.0
+offset_top = -30.0
+offset_right = 50.0
+offset_bottom = 0.0
+scale = Vector2(1.15, 1.15)
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]

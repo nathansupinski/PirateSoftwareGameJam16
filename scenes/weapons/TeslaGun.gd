@@ -27,3 +27,4 @@ func Shoot(direction: Vector2) -> void:
 
 func CancelCharge():
 	$ChargeTimer.stop()
+	$AudioStreamPlayer.stop()

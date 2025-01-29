@@ -1,8 +1,6 @@
 extends Node2D
 
 @onready var tile_map_layer: TileMapLayer = $"../TileMapLayer"
-@onready var tile_map_layer_props: TileMapLayer = $"../TileMapNestProps"
-@onready var tile_map_layer_entities: TileMapLayer = $"../TileMapLayerEntities"
 
 var chunkSize = 16
 var tileSize = 64
