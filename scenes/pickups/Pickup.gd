@@ -7,9 +7,9 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
-func apply(player: Player) -> void:
+func apply(_player: Player) -> void:
 	pass

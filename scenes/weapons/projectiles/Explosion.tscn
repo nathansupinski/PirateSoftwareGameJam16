@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv8qctknes3nv"]
+
+[ext_resource type="Script" path="res://scenes/weapons/projectiles/explosion.gd" id="1_m7mi8"]
+[ext_resource type="Texture2D" uid="uid://bd5vne617wbd8" path="res://scenes/weapons/projectiles/grenade_explode.tres" id="2_qstmq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5b3xe"]
+resource_local_to_scene = true
+radius = 0.01
+
+[node name="Explosion" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_m7mi8")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+texture = ExtResource("2_qstmq")
+polygon = PackedVector2Array(-5, -9, -2, -4, -1, -10, 0, -4, 3, -9, 3, -4, 7, -7, 5, -3, 9, -3, 5, -1, 10, 2, 4, 1, 7, 7, 2, 2, 3, 9, 0, 3, -1, 10, -2, 2, -5, 8, -4, 2, -8, 6, -6, 1, -9, 2, -5, -1, -10, -2, -6, -2, -10, -6, -6, -4, -4, -2, -7, -9, -5, -6, -2, -4, -6, -9)
+uv = PackedVector2Array(56.2843, 45.5431, 59.2843, 50.5431, 60.2843, 44.5431, 61.2843, 50.5431, 64.2843, 45.5431, 64.2843, 50.5431, 68.2843, 47.5431, 66.2843, 51.5431, 70.2843, 51.5431, 66.2843, 53.5431, 71.2843, 56.5431, 65.2843, 55.5431, 68.2843, 61.5431, 63.2843, 56.5431, 64.2843, 63.5431, 61.2843, 57.5431, 60.2843, 64.5431, 59.2843, 56.5431, 56.2843, 62.5431, 57.2843, 56.5431, 53.2843, 60.5431, 55.2843, 55.5431, 52.2843, 56.5431, 56.2843, 53.5431, 51.2843, 52.5431, 55.2843, 52.5431, 51.2843, 48.5431, 55.2843, 50.5431, 57.2843, 52.5431, 54.2843, 45.5431, 56.2843, 48.5431, 59.2843, 50.5431, 55.2843, 45.5431)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5b3xe")
+debug_color = Color(0.745098, 0, 0.203922, 0.611765)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

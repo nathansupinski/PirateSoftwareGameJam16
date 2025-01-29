@@ -13,7 +13,7 @@ func _ready() -> void:
 	pass
 
 # what happens during the process update in this state
-func Process(delta: float) -> CharacterState:
+func Process(_delta: float) -> CharacterState:
 	if character.direction != Vector2.ZERO:
 		return walk
 	character.velocity = Vector2.ZERO
@@ -24,9 +24,9 @@ func Process(delta: float) -> CharacterState:
 	return null
 
 # what happens during the _physics_process update in this state
-func Physics(delta: float) -> CharacterState:
+func Physics(_delta: float) -> CharacterState:
 	return null
 
 # what happens with input events in this state
-func HandleInput(event: InputEvent) -> CharacterState:
+func HandleInput(_event: InputEvent) -> CharacterState:
 	return null

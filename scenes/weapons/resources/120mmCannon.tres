@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://cjiripijtnpwm"]
+
+[ext_resource type="Script" path="res://scenes/weapons/WeaponData.gd" id="1_6lrdq"]
+[ext_resource type="AudioStream" uid="uid://d1jlojlv3ea62" path="res://sound/player/player_gun_fire.wav" id="2_nqt2q"]
+
+[resource]
+script = ExtResource("1_6lrdq")
+name = "120mmCannon"
+tags = Array[String](["chain"])
+weaponRange = 700.0
+shotSound = ExtResource("2_nqt2q")
+fireRate = 0.3
+rawDamage = 15.0
+damageType = 0
+projectileSpeed = 350.0
+projectileCount = 1
+projectileChain = 0
+areaOfAffect = 0.0

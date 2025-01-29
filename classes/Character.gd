@@ -63,11 +63,10 @@ func getDirectionalTexture(sprites : CharacterSprites) -> Texture2D:
 		return spriteSheets.SPRITE_UP
 	return sprites.SPRITE_DOWN
 	
-func _process(delta):
+func _process(_delta):
 	if currentHealth <= 0:
 		return
-	var directionCeil = direction.ceil()
-	var angle = Utils.vec_angle_correct(direction.angle())
+
 	
 	$Sprite2D.texture = getDirectionalTexture(spriteSheets)
 	

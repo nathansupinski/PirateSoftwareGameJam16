@@ -1,0 +1,15 @@
+[gd_resource type="NoiseTexture2D" load_steps=3 format=3 uid="uid://bd5vne617wbd8"]
+
+[sub_resource type="Gradient" id="Gradient_josjo"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0.121569, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_of7ge"]
+noise_type = 2
+frequency = 0.3258
+fractal_ping_pong_strength = 2.665
+
+[resource]
+width = 128
+height = 128
+color_ramp = SubResource("Gradient_josjo")
+noise = SubResource("FastNoiseLite_of7ge")

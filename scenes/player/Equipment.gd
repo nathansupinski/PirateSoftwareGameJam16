@@ -15,6 +15,7 @@ signal weapon2_changed(weapon)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	weapon1.sprite.texture = Global.weapons[weapon1.weaponData.name]["left"]
 	if weapon2:
 		weapon2.sprite.texture = Global.weapons[weapon2.weaponData.name]["right"]
 

@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvmma4oqcsrwh"]
+
+[ext_resource type="PackedScene" uid="uid://bskcxandhwv37" path="res://scenes/weapons/projectiles/projectile.tscn" id="1_nvoxf"]
+[ext_resource type="Script" path="res://scenes/weapons/projectiles/explosive.gd" id="2_k88qc"]
+[ext_resource type="Texture2D" uid="uid://cvnv67ltdmxgn" path="res://icon.svg" id="2_vnuct"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bjpef"]
+
+[node name="Grenade" instance=ExtResource("1_nvoxf")]
+script = ExtResource("2_k88qc")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_vnuct")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_bjpef")

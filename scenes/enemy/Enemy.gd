@@ -31,15 +31,15 @@ func _physics_process(delta: float) -> void:
 	
 static func new_enemy(player: Player, name: String, speed := 50.0, health := 100,\
  maxHealth:= 100, collisionDamage:=20, position: Vector2 = Vector2(0,0)) -> Enemy:
-	var new_enemy: Enemy = my_scene.instantiate()
-	new_enemy.player = player
-	new_enemy.maxHealth = maxHealth
-	new_enemy.currentHealth = health
-	new_enemy.speed = speed
-	new_enemy.characterName = name
-	new_enemy.collisionDamage = collisionDamage
-	new_enemy.position = position
-	return new_enemy
+	var newEnemy: Enemy = my_scene.instantiate()
+	newEnemy.player = player
+	newEnemy.maxHealth = maxHealth
+	newEnemy.currentHealth = health
+	newEnemy.speed = speed
+	newEnemy.characterName = name
+	newEnemy.collisionDamage = collisionDamage
+	newEnemy.position = position
+	return newEnemy
 
 
 

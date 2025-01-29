@@ -12,6 +12,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if genDone and chunksDone:
 		self.visible = false
+		genDone = false
+		chunksDone = false
 
 func _on_gen_finished() -> void:
 	genDone = true

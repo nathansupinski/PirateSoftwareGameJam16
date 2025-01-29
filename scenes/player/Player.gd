@@ -12,6 +12,7 @@ const ROTATION_IMAGES = 40
 @onready var level_hud: Label = %level
 @onready var hurt_box: Area2D = $hurtBox
 
+var xpNodes :Array[XpPickup] = []
 
 signal energyChanged
 
@@ -127,6 +128,9 @@ func handleCollision():
 		#print_debug(collider.name)
 
 func hurtByEnemy(area):
+	if not hurtTimer.is_stopped():
+		print(hurtTimer.time_left, hurtTimer.is_stopped()) ## I think getting damaged by 10 enemies at once is too punishing
+		return
 	currentHealth -= area.get_parent().collisionDamage
 	SignalBus.playerDamaged.emit(area.get_parent(), area.get_parent().collisionDamage)
 	if currentHealth <= 0:
@@ -138,6 +142,7 @@ func hurtByEnemy(area):
 	knockback(area.get_parent().velocity)
 	effectsAnimations.play("hurtBlink")
 	hurtTimer.start()
+	#await effectsAnimations.completed
 	await hurtTimer.timeout
 	effectsAnimations.play("RESET")
 	isHurt = false
@@ -176,13 +181,17 @@ func applyXp(xp: int) -> void:
 		level_hud.text = str(level)
 func _on_area_entered(area: Area2D) -> void: #wanted to keep this code in Pickup class but seems more performant to have the player do the checking
 	if is_instance_of(area, Pickup):
-		area.apply(self)
+		pass
+		#(area as Pickup).apply(self)
 
 
 func _on_pickup_area_area_entered(area: Area2D) -> void:
 	print(area)
 	if is_instance_of(area,Pickup):
-		print("PICKUP")
 		var tween = get_tree().create_tween()
-		tween.tween_property(area,"position",self.position,0.2)
+		tween.tween_property(area,"global_position",self.global_position,0.1)
+		await tween.finished
+		if is_instance_valid(area):
+			(area as Pickup).apply(self)
+		
 		#get_tree().root.add_child(tween)

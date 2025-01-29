@@ -10,7 +10,7 @@ const weapons : Dictionary = {
 		"left": preload("res://scenes/weapons/teslaGunLeft/teslaGunLeft.png"),
 		"right": preload("res://scenes/weapons/teslaGunRight/teslaGunRight.png"),
 	},
-	"40mmGrenadeLauncher":{
+	"40mmGrenadelauncher":{
 		"left": preload("res://scenes/weapons/40mmGrenadelauncherLeft/40mmGrenadelauncherLeft.png"),
 		"right": preload("res://scenes/weapons/40mmGrenadelauncherRight/40mmGrenadelauncherRight.png"),
 	}
