@@ -98,3 +98,13 @@ func load_resources_from_folder(folder_path: String) -> Array:
 		print("Failed to open directory: ", folder_path)
 
 	return resources
+
+
+func _on_visibility_changed() -> void:
+	if not visible:
+		#SignalBus.pickedUpgrade.emit()
+		Engine.time_scale=0.2
+		get_tree().create_tween().tween_property(Engine,"time_scale",1,0.8)
+	else:
+		Engine.time_scale = 1
+		$AnimationPlayer.play("intro")

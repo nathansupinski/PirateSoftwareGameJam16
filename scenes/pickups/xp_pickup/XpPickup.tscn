@@ -43,7 +43,6 @@ _data = {
 }
 
 [node name="xpPickup" instance=ExtResource("1_s3fuj")]
-collision_layer = 16
 collision_mask = 34
 script = ExtResource("2_pc2dx")
 

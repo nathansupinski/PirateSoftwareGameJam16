@@ -8,7 +8,7 @@ signal procGenFirstChunkLoadDone
 signal procGenChunkGenerated(chunkPosition: Vector2i)
 signal procGenChunkErased(chunkPosition: Vector2i)
 signal procGenChunkRendered(chunkPosition: Vector2i)
-
+signal pickedUpgrade()
 #stat broker signals
 signal playerUpgradesChanged
 signal weaponUpgradesChanged

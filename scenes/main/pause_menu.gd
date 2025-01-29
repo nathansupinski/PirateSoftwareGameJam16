@@ -25,7 +25,7 @@ func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 	
 func _input(event):
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") and not get_parent().find_child("UpgradeMenu").visible:
 		print("menu unPaused")
 		get_tree().paused = false
 		hide()

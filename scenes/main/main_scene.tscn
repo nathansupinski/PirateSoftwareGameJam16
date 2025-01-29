@@ -2005,6 +2005,7 @@ text = "Loading..."
 
 [node name="UpgradeMenu" parent="." instance=ExtResource("4_08j2j")]
 process_mode = 3
+visible = false
 
 [node name="NavigationManager" type="Node2D" parent="."]
 z_index = 100
@@ -2241,6 +2242,7 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 40
 text = "Restart"
 
+[connection signal="visibility_changed" from="UpgradeMenu" to="UpgradeMenu" method="_on_visibility_changed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/SettingsButton" to="PauseMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]

@@ -12,14 +12,13 @@ const ROTATION_IMAGES = 40
 @onready var level_hud: Label = %level
 @onready var hurt_box: Area2D = $hurtBox
 
-var xpNodes :Array[XpPickup] = []
-
 signal energyChanged
 
 var totalXp:int = 0
 var xpThisLevel = 0
 var xpToLevel: int = 20
 var level: int = 1
+var upgradeLevel = 1
 var xpScaleFactor: float = 1.5
 var currentEnergy: int = 60
 var maxEnergy: int = 150
@@ -57,6 +56,7 @@ func _process(delta):
 	super(delta)
 	handleInput()
 	
+	
 func _on_player_upgrades_changed(card: UpgradeCard) -> void:
 	print("updating player stats")
 	speed = StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.SPEED, speed)
@@ -93,14 +93,6 @@ func _physics_process(delta):
 	if $Equipment.weapon2:
 		$Equipment.weapon2.spawnPos.position = Vector2.from_angle(aimIndicator.rotation+PI/4)*60
 		$Equipment.weapon2.sprite.frame = $Torso.frame
-		
-	
-	#$Sprite2D.flip_h = true if direction.x ==1 else false
-	## Weapon
-	
-	
-	
-	
 	if !isHurt:
 		for area in hurtBox.get_overlapping_areas():
 			if area.name == "hitBox":
@@ -186,7 +178,8 @@ func applyXp(xp: int) -> void:
 		xp_bar.value = xpThisLevel
 		level_hud.text = str(level)
 		print("")
-		SignalBus.playerLevelup.emit()
+		(func():SignalBus.playerLevelup.emit()).call_deferred()
+		#SignalBus.playerLevelup.emit()
 		
 func _on_area_entered(area: Area2D) -> void: #wanted to keep this code in Pickup class but seems more performant to have the player do the checking
 	if is_instance_of(area, Pickup):
