@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="UpgradeCard" load_steps=8 format=3 uid="uid://c0g245go4ywrd"]
+
+[ext_resource type="Script" path="res://classes/resourceClasses/UpgradeCard.gd" id="1_3ifvp"]
+[ext_resource type="Script" path="res://classes/resourceClasses/PlayerNumericModifier.gd" id="2_e4u6c"]
+[ext_resource type="Script" path="res://classes/resourceClasses/NumericModifierValue.gd" id="3_gfk5u"]
+[ext_resource type="Script" path="res://classes/resourceClasses/PlayerUpgrade.gd" id="4_y0lkh"]
+
+[sub_resource type="Resource" id="Resource_qjqen"]
+script = ExtResource("3_gfk5u")
+comon_value = 5.0
+uncomon_value = 10.0
+rare_value = 15.0
+epic_value = 20.0
+legendary_value = 25.0
+
+[sub_resource type="Resource" id="Resource_wnvgj"]
+script = ExtResource("2_e4u6c")
+statID = 1
+operation = 2
+value = SubResource("Resource_qjqen")
+
+[sub_resource type="Resource" id="Resource_gqk7u"]
+script = ExtResource("4_y0lkh")
+modifier = SubResource("Resource_wnvgj")
+
+[resource]
+script = ExtResource("1_3ifvp")
+name = "Cool upgrade"
+description = "boost max hp by %s"
+upgrade = SubResource("Resource_gqk7u")

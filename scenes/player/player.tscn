@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cnxudpvrah4b0" path="res://scenes/player/sprites/playerLegs/movement/downLeft/downLeft.png" id="3_cdsw5"]
 [ext_resource type="Script" path="res://classes/states/CharacterState_Walk.gd" id="3_cjgww"]
 [ext_resource type="Texture2D" uid="uid://dmk1ms12l3w3d" path="res://scenes/player/sprites/playerLegs/movement/leftLeft/leftLeft.png" id="4_67g0s"]
-[ext_resource type="AudioStream" uid="uid://dmjmhhp4doowm" path="res://scenes/player/stomp_audio_randomizer.tres" id="4_htkbc"]
+[ext_resource type="AudioStream" path="res://scenes/player/stomp_audio_randomizer.tres" id="4_htkbc"]
 [ext_resource type="Script" path="res://classes/states/CharacterState_Idle.gd" id="4_ko4ab"]
 [ext_resource type="Texture2D" uid="uid://b7772s3w4oon1" path="res://scenes/player/sprites/playerLegs/movement/upUp/upUp.png" id="5_q8hxs"]
 [ext_resource type="Texture2D" uid="uid://redfllmxbqci" path="res://scenes/player/sprites/playerLegs/movement/upLeft/upLeft.png" id="6_54cp2"]
