@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://chmppa25v83ta"]
+[gd_scene load_steps=3 format=3 uid="uid://chmppa25v83ta"]
 
 [ext_resource type="Script" path="res://globals/ProjectileContainer.gd" id="1_ojgnf"]
+[ext_resource type="AudioStream" uid="uid://p7vowiubh8xl" path="res://sound/player/player_grenade_explosion.wav" id="2_gi52m"]
 
 [node name="ProjectileContainer" type="Node"]
 script = ExtResource("1_ojgnf")
@@ -8,3 +9,7 @@ script = ExtResource("1_ojgnf")
 [node name="PlayerProjectiles" type="Node" parent="."]
 
 [node name="EnemyProjectiles" type="Node" parent="."]
+
+[node name="ExplosionPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_gi52m")

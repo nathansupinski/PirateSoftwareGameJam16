@@ -1,4 +1,4 @@
-[gd_scene load_steps=169 format=4 uid="uid://4ntwb1ehol58"]
+[gd_scene load_steps=170 format=4 uid="uid://4ntwb1ehol58"]
 
 [ext_resource type="PackedScene" uid="uid://2xun3rd2y6uf" path="res://scenes/player/player.tscn" id="1_ba5lr"]
 [ext_resource type="Script" path="res://scenes/main/main_scene.gd" id="1_ujghv"]
@@ -65,6 +65,7 @@
 [ext_resource type="Texture2D" uid="uid://fkayonf42nh3" path="res://scenes/main/sprites/Doodads/Grassland/TreeAlive002.png" id="43_e4sfs"]
 [ext_resource type="Texture2D" uid="uid://wsa8fvffre0g" path="res://scenes/main/sprites/Doodads/Grassland/TreeAlive003.png" id="44_0h5bo"]
 [ext_resource type="Texture2D" uid="uid://cyfifqq8sat8e" path="res://scenes/main/sprites/Doodads/Grassland/TreeAlive004.png" id="45_6lauy"]
+[ext_resource type="AudioStream" uid="uid://buyxxh7fpajxd" path="res://sound/music_level.wav" id="66_hyeqi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n8bbf"]
 texture = ExtResource("2_ww7p5")
@@ -2038,6 +2039,14 @@ tile_set = SubResource("TileSet_ioway")
 y_sort_enabled = true
 script = ExtResource("12_jgryq")
 
+[node name="PickupContainer" type="Node2D" parent="GameYsortLayers"]
+unique_name_in_owner = true
+y_sort_enabled = true
+
+[node name="xpContainer" type="Node2D" parent="GameYsortLayers/PickupContainer"]
+unique_name_in_owner = true
+y_sort_enabled = true
+
 [node name="EnemyContainer" type="Node2D" parent="GameYsortLayers"]
 unique_name_in_owner = true
 y_sort_enabled = true
@@ -2109,11 +2118,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("5_pq5kg")
 theme_override_font_sizes/font_size = 40
 text = "Quit"
-
-[node name="PickupContainer" type="Node2D" parent="."]
-
-[node name="xpContainer" type="Node2D" parent="PickupContainer"]
-unique_name_in_owner = true
 
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 script = ExtResource("6_u17mt")
@@ -2241,6 +2245,13 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 40
 text = "Restart"
+
+[node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("66_hyeqi")
+
+[node name="EnemyDiedPlayer2D" type="AudioStreamPlayer" parent="."]
+bus = &"FX"
 
 [connection signal="visibility_changed" from="UpgradeMenu" to="UpgradeMenu" method="_on_visibility_changed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]

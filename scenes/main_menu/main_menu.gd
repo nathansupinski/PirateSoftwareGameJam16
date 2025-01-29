@@ -1,8 +1,10 @@
 extends Control
+@onready var menu_music_player: AudioStreamPlayer = $MenuMusicPlayer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	menu_music_player.play()
 	pass # Replace with function body.
 
 

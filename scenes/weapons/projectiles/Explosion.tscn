@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cv8qctknes3nv"]
+[gd_scene load_steps=4 format=3 uid="uid://bnqevdi0wenxx"]
 
 [ext_resource type="Script" path="res://scenes/weapons/projectiles/explosion.gd" id="1_m7mi8"]
 [ext_resource type="Texture2D" uid="uid://bd5vne617wbd8" path="res://scenes/weapons/projectiles/grenade_explode.tres" id="2_qstmq"]
