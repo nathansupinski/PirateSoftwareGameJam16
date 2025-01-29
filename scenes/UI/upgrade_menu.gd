@@ -27,6 +27,7 @@ func _on_level_up() -> void:
 	print("open upgrade menu")
 	RollCards()
 	visible = true
+	get_tree().paused = true
 
 func RollCards() -> void:
 	card1 = generateUpgradeCard()
@@ -63,16 +64,19 @@ func _upgrade_1_pressed() -> void:
 	print("upgrade 1 pressed")
 	StatBroker.registerUpgrade(card1)
 	visible = false
+	get_tree().paused = false
 
 func _upgrade_2_pressed() -> void:
 	print("upgrade 2 pressed")
 	StatBroker.registerUpgrade(card2)
 	visible = false
+	get_tree().paused = false
 	
 func _upgrade_3_pressed() -> void:
 	print("upgrade 3 pressed")
 	StatBroker.registerUpgrade(card3)
 	visible = false
+	get_tree().paused = false
 	
 func load_resources_from_folder(folder_path: String) -> Array:
 	var resources: Array = []

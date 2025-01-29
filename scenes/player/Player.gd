@@ -18,9 +18,9 @@ signal energyChanged
 
 var totalXp:int = 0
 var xpThisLevel = 0
-var xpToLevel: int = 10
+var xpToLevel: int = 20
 var level: int = 1
-var xpScaleFactor: float = 1.3
+var xpScaleFactor: float = 1.5
 var currentEnergy: int = 60
 var maxEnergy: int = 150
 var pickupRadius : float = 100 :
@@ -185,6 +185,7 @@ func applyXp(xp: int) -> void:
 		xp_bar.max_value = xpToLevel
 		xp_bar.value = xpThisLevel
 		level_hud.text = str(level)
+		print("")
 		SignalBus.playerLevelup.emit()
 		
 func _on_area_entered(area: Area2D) -> void: #wanted to keep this code in Pickup class but seems more performant to have the player do the checking
