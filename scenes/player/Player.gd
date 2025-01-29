@@ -50,11 +50,17 @@ func _ready():
 		xp_bar.value = xpThisLevel
 	hurt_box.connect("area_entered", _on_area_entered)
 	healthChanged.connect(func(hp): print("hp changed",hp))
+	SignalBus.playerUpgradesChanged.connect(_on_player_upgrades_changed)
 	print("rdy hp", currentHealth)
 
 func _process(delta):
 	super(delta)
 	handleInput()
+	
+func _on_player_upgrades_changed(card: UpgradeCard) -> void:
+	print("updating player stats")
+	speed = StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.SPEED, speed)
+	setMaxHealth(StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.MAX_HP, maxHealth))
 	
 	
 func rotationToTorsoIndex(radians : float) -> int:
@@ -179,6 +185,8 @@ func applyXp(xp: int) -> void:
 		xp_bar.max_value = xpToLevel
 		xp_bar.value = xpThisLevel
 		level_hud.text = str(level)
+		SignalBus.playerLevelup.emit()
+		
 func _on_area_entered(area: Area2D) -> void: #wanted to keep this code in Pickup class but seems more performant to have the player do the checking
 	if is_instance_of(area, Pickup):
 		pass

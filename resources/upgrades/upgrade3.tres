@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="UpgradeCard" load_steps=8 format=3 uid="uid://b4kxveo751rbo"]
+
+[ext_resource type="Script" path="res://classes/resourceClasses/UpgradeCard.gd" id="1_5vym6"]
+[ext_resource type="Script" path="res://classes/resourceClasses/PlayerNumericModifier.gd" id="2_uh2km"]
+[ext_resource type="Script" path="res://classes/resourceClasses/NumericModifierValue.gd" id="3_hswbm"]
+[ext_resource type="Script" path="res://classes/resourceClasses/PlayerUpgrade.gd" id="4_wbfpe"]
+
+[sub_resource type="Resource" id="Resource_84aan"]
+script = ExtResource("3_hswbm")
+comon_value = 10.0
+uncomon_value = 20.0
+rare_value = 30.0
+epic_value = 40.0
+legendary_value = 50.0
+
+[sub_resource type="Resource" id="Resource_fvcer"]
+script = ExtResource("2_uh2km")
+statID = 1
+operation = 2
+value = SubResource("Resource_84aan")
+
+[sub_resource type="Resource" id="Resource_r6yhq"]
+script = ExtResource("4_wbfpe")
+modifier = SubResource("Resource_fvcer")
+
+[resource]
+script = ExtResource("1_5vym6")
+name = "Tempered Steel"
+description = "Increases max hp by %s"
+upgrade = SubResource("Resource_r6yhq")

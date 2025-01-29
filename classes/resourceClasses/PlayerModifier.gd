@@ -1,0 +1,1 @@
+class_name BasePlayerModifier extends Resource
