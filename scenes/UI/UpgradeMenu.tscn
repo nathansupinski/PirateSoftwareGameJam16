@@ -1,25 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnrhxasvmpu8n"]
+[gd_scene load_steps=3 format=3 uid="uid://bnrhxasvmpu8n"]
 
+[ext_resource type="Script" path="res://scenes/UI/upgrade_menu.gd" id="1_c6ru5"]
 [ext_resource type="PackedScene" uid="uid://bjij5to5h5sye" path="res://scenes/UI/UpgradePanel.tscn" id="1_tpnox"]
 
-[node name="UpgradeMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="UpgradeMenu" type="CanvasLayer"]
+script = ExtResource("1_c6ru5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -150.0
+offset_right = 202.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Upgrade" parent="." instance=ExtResource("1_tpnox")]
-layout_mode = 1
-offset_left = -411.0
-offset_top = -205.0
-offset_right = -211.0
-offset_bottom = 95.0
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
 
-[node name="Upgrade2" parent="." instance=ExtResource("1_tpnox")]
-layout_mode = 1
-offset_left = -104.0
-offset_top = -194.0
-offset_right = 96.0
-offset_bottom = 106.0
+[node name="Upgrade1" parent="HBoxContainer/MarginContainer" instance=ExtResource("1_tpnox")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade2" parent="HBoxContainer/MarginContainer2" instance=ExtResource("1_tpnox")]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade3" parent="HBoxContainer/MarginContainer3" instance=ExtResource("1_tpnox")]
+layout_mode = 2

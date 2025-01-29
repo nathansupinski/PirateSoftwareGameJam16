@@ -1,4 +1,4 @@
-[gd_scene load_steps=168 format=4 uid="uid://4ntwb1ehol58"]
+[gd_scene load_steps=169 format=4 uid="uid://4ntwb1ehol58"]
 
 [ext_resource type="PackedScene" uid="uid://2xun3rd2y6uf" path="res://scenes/player/player.tscn" id="1_ba5lr"]
 [ext_resource type="Script" path="res://scenes/main/main_scene.gd" id="1_ujghv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/main/loading_screen.gd" id="2_q6kdw"]
 [ext_resource type="Texture2D" uid="uid://05hc6uem8bj0" path="res://asssets/mechbot.jpg" id="2_ww7p5"]
 [ext_resource type="Script" path="res://addons/gaea/modifiers/2D/modifier_2d.gd" id="3_3r5g0"]
+[ext_resource type="PackedScene" uid="uid://bnrhxasvmpu8n" path="res://scenes/UI/UpgradeMenu.tscn" id="4_08j2j"]
 [ext_resource type="Script" path="res://addons/gaea/modifiers/conditions/condition.gd" id="4_de7hd"]
 [ext_resource type="Script" path="res://classes/NavigationManager.gd" id="4_ngbtb"]
 [ext_resource type="Script" path="res://scenes/main/pause_menu.gd" id="4_t81ws"]
@@ -2001,6 +2002,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "Loading..."
+
+[node name="UpgradeMenu" parent="." instance=ExtResource("4_08j2j")]
 
 [node name="NavigationManager" type="Node2D" parent="."]
 z_index = 100
