@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmxeb77pyqxx1"]
+[gd_scene load_steps=7 format=3 uid="uid://dmxeb77pyqxx1"]
 
 [ext_resource type="PackedScene" uid="uid://lyfrw73ld1qk" path="res://scenes/weapons/Weapon.tscn" id="1_m6q0a"]
 [ext_resource type="Script" path="res://scenes/weapons/TeslaGun.gd" id="2_350vg"]
 [ext_resource type="Resource" uid="uid://cmspgqrmoq1o1" path="res://scenes/weapons/resources/teslaGun.tres" id="3_dmul7"]
 [ext_resource type="PackedScene" uid="uid://citl87vwjw55f" path="res://scenes/weapons/projectiles/Lightning.tscn" id="5_3fal8"]
 [ext_resource type="Texture2D" uid="uid://yxwi175huq1i" path="res://scenes/weapons/teslaGunRight/teslaGunRight.png" id="6_nso4d"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_yil2q"]
 
 [node name="Weapon" instance=ExtResource("1_m6q0a")]
 script = ExtResource("2_350vg")
@@ -16,6 +18,7 @@ projectilePoolSize = 5
 texture = ExtResource("6_nso4d")
 
 [node name="AudioStreamPlayer" parent="." index="2"]
+stream = SubResource("AudioStreamPolyphonic_yil2q")
 max_polyphony = 2
 bus = &"FX"
 

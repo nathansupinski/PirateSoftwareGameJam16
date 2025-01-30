@@ -12,6 +12,7 @@ const ROTATION_IMAGES = 40
 @onready var level_hud: Label = %level
 @onready var hurt_box: Area2D = $hurtBox
 
+var mouseAngle : float 
 signal energyChanged
 
 var totalXp:int = 0
@@ -84,14 +85,14 @@ func _physics_process(delta):
 
 	##Aim Indicator
 	var mousePos : Vector2 = get_local_mouse_position()
-	var mouseAngle = mousePos.angle()
-	aimIndicator.rotation = mousePos.angle()
+	mouseAngle = mousePos.angle()
+
 	
-	$Torso.frame = rotationToTorsoIndex(aimIndicator.rotation)
-	$Equipment.weapon1.spawnPos.position = Vector2.from_angle(aimIndicator.rotation-PI/4)*80
+	$Torso.frame = rotationToTorsoIndex(mouseAngle)
+	$Equipment.weapon1.spawnPos.position = Vector2.from_angle(mouseAngle-PI/4)*$Equipment.weapon1.rotateRadius
 	$"Equipment".weapon1.sprite.frame = $Torso.frame
 	if $Equipment.weapon2:
-		$Equipment.weapon2.spawnPos.position = Vector2.from_angle(aimIndicator.rotation+PI/4)*60
+		$Equipment.weapon2.spawnPos.position = Vector2.from_angle(mouseAngle+PI/4)*$Equipment.weapon2.rotateRadius
 		$Equipment.weapon2.sprite.frame = $Torso.frame
 	if !isHurt:
 		for area in hurtBox.get_overlapping_areas():
@@ -107,11 +108,11 @@ func handleInput():
 	
 	##TODO CHANGE aimIndicator stuff
 	if Input.is_action_pressed("weapon1"):
-		equipment.FireWeapon1(Vector2.from_angle(aimIndicator.rotation))
+		equipment.FireWeapon1(Vector2.from_angle(mouseAngle))
 	elif Input.is_action_just_released("weapon1"):
 		equipment.CancelChargeWeapon1()
 	if Input.is_action_pressed("weapon2"):
-		equipment.FireWeapon2(Vector2.from_angle(aimIndicator.rotation))
+		equipment.FireWeapon2(Vector2.from_angle(mouseAngle))
 	elif Input.is_action_just_released("weapon2"):
 		equipment.CancelChargeWeapon2()
 	

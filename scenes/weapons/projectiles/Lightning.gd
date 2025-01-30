@@ -9,13 +9,14 @@ func _process(delta: float) -> void:
 		
 
 func Reset():
-	await get_tree().create_timer(0.4).timeout
-	self.visible = false
 	self.position = Vector2.ZERO
 	_traveled = 0
 	_chained = 0
 	$CollisionShape2D.shape.a = Vector2.ZERO
 	$CollisionShape2D.shape.b = Vector2.ZERO
+	await get_tree().create_timer(0.4).timeout
+	self.visible = false
+	
 	
 	$Line2D.clear_points()
 

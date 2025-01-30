@@ -43,7 +43,6 @@ _data = {
 }
 
 [node name="xpPickup" instance=ExtResource("1_s3fuj")]
-collision_mask = 34
 script = ExtResource("2_pc2dx")
 
 [node name="Sprite2D" parent="." index="1"]

@@ -3,6 +3,7 @@ class_name Weapon extends Node2D
 @export var weaponData : WeaponData
 @export var projectile : PackedScene
 @export_range(1,ProjectilePool.MAX_PROJECTILES) var projectilePoolSize : int
+@export var rotateRadius : float = 60
 @onready var _attackTimer : Timer = $AttackTimer
 @onready var sprite = $Sprite2D
 @onready var spawnPos = %SpawnPosition

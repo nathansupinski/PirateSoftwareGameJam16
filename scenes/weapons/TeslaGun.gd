@@ -10,7 +10,6 @@ func _ready() -> void:
 
 func fireLightning():
 	super.Shoot(_lastDirection)
-	#print("Shooting")
 	$ChargeTimer.stop()
 	pass
 
@@ -18,13 +17,13 @@ func fireLightning():
 func Shoot(direction: Vector2) -> void:
 	_lastDirection = direction
 	if (_attackTimer.is_paused() or _attackTimer.is_stopped()) and not $ChargeTimer.time_left>0:
-		#print("charging")
-		#print("hello?")
 		_lastDirection = direction
 		$AudioStreamPlayer.stream = CHARGE_SOUND
 		$AudioStreamPlayer.play()
 		$ChargeTimer.start()
 
 func CancelCharge():
+	
+	if $ChargeTimer.time_left > 0:
+		$AudioStreamPlayer.stop()
 	$ChargeTimer.stop()
-	$AudioStreamPlayer.stop()

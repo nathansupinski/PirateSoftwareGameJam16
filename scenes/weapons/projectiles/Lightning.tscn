@@ -16,6 +16,5 @@ script = ExtResource("2_vcas8")
 shape = SubResource("SegmentShape2D_dnti2")
 
 [node name="Line2D" type="Line2D" parent="." index="2"]
-points = PackedVector2Array(15, -32)
 width = 5.0
 width_curve = SubResource("Curve_ajrdr")

@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://mcnq3xxu6nrp"]
+[gd_scene load_steps=5 format=3 uid="uid://mcnq3xxu6nrp"]
 
 [ext_resource type="PackedScene" uid="uid://lyfrw73ld1qk" path="res://scenes/weapons/Weapon.tscn" id="1_6arxp"]
 [ext_resource type="Resource" uid="uid://ey4f3adf03il" path="res://scenes/weapons/resources/40mmGrenadelauncher.tres" id="2_us4jv"]
 [ext_resource type="PackedScene" uid="uid://bvmma4oqcsrwh" path="res://scenes/weapons/projectiles/grenade.tscn" id="3_vguhc"]
+[ext_resource type="Texture2D" uid="uid://c43bff0c1lnw" path="res://scenes/weapons/40mmGrenadelauncherLeft/40mmGrenadelauncherLeft.png" id="4_62m4i"]
 
 [node name="Weapon" instance=ExtResource("1_6arxp")]
 weaponData = ExtResource("2_us4jv")
 projectile = ExtResource("3_vguhc")
 projectilePoolSize = 10
+rotateRadius = 45.0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("4_62m4i")
+
+[node name="SpawnPosition" parent="Sprite2D" index="0"]
+position = Vector2(40, 23)
