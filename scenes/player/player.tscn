@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://mcnq3xxu6nrp" path="res://scenes/weapons/40mmGrenadelauncher.tscn" id="18_gbncf"]
 [ext_resource type="PackedScene" uid="uid://ctjv6t8i0c6n" path="res://scenes/UI/LevelUpText.tscn" id="18_hby4a"]
 [ext_resource type="AudioStream" uid="uid://c35f51h8sr45o" path="res://sound/pickup_xp.wav" id="19_jjw5j"]
+[ext_resource type="AudioStream" uid="uid://c5kiqturrn6ed" path="res://sound/pickup_health.wav" id="20_winew"]
 
 [sub_resource type="Resource" id="Resource_r6bhy"]
 script = ExtResource("7_ypp01")
@@ -343,5 +344,8 @@ stream = ExtResource("19_jjw5j")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
+
+[node name="hpPickupPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_winew")
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
