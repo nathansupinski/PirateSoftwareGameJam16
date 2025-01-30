@@ -19,7 +19,7 @@ func _on_gen_chunk_erased(chunkPosition: Vector2i):
 			print("navRegion disabled at ", chunkPosition)
 
 func _on_gen_chunk_generated(chunkPosition: Vector2i):
-	var chunkSize = 16.00
+	var chunkSize = 9.00
 	var tileSize = 64.00
 	var globalChunkPosition = chunkPosition * chunkSize * tileSize
 	var chunkRect = Rect2i(globalChunkPosition, Vector2(chunkSize * tileSize,chunkSize * tileSize))
@@ -75,9 +75,10 @@ func createNavRegion(chunkRect: Rect2i, chunkPosition: Vector2i, globalChunkPosi
 	navPolygon.source_geometry_mode = NavigationPolygon.SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN
 	navPolygon.parsed_geometry_type = NavigationPolygon.PARSED_GEOMETRY_STATIC_COLLIDERS
 	
+	var chunkSize = 9.00
 	# baking params for chunk offset TODO: figure out the correct values for baking_rect and border_size so we can set the correct agent radius
-	var p_chunk_size = 16 * 64 # pixel chunk size. Chunk size * tile size
-	var baking_bounds: Rect2 = chunkRect.grow(16)
+	var p_chunk_size = chunkSize * 64 # pixel chunk size. Chunk size * tile size
+	var baking_bounds: Rect2 = chunkRect.grow(8)
 	navPolygon.agent_radius = 0 # agent radius is an offset around all the sides of the nav region to prevent agent getting stuck on corners. have to keep this at zero so the nav mesh cunks connect until we figure out baking_rect and border_size
 	#navPolygon.baking_rect = baking_bounds
 	#navPolygon.border_size = p_chunk_size

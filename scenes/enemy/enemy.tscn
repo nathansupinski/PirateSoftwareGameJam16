@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://classes/states/CharacterState_Walk.gd" id="5_5ulvf"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x3xlk"]
-load_path = "res://.godot/imported/orc melee - all animations no fx.png-340bcf7cea60236268bb995a26d8ddc1.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tavrd"]
 size = Vector2(25, 10)
