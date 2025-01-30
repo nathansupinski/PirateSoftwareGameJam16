@@ -79,8 +79,8 @@ func _on_area_entered(area):
 			var enemies = get_tree().get_nodes_in_group("Enemy")
 			enemies.sort_custom(
 			func(a,b):
-				var dist1 = $CollisionShape2D.global_position.distance_to(a.global_position)
-				var dist2 = $CollisionShape2D.global_position.distance_to(b.global_position)
+				var dist1 = area.global_position.distance_to(a.global_position)
+				var dist2 = area.global_position.distance_to(b.global_position)
 				return dist1 < dist2
 				)
 			if enemies.size() < 2:

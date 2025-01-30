@@ -20,3 +20,7 @@ const weapons : Dictionary = {
 const enemies : Dictionary = {
 	"crab": preload("res://scenes/enemy/Crab.tscn"),
 }
+
+
+func GetPlayer() -> Player:
+	return get_tree().get_first_node_in_group("player")

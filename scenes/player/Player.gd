@@ -3,7 +3,6 @@ class_name Player extends Character
 const ROTATION_IMAGES = 40
 
 @export var knockbackPower: int = 1500
-@onready var aimIndicator : Node2D = $AimIndicator
 @onready var equipment : Equipment = $Equipment
 @onready var xp_bar: ProgressBar = %xpBar
 @onready var level_hud: Label = %level
@@ -61,6 +60,8 @@ func _on_player_upgrades_changed(card: UpgradeCard) -> void:
 	speed = StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.SPEED, speed)
 	setMaxHealth(StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.MAX_HP, maxHealth))
 	
+
+	#StatBroker.transformWeaponProperty()
 	
 func rotationToTorsoIndex(radians : float) -> int:
 	#Angles in godot are funky, so this is to put the range back to [0,2*pi]
@@ -76,6 +77,8 @@ func rotationToTorsoIndex(radians : float) -> int:
 	
 	
 
+func HasWeaponType(type : Enums.WeaponType):
+	return $Equipment.IsWeaponTypeEquipped(type)
 	
 func _physics_process(delta):
 	move_and_slide()

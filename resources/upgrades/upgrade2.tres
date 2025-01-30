@@ -1,20 +1,32 @@
-[gd_resource type="Resource" script_class="UpgradeCard" load_steps=6 format=3 uid="uid://bor0urlowvqc8"]
+[gd_resource type="Resource" script_class="UpgradeCard" load_steps=8 format=3 uid="uid://bor0urlowvqc8"]
 
 [ext_resource type="Script" path="res://classes/resourceClasses/UpgradeCard.gd" id="1_v0rdi"]
-[ext_resource type="Script" path="res://classes/resourceClasses/DamageTypeModifier.gd" id="2_vvay3"]
+[ext_resource type="Script" path="res://classes/resourceClasses/WeaponNumericModifier.gd" id="2_18nd2"]
+[ext_resource type="Script" path="res://classes/resourceClasses/NumericModifierValue.gd" id="3_r4lhe"]
 [ext_resource type="Script" path="res://classes/resourceClasses/WeaponUpgrade.gd" id="4_26ipc"]
 
-[sub_resource type="Resource" id="Resource_0q1jo"]
-script = ExtResource("2_vvay3")
-value = 1
+[sub_resource type="Resource" id="Resource_b2djd"]
+script = ExtResource("3_r4lhe")
+comon_value = 5.0
+uncomon_value = 8.0
+rare_value = 10.0
+epic_value = 15.0
+legendary_value = 20.0
 
-[sub_resource type="Resource" id="Resource_nso23"]
+[sub_resource type="Resource" id="Resource_v1cr0"]
+script = ExtResource("2_18nd2")
+statID = 202
+operation = 2
+value = SubResource("Resource_b2djd")
+
+[sub_resource type="Resource" id="Resource_pqloy"]
 script = ExtResource("4_26ipc")
 weaponSlot = 1
-modifier = SubResource("Resource_0q1jo")
+weaponTypes = Array[int]([2, 3, 1])
+modifier = SubResource("Resource_v1cr0")
 
 [resource]
 script = ExtResource("1_v0rdi")
 name = "Big Guns"
-description = "Boosts damage by %s"
-upgrade = SubResource("Resource_nso23")
+description = "Boosts  Weapon Damage by %s"
+upgrade = SubResource("Resource_pqloy")

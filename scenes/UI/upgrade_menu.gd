@@ -37,8 +37,27 @@ func RollCards() -> void:
 	upgrade_2.SetCard(card2)
 	upgrade_3.SetCard(card3)
 	
+	
+func is_valid_card(card : UpgradeCard) -> bool:
+	var p : Player = Global.GetPlayer()
+	if not p:
+		push_error("Couldn't find player")
+		
+	if is_instance_of(card.upgrade,WeaponUpgrade):
+		var upgrade : WeaponUpgrade = card.upgrade
+		if not upgrade.weaponType:
+			push_error("Card %s doesn't have any weapon types assigned! " % card.name)
+		for type in upgrade.weaponTypes:
+			if not p.HasWeaponType(upgrade.weaponType):
+				return false
+	return true
+		
 func generateUpgradeCard() -> UpgradeCard:
+	
 	var upgradeIndexRoll = randi_range(0, upgradeResources.size() -1)
+	while not is_valid_card(upgradeResources[upgradeIndexRoll]):
+		print("try %d" % upgradeIndexRoll)
+		upgradeIndexRoll = randi_range(0, upgradeResources.size() -1)
 	var upgradeRarityRoll = rollUpgradeRarity()
 	if upgradeResources[upgradeIndexRoll] is UpgradeCard:
 		var card:UpgradeCard = upgradeResources[upgradeIndexRoll].duplicate()
@@ -104,7 +123,7 @@ func _on_visibility_changed() -> void:
 	if not visible:
 		#SignalBus.pickedUpgrade.emit()
 		Engine.time_scale=0.2
-		get_tree().create_tween().tween_property(Engine,"time_scale",1,0.8)
+		get_tree().create_tween().tween_property(Engine,"time_scale",1,0.5)
 	else:
 		Engine.time_scale = 1
 		$AnimationPlayer.play("intro")

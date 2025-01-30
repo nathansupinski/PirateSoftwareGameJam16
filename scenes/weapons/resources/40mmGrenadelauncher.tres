@@ -6,7 +6,7 @@
 script = ExtResource("1_wwe4k")
 name = "40mmGrenadelauncher"
 tags = Array[String](["aoe"])
-weaponRange = 500.0
+weaponRange = 600.0
 fireRate = 1.0
 rawDamage = 50.0
 damageType = 0
