@@ -45,10 +45,10 @@ func is_valid_card(card : UpgradeCard) -> bool:
 		
 	if is_instance_of(card.upgrade,WeaponUpgrade):
 		var upgrade : WeaponUpgrade = card.upgrade
-		if not upgrade.weaponType:
+		if not upgrade.weaponTypes:
 			push_error("Card %s doesn't have any weapon types assigned! " % card.name)
 		for type in upgrade.weaponTypes:
-			if not p.HasWeaponType(upgrade.weaponType):
+			if not p.HasWeaponType(type):
 				return false
 	return true
 		
