@@ -18,5 +18,6 @@ static func new_hpPickup(position: Vector2, value = null) -> HpPickup:
 	
 func apply(player: Player) -> void:
 	if player.currentHealth < player.maxHealth:
+		player.playHpPickupSound()
 		player.setCurrentHealth(player.maxHealth)
 		self.queue_free()

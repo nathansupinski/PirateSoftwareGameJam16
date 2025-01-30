@@ -10,6 +10,7 @@ const ROTATION_IMAGES = 40
 @onready var hurt_box: Area2D = $hurtBox
 @onready var xp_pickup_audio: AudioStreamPlayer = $xpPickupAudio
 @onready var audio_listener_2d: AudioListener2D = $AudioListener2D
+@onready var hp_pickup_player: AudioStreamPlayer = $hpPickupPlayer
 
 var mouseAngle : float 
 signal energyChanged
@@ -185,7 +186,6 @@ func _on_area_entered(area: Area2D) -> void: #wanted to keep this code in Pickup
 		pass
 		#(area as Pickup).apply(self)
 
-
 func _on_pickup_area_area_entered(area: Area2D) -> void:
 	if is_instance_of(area,Pickup):
 		var tween = get_tree().create_tween()
@@ -195,3 +195,6 @@ func _on_pickup_area_area_entered(area: Area2D) -> void:
 			(area as Pickup).apply(self)
 		
 		#get_tree().root.add_child(tween)
+
+func playHpPickupSound() -> void:
+	hp_pickup_player.play()

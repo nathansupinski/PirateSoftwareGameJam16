@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccmupmlm2yi7x"]
+[gd_scene load_steps=7 format=3 uid="uid://ccmupmlm2yi7x"]
 
 [ext_resource type="PackedScene" uid="uid://lyfrw73ld1qk" path="res://scenes/weapons/Weapon.tscn" id="1_m6q0a"]
 [ext_resource type="Script" path="res://scenes/weapons/TeslaGun.gd" id="2_350vg"]
