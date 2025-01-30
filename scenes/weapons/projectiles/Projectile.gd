@@ -6,6 +6,7 @@ const CHAIN_REDUCTION = 0.8
 
 signal projectile_destroyed(projectile)
 @onready var collider: CollisionShape2D = $CollisionShape2D
+var explosion_player: AudioStreamPlayer
 
 var source : Weapon = null 
 var direction : Vector2 = Vector2.ZERO
@@ -20,6 +21,7 @@ func Reset():
 	if "aoe" in source.weaponData.tags:
 		var expl = Explosion.NewExplosion(source.weaponData.rawDamage,0.3,source.weaponData.areaOfAffect)
 		call_deferred("add_child",expl)
+		explosion_player.play()
 		await expl.tree_exited
 		#$Polygon2D.visible = true
 		#var tween = get_tree().create_tween()
@@ -44,6 +46,7 @@ func Reset():
 #@onready var sprite : Sprite2D = $Sprite2D
 func _ready() -> void:
 	connect("area_entered",_on_area_entered)
+	explosion_player = get_node("/root/ProjectileContainer/ExplosionPlayer")
 
 func _exit_tree() -> void:
 	#print(self, " Destroyed")

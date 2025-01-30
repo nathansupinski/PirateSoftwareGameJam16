@@ -2,15 +2,14 @@ class_name Player extends Character
 
 const ROTATION_IMAGES = 40
 
-
-
-
 @export var knockbackPower: int = 1500
 @onready var aimIndicator : Node2D = $AimIndicator
 @onready var equipment : Equipment = $Equipment
 @onready var xp_bar: ProgressBar = %xpBar
 @onready var level_hud: Label = %level
 @onready var hurt_box: Area2D = $hurtBox
+@onready var xp_pickup_audio: AudioStreamPlayer = $xpPickupAudio
+@onready var audio_listener_2d: AudioListener2D = $AudioListener2D
 
 var mouseAngle : float 
 signal energyChanged
@@ -20,7 +19,7 @@ var xpThisLevel = 0
 var xpToLevel: int = 20
 var level: int = 1
 var upgradeLevel = 1
-var xpScaleFactor: float = 1.5
+var xpScaleFactor: float = 1.7
 var currentEnergy: int = 60
 var maxEnergy: int = 150
 var pickupRadius : float = 100 :
@@ -49,9 +48,8 @@ func _ready():
 		xp_bar.max_value = xpToLevel
 		xp_bar.value = xpThisLevel
 	hurt_box.connect("area_entered", _on_area_entered)
-	healthChanged.connect(func(hp): print("hp changed",hp))
 	SignalBus.playerUpgradesChanged.connect(_on_player_upgrades_changed)
-	print("rdy hp", currentHealth)
+	audio_listener_2d.make_current()
 
 func _process(delta):
 	super(delta)
@@ -166,6 +164,7 @@ func applyXp(xp: int) -> void:
 	if not xp_bar:
 		print("No xp bar")
 		return
+	xp_pickup_audio.play()
 	totalXp += xp
 	xpThisLevel += xp
 	xp_bar.value = xpThisLevel
@@ -178,7 +177,6 @@ func applyXp(xp: int) -> void:
 		xp_bar.max_value = xpToLevel
 		xp_bar.value = xpThisLevel
 		level_hud.text = str(level)
-		print("")
 		(func():SignalBus.playerLevelup.emit()).call_deferred()
 		#SignalBus.playerLevelup.emit()
 		
@@ -189,7 +187,6 @@ func _on_area_entered(area: Area2D) -> void: #wanted to keep this code in Pickup
 
 
 func _on_pickup_area_area_entered(area: Area2D) -> void:
-	print(area)
 	if is_instance_of(area,Pickup):
 		var tween = get_tree().create_tween()
 		tween.tween_property(area,"global_position",self.global_position,0.1)

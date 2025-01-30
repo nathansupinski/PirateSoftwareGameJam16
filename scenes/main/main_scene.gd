@@ -4,13 +4,21 @@ extends Node2D
 @onready var pauseMenu = $PauseMenu
 @onready var enemy_container: Node2D = %EnemyContainer
 @onready var death_screen: CanvasLayer = $DeathScreen
+@onready var level_music_player: AudioStreamPlayer = $LevelMusicPlayer
+@onready var enemy_died_player_2d: AudioStreamPlayer = $EnemyDiedPlayer2D
+
+const BUG_SPLAT_SOUNDS = [
+	preload("res://sound/enemies/bug_splat_1.wav"),
+	preload("res://sound/enemies/bug_splat_2.wav"),
+	preload("res://sound/enemies/bug_splat_3.wav")
+]
 
 var totalEnemies: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().paused = false
-	
+	level_music_player.play()
 	#TODO: abstract all spawning code into a wave manager or something
 	#spawn starting wave
 	spawnEnemiesInRing(Crab, 20, true)
@@ -23,9 +31,10 @@ func _ready():
 	timer.timeout.connect(spawnWave)
 	timer.start()
 	
-	var test = get_world_2d()
+	#var test = get_world_2d()
 	SignalBus.playerDied.connect(_on_player_died)
 	SignalBus.playerDamaged.connect(_on_player_damaged)
+	SignalBus.enemyDied.connect(_on_enemy_died)
 	pass
 
 # Called every frame. 'delta' is the elapswed time since the previous frame.
@@ -69,3 +78,8 @@ func spawnEnemiesInRing(enemyClass: Script, numberToSpawn: int, randomizeOffsets
 func spawnWave() -> void:
 	print("spawning wave")
 	spawnEnemiesInRing(Crab, 50, true)
+	
+func _on_enemy_died(enemyPosition: Vector2i) -> void:
+	var soundIndex = randi_range(0,2)
+	enemy_died_player_2d.stream = BUG_SPLAT_SOUNDS[soundIndex]
+	enemy_died_player_2d.play() #TODO: make this use AudioStreamPlayer2D for positional audio 

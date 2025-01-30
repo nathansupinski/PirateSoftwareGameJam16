@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3lj6eyydhp8a"]
+[gd_scene load_steps=6 format=3 uid="uid://c3lj6eyydhp8a"]
 
 [ext_resource type="Texture2D" uid="uid://05hc6uem8bj0" path="res://asssets/mechbot.jpg" id="1_2ml11"]
 [ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_iy1qu"]
 [ext_resource type="FontFile" uid="uid://c0twuvkqjtx5x" path="res://asssets/fonts/Audiowide-Regular.ttf" id="2_4iq5s"]
+[ext_resource type="AudioStream" uid="uid://d32b4ar01jlot" path="res://sound/music_menu.wav" id="4_r3m2w"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qc4oc"]
 texture = ExtResource("1_2ml11")
@@ -72,6 +73,9 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_4iq5s")
 theme_override_font_sizes/font_size = 40
 text = "Quit"
+
+[node name="MenuMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_r3m2w")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
