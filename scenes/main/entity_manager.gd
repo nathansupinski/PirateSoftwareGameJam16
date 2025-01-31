@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var tile_map_layer: TileMapLayer = $"../TileMapLayer"
+@onready var tile_map_layer: TileMapLayer = %TileMapLayer
 
 var chunkSize = 9
 var tileSize = 64
