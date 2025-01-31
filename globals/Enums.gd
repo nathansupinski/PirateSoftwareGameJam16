@@ -96,3 +96,9 @@ enum WeaponType{
 	AUTO_CANNON,
 	GRENADE_LAUNCHER,
 }
+
+enum CrabColor{
+	YELLOW,
+	BLUE,
+	RED
+}

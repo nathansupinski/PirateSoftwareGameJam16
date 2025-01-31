@@ -3,6 +3,18 @@ extends Node
 #util functions go here
 
 var mapSize = 256 * 64
+var mapEdgeOffset = 600
+var spawnBounds: Rect2i
+
+func _ready() -> void:
+	SignalBus.gameStart.connect(_on_start_game)
+
+func _on_start_game() -> void:
+	print("EXPECT FALSE",Utils.check_position_is_valid_spawn_loc(Vector2(0,0)))
+	
+	var topLeftBounds = getValidSpawnPosition(Vector2(mapEdgeOffset,mapEdgeOffset))
+	var bottomRight = getValidSpawnPosition(Vector2(mapSize - mapEdgeOffset,mapSize - mapEdgeOffset))
+	spawnBounds = Rect2i(topLeftBounds, bottomRight)
 
 func in_range(value : float,pivot : float, tolerance : float) -> bool:
 	return value <= pivot+tolerance and value >= pivot-tolerance
@@ -54,7 +66,6 @@ func translateTowardsMiddleMap(position: Vector2i) -> Vector2i:
 	var tileSize = 64
 	var mapMiddleEstimate = Vector2i(mapSize/2, mapSize/2)
 	var newLoc = position + Vector2i(Vector2(position).direction_to(mapMiddleEstimate) * tileSize)
-	print("newLoc", newLoc)
 	
 	return newLoc
 
@@ -66,11 +77,16 @@ func getValidSpawnPosition(position: Vector2i) -> Vector2i:
 		depth += 1
 		curPos = translateTowardsMiddleMap(curPos)
 	
-	
 	if(depth == 31):
 		print("FAILED TO FIND VALID SPAWN")
-	else:
-		print("Found spawn loc in " + str(depth) + " attmeps.")
+	#else:
+		#print("Found spawn loc in " + str(depth) + " attmeps.")
 		
 	return curPos
+	
+func clampSpawnArea(position: Vector2i) -> Vector2i:
+	return Vector2i(
+		clamp(position.x, spawnBounds.position.x, spawnBounds.position.x + spawnBounds.size.x - 1),
+		clamp(position.y, spawnBounds.position.y, spawnBounds.position.y + spawnBounds.size.y - 1)
+)
 	

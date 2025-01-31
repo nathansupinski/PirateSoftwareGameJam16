@@ -126,7 +126,7 @@ func destroy() -> void:
 		
 func dealDamage(damage: float):
 	currentHealth = currentHealth - damage
-	print(characterName + ": damaged(" + str(damage) + ") hpLeft:" + str(currentHealth))
+	#print(characterName + ": damaged(" + str(damage) + ") hpLeft:" + str(currentHealth))
 	if(currentHealth <= 0):
 		destroy()
 

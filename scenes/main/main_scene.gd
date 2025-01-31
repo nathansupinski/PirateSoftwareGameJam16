@@ -25,8 +25,7 @@ func _ready():
 	SignalBus.enemyDied.connect(_on_enemy_died)
 	
 	var mapPixelSize = 256 * 64 #world size in NoiseGenerator * tile size
-	#player.position = Vector2i(mapPixelSize/2, mapPixelSize/2) #place player in the center of the world TODO: check for anything in the way and translate
-	player.position = Vector2i(1200, 1200)
+	player.position = Utils.getValidSpawnPosition(Vector2i(mapPixelSize/2, mapPixelSize/2)) #place player in the center of the world TODO: check for anything in the way and translate
 	
 	SignalBus.gameStart.connect(_on_start_game)
 	pass
