@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://de4ywqpi2apyu"]
+
+[ext_resource type="Script" path="res://scenes/UI/settings/settings.gd" id="1_6s84i"]
+[ext_resource type="PackedScene" uid="uid://qg3ytjovh6is" path="res://scenes/UI/settings/audio_settings.tscn" id="5_b54wb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wqyln"]
+
+[node name="SettingsContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6s84i")
+
+[node name="SettingsRows" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 32
+
+[node name="SettingsLabel" type="Label" parent="SettingsRows" groups=["recolor"]]
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="SettingsRows"]
+layout_mode = 2
+theme_override_constants/separation = 64
+theme_override_styles/separator = SubResource("StyleBoxEmpty_wqyln")
+
+[node name="AudioLabel" type="Label" parent="SettingsRows" groups=["recolor"]]
+layout_mode = 2
+text = "Audio"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="SettingsRows"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsRows/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsRows/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 24
+
+[node name="AudioSettings" parent="SettingsRows/Panel/MarginContainer/VBoxContainer" instance=ExtResource("5_b54wb")]
+layout_mode = 2
+size_flags_horizontal = 1
+script = null
+
+[node name="SettingsBackButton" type="Button" parent="SettingsRows/Panel/MarginContainer/VBoxContainer" groups=["recolor"]]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Back"

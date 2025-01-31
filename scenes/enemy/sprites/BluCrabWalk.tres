@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CharacterSprites" load_steps=7 format=3 uid="uid://3fp60py8or4p"]
+
+[ext_resource type="Texture2D" uid="uid://dpek2kiaa2dwx" path="res://scenes/enemy/sprites/giantEnemyCrab/BluCrab/crabWalk/downDown/downDown.png" id="1_a0tyg"]
+[ext_resource type="Script" path="res://classes/CharacterSprites.gd" id="1_xq67j"]
+[ext_resource type="Texture2D" uid="uid://12rqirhjsj0q" path="res://scenes/enemy/sprites/giantEnemyCrab/BluCrab/crabWalk/downLeft/downLeft.png" id="2_7htvh"]
+[ext_resource type="Texture2D" uid="uid://b0bx86g1lccbj" path="res://scenes/enemy/sprites/giantEnemyCrab/BluCrab/crabWalk/leftLeft/leftLeft.png" id="3_albhq"]
+[ext_resource type="Texture2D" uid="uid://clrorg3yyyqna" path="res://scenes/enemy/sprites/giantEnemyCrab/BluCrab/crabWalk/upUp/upUp.png" id="4_3xjpv"]
+[ext_resource type="Texture2D" uid="uid://bn2s6odihmfgi" path="res://scenes/enemy/sprites/giantEnemyCrab/BluCrab/crabWalk/upLeft/upLeft.png" id="5_stitb"]
+
+[resource]
+script = ExtResource("1_xq67j")
+SPRITE_UP = ExtResource("4_3xjpv")
+SPRITE_SIDE = ExtResource("3_albhq")
+SPRITE_UP_SIDE = ExtResource("5_stitb")
+SPRITE_DOWN = ExtResource("1_a0tyg")
+SPRITE_DOWN_SIDE = ExtResource("2_7htvh")

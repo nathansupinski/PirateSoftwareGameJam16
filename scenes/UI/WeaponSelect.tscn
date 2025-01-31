@@ -1,6 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://ciyi7d34jq5iy"]
+[gd_scene load_steps=10 format=3 uid="uid://ciyi7d34jq5iy"]
 
 [ext_resource type="Script" path="res://scenes/UI/weapon_select.gd" id="1_ki0di"]
+[ext_resource type="Texture2D" uid="uid://b84vauvebf66f" path="res://scenes/UI/menuUIImages/rivetplate.png" id="2_ikrmu"]
+[ext_resource type="StyleBox" uid="uid://b0lokksk0djb1" path="res://scenes/UI/WeaponSelectStyle.tres" id="3_4sqwk"]
+[ext_resource type="Texture2D" uid="uid://b0hxj3wp38l8h" path="res://scenes/UI/menuUIImages/CroppedButtons/start1.png" id="3_n45fp"]
+[ext_resource type="Texture2D" uid="uid://by887fiaj4h4e" path="res://scenes/UI/menuUIImages/CroppedButtons/start2.png" id="4_0wgqc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1iakj"]
+texture = ExtResource("2_ikrmu")
+modulate_color = Color(0.355314, 0.355314, 0.355314, 1)
+
+[sub_resource type="Gradient" id="Gradient_pp50w"]
+offsets = PackedFloat32Array(0, 0.77621, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.7, 0.7, 0.7, 0.25098, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1pimf"]
+gradient = SubResource("Gradient_pp50w")
+fill = 2
+fill_from = Vector2(0.5, 0.495726)
+fill_to = Vector2(0.965812, 0.0384615)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vluqr"]
+texture = SubResource("GradientTexture2D_1pimf")
+modulate_color = Color(0.89104, 0.66158, 0.483959, 1)
 
 [node name="WeaponSelect" type="MarginContainer"]
 anchors_preset = 15
@@ -12,6 +34,7 @@ script = ExtResource("1_ki0di")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1iakj")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(800, 550)
@@ -33,7 +56,7 @@ text = "[center][font_size=24]Select your loadout"
 fit_content = true
 
 [node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/FlowContainer"]
-custom_minimum_size = Vector2(0, 500)
+custom_minimum_size = Vector2(0, 450)
 layout_mode = 2
 size_flags_horizontal = 3
 dragger_visibility = 1
@@ -45,6 +68,8 @@ size_flags_horizontal = 3
 [node name="RightWeaponChoice" type="OptionButton" parent="MarginContainer/FlowContainer/HSplitContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("3_4sqwk")
 item_count = 3
 popup/item_0/text = "Tesla Gun"
 popup/item_1/text = "Auto Rifle"
@@ -54,8 +79,19 @@ popup/item_2/id = 2
 
 [node name="RightWeaponPreview" type="TextureRect" parent="MarginContainer/FlowContainer/HSplitContainer/VBoxContainer2"]
 unique_name_in_owner = true
+z_index = 1
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer/FlowContainer/HSplitContainer/VBoxContainer2/RightWeaponPreview"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vluqr")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/FlowContainer/HSplitContainer"]
 layout_mode = 2
@@ -64,6 +100,7 @@ size_flags_horizontal = 3
 [node name="LeftWeaponChoice" type="OptionButton" parent="MarginContainer/FlowContainer/HSplitContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_styles/normal = ExtResource("3_4sqwk")
 item_count = 3
 popup/item_0/text = "Tesla Gun"
 popup/item_1/text = "Auto Rifle"
@@ -73,15 +110,27 @@ popup/item_2/id = 2
 
 [node name="LeftWeaponPreview" type="TextureRect" parent="MarginContainer/FlowContainer/HSplitContainer/VBoxContainer"]
 unique_name_in_owner = true
+z_index = 1
 layout_mode = 2
 size_flags_vertical = 3
 expand_mode = 4
 
-[node name="Confirm" type="Button" parent="MarginContainer/FlowContainer"]
+[node name="Panel2" type="Panel" parent="MarginContainer/FlowContainer/HSplitContainer/VBoxContainer/LeftWeaponPreview"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vluqr")
+
+[node name="Confirm" type="TextureButton" parent="MarginContainer/FlowContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Confirm"
+texture_normal = ExtResource("3_n45fp")
+texture_hover = ExtResource("4_0wgqc")
 
 [connection signal="item_selected" from="MarginContainer/FlowContainer/HSplitContainer/VBoxContainer2/RightWeaponChoice" to="." method="_on_right_weapon_choice_item_selected"]
 [connection signal="item_selected" from="MarginContainer/FlowContainer/HSplitContainer/VBoxContainer/LeftWeaponChoice" to="." method="_on_left_weapon_choice_item_selected"]

@@ -395,6 +395,10 @@ collision_mask = 13
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_db6ri")
+speed = 50.0
+maxHealth = 100
+characterName = "Enemy"
+collisionDamage = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CompressedTexture2D_x3xlk")

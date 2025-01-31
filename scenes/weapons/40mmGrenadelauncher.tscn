@@ -8,7 +8,7 @@
 [node name="40mmGrenadeLauncher" instance=ExtResource("1_6arxp")]
 weaponData = ExtResource("2_us4jv")
 projectile = ExtResource("3_vguhc")
-projectilePoolSize = 10
+projectilePoolSize = 50
 rotateRadius = 45.0
 
 [node name="Sprite2D" parent="." index="0"]

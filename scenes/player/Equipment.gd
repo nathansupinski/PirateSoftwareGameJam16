@@ -6,12 +6,7 @@ class_name Equipment extends Node2D
 signal weapon2_changed(weapon)
 
 @export var weapon1 : Weapon 
-@export var weapon2 : Weapon : 
-	get():
-		return weapon2
-	set(value):
-		weapon2_changed.emit(value)
-		weapon2 = value
+@export var weapon2 : Weapon
 
 
 
@@ -21,12 +16,10 @@ func _ready() -> void:
 		weapon1=Global.selectedWeapon1
 		weapon1.name = "weapon1"
 		add_child(weapon1)
-		await weapon1.ready
 	if Global.selectedWeapon2:
 		weapon2=Global.selectedWeapon2
 		weapon2.name = "weapon2"
 		add_child(weapon2)
-		await weapon2.ready
 	weapon1.sprite.texture = Global.weapons[weapon1.weaponData.name]["left"]
 	if weapon2:
 		weapon2.sprite.texture = Global.weapons[weapon2.weaponData.name]["right"]

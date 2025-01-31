@@ -20,7 +20,7 @@ func calculateDamage():
 
 func Reset():
 	direction = Vector2.ZERO
-	if "aoe" in source.weaponData.tags:
+	if "aoe" in source.weaponData.tags and source.weaponData.areaOfAffect >0:
 		var expl = Explosion.NewExplosion(source.weaponData.rawDamage,0.3,source.weaponData.areaOfAffect)
 		
 		#call_deferred("add_child",expl)

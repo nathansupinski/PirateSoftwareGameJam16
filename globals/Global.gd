@@ -19,7 +19,22 @@ const weapons : Dictionary = {
 	}
 }
 
+const crabSprites : Dictionary = {
+	"normal":{
+		"walk": preload("res://scenes/enemy/sprites/crabWalk.tres"),
+		"death":preload("res://scenes/enemy/sprites/crabDeath.tres"),
+		
+	},
+	"blue":{
+		"walk":preload("res://scenes/enemy/sprites/BluCrabWalk.tres"),
+		"death":preload("res://scenes/enemy/sprites/BluCrabDie.tres"),
+	},
+	"red":{## CHANGE TO RED CRAB
+		"walk":preload("res://scenes/enemy/sprites/BluCrabWalk.tres"),
+		"death":preload("res://scenes/enemy/sprites/BluCrabDie.tres"),
 
+	}
+}
 
 
 const enemies : Dictionary = {

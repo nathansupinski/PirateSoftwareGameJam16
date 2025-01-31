@@ -254,7 +254,8 @@ z_index = 2
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_mb422")
-maxHealth = 20
+speed = 150.0
+maxHealth = 200
 characterName = "Player"
 spriteSheets = SubResource("Resource_r6bhy")
 

@@ -37,8 +37,8 @@ var pickupRadius : float = 100 :
 #init player specific properties
 func _init():
 	super()
-	speed = 400
-	maxHealth = 20
+	#speed = 400
+	#maxHealth = 20
 	currentHealth = maxHealth
 	healthChanged.emit(currentHealth)
 	print("init hp", currentHealth)

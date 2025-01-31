@@ -8,21 +8,31 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_tree().paused= false
 	menu_music_player.play()
 	play_button.mouse_entered.connect(button_hover_player.play)
 	settings_button.mouse_entered.connect(button_hover_player.play)
 	quit_button.mouse_entered.connect(button_hover_player.play)
+	
+	if not play_button.pressed.is_connected(_on_play_button_pressed):
+		play_button.pressed.connect(_on_play_button_pressed)
+	if not settings_button.pressed.is_connected(_on_settings_button_pressed):
+		settings_button.pressed.connect(_on_settings_button_pressed)
+	if not quit_button.pressed.is_connected(_on_quit_button_pressed):
+		quit_button.pressed.connect(_on_quit_button_pressed)
+		
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	get_tree().paused= false
+	
 
 
 func _on_play_button_pressed() -> void:
 	print("Play pressed")
-	get_tree().change_scene_to_file("res://scenes/UI/WeaponSelect.tscn")
+	print(get_tree().change_scene_to_file("res://scenes/UI/WeaponSelect.tscn"))
 
 
 func _on_quit_button_pressed() -> void:

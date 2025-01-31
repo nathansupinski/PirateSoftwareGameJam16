@@ -14,6 +14,9 @@ const weaponsPreviews : Dictionary = {
 		"right" : preload("res://scenes/weapons/120mmCannonRight/120mmCannonR0001.png")
 	}
 }
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -23,6 +26,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var nothing_selected : bool = not (%LeftWeaponChoice.selected>=0 and %RightWeaponChoice.selected >=0)
 	%Confirm.disabled = nothing_selected
+	if nothing_selected:
+		%Confirm.modulate = Color(0.3,0.2,0.2,0.7)
+	else:
+		%Confirm.modulate = Color.WHITE
+	
+	if Input.is_action_just_pressed("pause"):
+		get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
 	
 	##TODO maybe disable if they select same one
 

@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://qg3ytjovh6is"]
+
+[ext_resource type="Script" path="res://scenes/UI/settings/audio_settings.gd" id="1_ctayy"]
+
+[node name="AudioSettings" type="GridContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 11
+columns = 2
+script = ExtResource("1_ctayy")
+
+[node name="EffectsLabel" type="Label" parent="." groups=["recolor"]]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Sound Effects"
+vertical_alignment = 1
+
+[node name="EffectsSlider" type="HSlider" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MusicLabel" type="Label" parent="." groups=["recolor"]]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Music"
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MasterLabel" type="Label" parent="." groups=["recolor"]]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Master"
+vertical_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 1.0
