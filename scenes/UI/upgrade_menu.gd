@@ -81,6 +81,12 @@ func generateUpgradeCard() -> UpgradeCard:
 	if upgradeResources[upgradeIndexRoll] is UpgradeCard:
 		var card:UpgradeCard = upgradeResources[upgradeIndexRoll].duplicate()
 		card.rarity = upgradeRarityRoll
+		if card.upgrade is WeaponUpgrade:
+			var weaponSlotRoll = randi_range(0,1)
+			var weaponSlot = Enums.WeaponSlot.RIGHT_ARM
+			if weaponSlotRoll == 1:
+				weaponSlot = Enums.WeaponSlot.LEFT_ARM
+			card.upgrade.weaponSlot = weaponSlot
 		return card
 		
 	return null

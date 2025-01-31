@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjij5to5h5sye"]
+[gd_scene load_steps=4 format=3 uid="uid://bjij5to5h5sye"]
 
 [ext_resource type="Theme" uid="uid://ccfliqn2c76xo" path="res://themes/custom_theme.tres" id="1_faq6t"]
 [ext_resource type="Script" path="res://scenes/UI/UpgradePanel.gd" id="2_sdwb4"]
+[ext_resource type="Texture2D" uid="uid://b4qxs7xcsyk4p" path="res://scenes/UI/upgradeSprites/multishotBoost.png" id="3_52u6q"]
 
 [node name="UpgradePanel" type="TextureButton"]
 custom_minimum_size = Vector2(200, 300)
@@ -48,25 +49,41 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
+size_flags_vertical = 0
+theme_override_constants/separation = 5
 
 [node name="UpgradeName" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 28)
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 0
-text = "Hello"
+text = "Hello this is a long one"
 horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="UpgradeDescription" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 100)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_52u6q")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="WeaponName" type="Label" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Tesla Gun"
+horizontal_alignment = 1
+
+[node name="UpgradeDescription" type="Label" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 80)
 layout_mode = 2
 text = "description"
 horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="UpgradeRarity" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
