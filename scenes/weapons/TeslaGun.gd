@@ -20,7 +20,7 @@ func Shoot(direction: Vector2) -> void:
 		_lastDirection = direction
 		$AudioStreamPlayer.stream = CHARGE_SOUND
 		$AudioStreamPlayer.play()
-		$ChargeTimer.start()
+		$ChargeTimer.start(weaponData.fireRate)
 
 func CancelCharge():
 	

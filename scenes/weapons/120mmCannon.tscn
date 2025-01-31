@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bdcl00k0mkqsg" path="res://scenes/weapons/projectiles/Bullet.tscn" id="4_a4r8w"]
 [ext_resource type="Texture2D" uid="uid://c2wc6bdw37fhq" path="res://scenes/weapons/120mmCannonLeft/120mmCannonLeft.png" id="5_786ui"]
 
-[node name="Weapon" instance=ExtResource("1_dpbae")]
+[node name="120mmCannon" instance=ExtResource("1_dpbae")]
 weaponData = ExtResource("2_yfbmp")
 projectile = ExtResource("4_a4r8w")
 projectilePoolSize = 500

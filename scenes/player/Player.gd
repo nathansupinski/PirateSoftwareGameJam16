@@ -11,7 +11,8 @@ const ROTATION_IMAGES = 40
 @onready var audio_listener_2d: AudioListener2D = $AudioListener2D
 @onready var hp_pickup_player: AudioStreamPlayer = $hpPickupPlayer
 @onready var damage_taken_player: AudioStreamPlayer = $damageTakenPlayer
-
+@onready var baseMaxHealth = maxHealth
+@onready var baseSpeed = speed
 var mouseAngle : float 
 signal energyChanged
 
@@ -31,6 +32,7 @@ var pickupRadius : float = 100 :
 			return
 		$"PickupArea/CollisionShape2D".shape.radius=value
 		pickupRadius = value
+
 
 #init player specific properties
 func _init():
@@ -59,8 +61,8 @@ func _process(delta):
 	
 func _on_player_upgrades_changed(card: UpgradeCard) -> void:
 	print("updating player stats")
-	speed = StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.SPEED, speed)
-	setMaxHealth(StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.MAX_HP, maxHealth))
+	speed = StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.SPEED, baseSpeed)
+	setMaxHealth(StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.MAX_HP, baseMaxHealth))
 	
 
 	#StatBroker.transformWeaponProperty()

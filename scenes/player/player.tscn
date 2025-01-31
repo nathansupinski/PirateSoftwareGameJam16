@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://2xun3rd2y6uf"]
+[gd_scene load_steps=30 format=3 uid="uid://2xun3rd2y6uf"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_mb422"]
 [ext_resource type="Script" path="res://classes/CharacterStateMachine.gd" id="2_28vnp"]
@@ -13,8 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://redfllmxbqci" path="res://scenes/player/sprites/playerLegs/movement/upLeft/upLeft.png" id="6_54cp2"]
 [ext_resource type="Script" path="res://classes/CharacterSprites.gd" id="7_ypp01"]
 [ext_resource type="Script" path="res://scenes/player/Equipment.gd" id="8_2q1at"]
-[ext_resource type="PackedScene" uid="uid://ccmupmlm2yi7x" path="res://scenes/weapons/teslaGun.tscn" id="13_yae1s"]
-[ext_resource type="PackedScene" uid="uid://c3dt0kf8iwmwh" path="res://scenes/weapons/120mmCannon.tscn" id="15_laxm4"]
 [ext_resource type="PackedScene" uid="uid://ctjv6t8i0c6n" path="res://scenes/UI/LevelUpText.tscn" id="18_hby4a"]
 [ext_resource type="AudioStream" uid="uid://cx7uiajm5b8vr" path="res://sound/player/player_hit.wav" id="19_jg6es"]
 [ext_resource type="AudioStream" uid="uid://c35f51h8sr45o" path="res://sound/pickup_xp.wav" id="19_jjw5j"]
@@ -311,12 +309,8 @@ libraries = {
 
 [node name="Equipment" type="Node2D" parent="." node_paths=PackedStringArray("weapon1", "weapon2")]
 script = ExtResource("8_2q1at")
-weapon1 = NodePath("Weapon")
-weapon2 = NodePath("Weapon2")
-
-[node name="Weapon2" parent="Equipment" instance=ExtResource("13_yae1s")]
-
-[node name="Weapon" parent="Equipment" instance=ExtResource("15_laxm4")]
+weapon1 = NodePath("")
+weapon2 = NodePath("")
 
 [node name="PickupArea" type="Area2D" parent="."]
 visible = false
@@ -334,10 +328,10 @@ bus = &"FX"
 
 [node name="Panel" parent="." instance=ExtResource("18_hby4a")]
 visible = false
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 100.0
-offset_bottom = 30.0
+offset_left = -50.0
+offset_top = -30.0
+offset_right = 50.0
+offset_bottom = 0.0
 scale = Vector2(1.15, 1.15)
 
 [node name="xpPickupAudio" type="AudioStreamPlayer" parent="."]

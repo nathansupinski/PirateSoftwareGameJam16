@@ -5,7 +5,7 @@ func _ready() -> void:
 
 func _on_restart_button_pressed() -> void:
 	print("reset clicked")
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
 	self.hide()
 	
 	

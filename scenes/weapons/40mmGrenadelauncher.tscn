@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bb5xwor0qk7dc" path="res://scenes/weapons/projectiles/grenade.tscn" id="3_vguhc"]
 [ext_resource type="Texture2D" uid="uid://c43bff0c1lnw" path="res://scenes/weapons/40mmGrenadelauncherLeft/40mmGrenadelauncherLeft.png" id="4_62m4i"]
 
-[node name="Weapon" instance=ExtResource("1_6arxp")]
+[node name="40mmGrenadeLauncher" instance=ExtResource("1_6arxp")]
 weaponData = ExtResource("2_us4jv")
 projectile = ExtResource("3_vguhc")
 projectilePoolSize = 10

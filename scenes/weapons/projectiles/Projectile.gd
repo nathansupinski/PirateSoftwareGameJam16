@@ -26,22 +26,6 @@ func Reset():
 		#call_deferred("add_child",expl)
 		expl.global_position = self.global_position
 		ProjectileContainer.AddToPlayerProjectiles(expl)
-		#await expl.tree_exited
-		#explosion_player.play()
-		
-		#$Polygon2D.visible = true
-		#var tween = get_tree().create_tween()
-		#var before
-		#tween.tween_callback(
-			#func(): 
-			##$MeshInstance2D.mesh.radius = $CollisionShape2D2.shape.radius/10
-			#$Polygon2D.scale = Vector2($CollisionShape2D2.shape.radius,$CollisionShape2D2.shape.radius)/10
-			#
-			#)
-		#tween.tween_property($CollisionShape2D2.shape,"radius",source.weaponData.areaOfAffect,0.5)
-		#tween.tween_property($CollisionShape2D2.shape,"radius",0.01,0.1)
-		#await tween.finished
-		#$CollisionShape2D2.shape.radius=0.01
 	self.visible = false
 	self.position = Vector2.ZERO
 	_traveled = 0
@@ -85,7 +69,7 @@ func _on_area_entered(area):
 		#TODO: Figure out if 'call_deferred' will take the value when set, or when actually called
 		var finalDamage = source.weaponData.rawDamage
 		if "chain" in source.weaponData.tags \
-		and self._chained <= source.weaponData.projectileChain:
+		and self._chained < source.weaponData.projectileChain:
 			var enemies = get_tree().get_nodes_in_group("Enemy")
 			enemies.sort_custom(
 			func(a,b):

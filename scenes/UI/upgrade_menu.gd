@@ -17,7 +17,7 @@ func _ready() -> void:
 	upgrade_1.pressed.connect(_upgrade_1_pressed)
 	upgrade_2.pressed.connect(_upgrade_2_pressed)
 	upgrade_3.pressed.connect(_upgrade_3_pressed)
-	RollCards()
+	#RollCards()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

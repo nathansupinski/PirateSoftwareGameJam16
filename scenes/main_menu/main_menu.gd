@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 
 func _on_play_button_pressed() -> void:
 	print("Play pressed")
-	get_tree().change_scene_to_file("res://scenes/main/main_scene.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI/WeaponSelect.tscn")
 
 
 func _on_quit_button_pressed() -> void:
