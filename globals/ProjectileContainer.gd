@@ -18,5 +18,5 @@ func ClearEnemyProjectiles():
 		node.queue_free()
 
 
-func AddToPlayerProjectiles(projectile : Projectile):
+func AddToPlayerProjectiles(projectile ):
 	$PlayerProjectiles.add_child(projectile)

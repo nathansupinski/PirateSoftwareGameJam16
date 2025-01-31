@@ -13,6 +13,8 @@ var direction : Vector2 = Vector2.ZERO
 var _traveled : float = 0
 var _chained : int = 0
 
+var destroyed : bool = false
+
 func calculateDamage():
 	return 0
 
@@ -20,9 +22,13 @@ func Reset():
 	direction = Vector2.ZERO
 	if "aoe" in source.weaponData.tags:
 		var expl = Explosion.NewExplosion(source.weaponData.rawDamage,0.3,source.weaponData.areaOfAffect)
-		call_deferred("add_child",expl)
-		explosion_player.play()
-		await expl.tree_exited
+		
+		#call_deferred("add_child",expl)
+		expl.global_position = self.global_position
+		ProjectileContainer.AddToPlayerProjectiles(expl)
+		#await expl.tree_exited
+		#explosion_player.play()
+		
 		#$Polygon2D.visible = true
 		#var tween = get_tree().create_tween()
 		#var before
@@ -54,15 +60,19 @@ func _exit_tree() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if not visible or not source:
+	if not visible or not source :
 		return
-	if _traveled > source.weaponData.weaponRange:
-		projectile_destroyed.emit(self)
+	
 		
+	rotation = direction.angle()
+
 	var deltaPos = source.weaponData.projectileSpeed*direction*delta
 	#print("Delta pos: ", deltaPos)
 	_traveled += deltaPos.length()
 	position += deltaPos
+	if _traveled > source.weaponData.weaponRange:
+		projectile_destroyed.emit(self)
+		destroyed = true
 
 
 func enemyHit():

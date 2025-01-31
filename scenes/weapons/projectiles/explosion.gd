@@ -11,12 +11,16 @@ func _ready() -> void:
 	#get_tree().create_timer(lifetime).timeout.connect(func():call_deferred("queue_free"))
 	get_tree().create_timer(lifetime).timeout.connect(queue_free)
 	$CollisionShape2D.shape.radius = aoe
+	($AnimatedSprite2D as AnimatedSprite2D).play("default")
+	$AudioStreamPlayer2D.play()
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Polygon2D.scale += Vector2(growth_rate,growth_rate)*delta*0.1
+	#$Polygon2D.scale += Vector2(growth_rate,growth_rate)*delta*0.1
+	$AnimatedSprite2D.scale += Vector2(growth_rate,growth_rate)*delta/128	
+	
 
 
 func _on_area_entered(area: Area2D) -> void:

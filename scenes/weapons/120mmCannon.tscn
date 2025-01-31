@@ -8,6 +8,7 @@
 [node name="Weapon" instance=ExtResource("1_dpbae")]
 weaponData = ExtResource("2_yfbmp")
 projectile = ExtResource("4_a4r8w")
+projectilePoolSize = 500
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("5_786ui")

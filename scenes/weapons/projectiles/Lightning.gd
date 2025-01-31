@@ -1,6 +1,5 @@
 extends Projectile
 
-var time : float = 0
 
 
 func _process(delta: float) -> void:
@@ -9,16 +8,17 @@ func _process(delta: float) -> void:
 		
 
 func Reset():
-	self.position = Vector2.ZERO
-	_traveled = 0
-	_chained = 0
+	
+	
+	await get_tree().create_timer(0.4).timeout
 	$CollisionShape2D.shape.a = Vector2.ZERO
 	$CollisionShape2D.shape.b = Vector2.ZERO
-	await get_tree().create_timer(0.4).timeout
-	self.visible = false
-	
-	
 	$Line2D.clear_points()
+	
+	self.visible = false
+	_traveled = 0
+	_chained = 0
+	
 
 func enemyHit():
 	$CollisionShape2D.shape.a = $CollisionShape2D.shape.b + direction*2
@@ -31,8 +31,6 @@ func _physics_process(delta: float) -> void:
 		return
 	if _traveled > source.weaponData.weaponRange:
 		projectile_destroyed.emit(self)
-		
-	time += delta
 	
 	
 		
@@ -44,7 +42,6 @@ func _physics_process(delta: float) -> void:
 	_traveled += deltaPos.length()
 	if len($Line2D.points)  % 2 == 0:
 		$Line2D.add_point($CollisionShape2D.shape.b+Vector2(-direction.x,direction.y)*randf_range(-25,25))
-		time=0
 	else:
 		$Line2D.add_point($CollisionShape2D.shape.b)
 	$CollisionShape2D.shape.b+=deltaPos
