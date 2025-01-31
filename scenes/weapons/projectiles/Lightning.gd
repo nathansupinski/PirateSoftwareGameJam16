@@ -21,7 +21,9 @@ func Reset():
 	
 
 func enemyHit():
-	$CollisionShape2D.shape.a = $CollisionShape2D.shape.b + direction*2
+	$CollisionShape2D.shape.a = $CollisionShape2D.shape.b
+	
+	$CollisionShape2D.shape.b = $CollisionShape2D.shape.b + direction*2
 	
 	
 #func get_real_position():

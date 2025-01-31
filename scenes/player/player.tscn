@@ -308,10 +308,8 @@ libraries = {
 "": SubResource("AnimationLibrary_uewki")
 }
 
-[node name="Equipment" type="Node2D" parent="." node_paths=PackedStringArray("weapon1", "weapon2")]
+[node name="Equipment" type="Node2D" parent="."]
 script = ExtResource("8_2q1at")
-weapon1 = NodePath("")
-weapon2 = NodePath("")
 
 [node name="PickupArea" type="Area2D" parent="."]
 visible = false

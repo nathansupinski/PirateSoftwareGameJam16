@@ -19,4 +19,4 @@ func ClearEnemyProjectiles():
 
 
 func AddToPlayerProjectiles(projectile ):
-	$PlayerProjectiles.add_child(projectile)
+	$PlayerProjectiles.call_deferred("add_child",projectile)
