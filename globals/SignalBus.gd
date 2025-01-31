@@ -19,3 +19,6 @@ signal weaponUpgradesChanged
 
 #enemy state signals
 signal enemyDied(enemyPosition: Vector2i)
+
+#game state
+signal gameStart
