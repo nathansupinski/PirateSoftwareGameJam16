@@ -337,14 +337,17 @@ scale = Vector2(1.15, 1.15)
 
 [node name="xpPickupAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_jjw5j")
+bus = &"FX"
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
 
 [node name="hpPickupPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_winew")
+bus = &"FX"
 
 [node name="damageTakenPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_jg6es")
+bus = &"FX"
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]

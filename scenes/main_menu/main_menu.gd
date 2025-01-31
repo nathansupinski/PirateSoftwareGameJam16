@@ -4,11 +4,13 @@ extends Control
 @onready var settings_button: TextureButton = $MarginContainer/VBoxContainer/MarginContainer3/SettingsButton
 @onready var quit_button: TextureButton = $MarginContainer/VBoxContainer/MarginContainer2/QuitButton
 @onready var button_hover_player: AudioStreamPlayer = $ButtonHoverPlayer
+@onready var settings_menu: CanvasLayer = $SettingsMenu
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_tree().paused= false
+	settings_menu.visible = false
 	menu_music_player.play()
 	play_button.mouse_entered.connect(button_hover_player.play)
 	settings_button.mouse_entered.connect(button_hover_player.play)
@@ -42,3 +44,4 @@ func _on_quit_button_pressed() -> void:
 
 func _on_settings_button_pressed() -> void:
 	print("Settings pressed")
+	settings_menu.visible = true
