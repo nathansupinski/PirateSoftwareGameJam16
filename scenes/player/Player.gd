@@ -13,6 +13,8 @@ const ROTATION_IMAGES = 40
 @onready var damage_taken_player: AudioStreamPlayer = $damageTakenPlayer
 @onready var baseMaxHealth = maxHealth
 @onready var baseSpeed = speed
+@onready var basePickupRadius = pickupRadius
+
 var mouseAngle : float 
 signal energyChanged
 
@@ -63,7 +65,7 @@ func _on_player_upgrades_changed(card: UpgradeCard) -> void:
 	print("updating player stats")
 	speed = StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.SPEED, baseSpeed)
 	setMaxHealth(StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.MAX_HP, baseMaxHealth))
-	
+	pickupRadius = StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.PICKUP_RADIUS, basePickupRadius)
 
 	#StatBroker.transformWeaponProperty()
 	

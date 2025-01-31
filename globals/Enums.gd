@@ -35,7 +35,8 @@ enum PlayerNumericStatID {
 	MAX_HP,
 	SPEED,
 	ENERGY,
-	MAX_ENERGY
+	MAX_ENERGY,
+	PICKUP_RADIUS
 }
 
 # !!!IMPORTANT!!!
