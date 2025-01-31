@@ -30,8 +30,8 @@ const crabSprites : Dictionary = {
 		"death":preload("res://scenes/enemy/sprites/BluCrabDie.tres"),
 	},
 	"red":{## CHANGE TO RED CRAB
-		"walk":preload("res://scenes/enemy/sprites/BluCrabWalk.tres"),
-		"death":preload("res://scenes/enemy/sprites/BluCrabDie.tres"),
+		"walk":preload("res://scenes/enemy/sprites/RedCrabWalk.tres"),
+		"death":preload("res://scenes/enemy/sprites/RedCrabDie.tres"),
 
 	}
 }
