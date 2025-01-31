@@ -13,13 +13,20 @@ const MIN_PROJECTILE_COUNT = 1
 @export var tags : Array[String] = []
 @export var weaponRange : float = 500
 @export var shotSound : AudioStreamWAV
-@export_range(0.05,2) var fireRate : float = 0.66
+var fireRate : float = 0.66 :
+	get():
+		return fireRate
+	set(value):
+		if value < 0.05 or value > 2:
+			return
+		fireRate=value
+			
 @export_group("damage")
 @export var rawDamage : float = 50.0
 @export var damageType : Enums.DamageType = Enums.DamageType.KINETIC
 @export_group("projectile")
 @export var projectileSpeed : float = 300
-@export_range(MIN_PROJECTILE_COUNT,MAX_PROJECTILE_COUNT) var projectileCount : int = 1 :
+var projectileCount : int = 1 :
 	get():
 		return projectileCount
 	set(value):

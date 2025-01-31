@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm2qb57eiaqfl"
-path="res://.godot/imported/armourBoost.png-e8ba3591524cd029b43f06edea516d91.ctex"
+uid="uid://bpn7ftltqnwmm"
+path="res://.godot/imported/pickuprangeBoost.png-227635e51e678ac5e35a47af067259f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/UI/upgradeSprites/armourBoost.png"
-dest_files=["res://.godot/imported/armourBoost.png-e8ba3591524cd029b43f06edea516d91.ctex"]
+source_file="res://scenes/UI/upgradeSprites/pickuprangeBoost.png"
+dest_files=["res://.godot/imported/pickuprangeBoost.png-227635e51e678ac5e35a47af067259f5.ctex"]
 
 [params]
 

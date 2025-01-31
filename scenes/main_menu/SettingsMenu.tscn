@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbab3acplu7ty"]
+
+[ext_resource type="Texture2D" uid="uid://b84vauvebf66f" path="res://scenes/UI/menuUIImages/rivetplate.png" id="1_2kbwj"]
+[ext_resource type="Script" path="res://scenes/main_menu/settings_menu.gd" id="1_htsce"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pqewr"]
+texture = ExtResource("1_2kbwj")
+
+[node name="SettingsMenu" type="CanvasLayer"]
+script = ExtResource("1_htsce")
+
+[node name="LoadingSplashArt" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_pqewr")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 120
+
+[node name="BoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/BoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/BoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MasterVolLabel" type="Label" parent="MarginContainer/BoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/BoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+min_value = -30.0
+max_value = 0.0
+
+[node name="MusicVolLabel" type="Label" parent="MarginContainer/BoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="MarginContainer/BoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+min_value = -30.0
+max_value = 0.0
+
+[node name="SfxVolLabel" type="Label" parent="MarginContainer/BoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SfxVolumeSlider" type="HSlider" parent="MarginContainer/BoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+min_value = -30.0
+max_value = 0.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MarginContainer/BoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Back"

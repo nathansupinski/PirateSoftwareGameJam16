@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="UpgradeCard" load_steps=8 format=3 uid="uid://bns2vmp0y8swi"]
+
+[ext_resource type="Script" path="res://classes/resourceClasses/UpgradeCard.gd" id="1_128q0"]
+[ext_resource type="Script" path="res://classes/resourceClasses/WeaponUpgrade.gd" id="1_yt5mo"]
+[ext_resource type="Script" path="res://classes/resourceClasses/WeaponNumericModifier.gd" id="2_ivh4e"]
+[ext_resource type="Script" path="res://classes/resourceClasses/NumericModifierValue.gd" id="3_m7jl6"]
+
+[sub_resource type="Resource" id="Resource_dp7st"]
+script = ExtResource("3_m7jl6")
+comon_value = 0.0
+uncomon_value = 0.0
+rare_value = 1.0
+epic_value = 1.0
+legendary_value = 2.0
+
+[sub_resource type="Resource" id="Resource_wcp0b"]
+script = ExtResource("2_ivh4e")
+statID = 204
+operation = 2
+value = SubResource("Resource_dp7st")
+
+[sub_resource type="Resource" id="Resource_ymvcd"]
+script = ExtResource("1_yt5mo")
+weaponSlot = 1
+weaponTypes = Array[int]([2])
+modifier = SubResource("Resource_wcp0b")
+
+[resource]
+script = ExtResource("1_128q0")
+name = "More Bullets"
+description = "Increase projectile count by %s"
+upgrade = SubResource("Resource_ymvcd")

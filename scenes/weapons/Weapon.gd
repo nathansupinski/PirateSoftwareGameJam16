@@ -14,6 +14,7 @@ var projectilePool : ProjectilePool
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_attackTimer.wait_time = weaponData.fireRate
+	weaponData = weaponData.duplicate()
 	projectilePool = ProjectilePool.Create(projectile,projectilePoolSize,self)
 	$"Sprite2D/SpawnPosition".add_child(projectilePool)
 	_baseStats = weaponData.duplicate()
@@ -32,7 +33,7 @@ func Shoot(direction : Vector2):
 		const maxSpread = deg_to_rad(60)
 		var step : float = maxSpread / float(count)
 		for i in range(-count/int(2),count/int(2)+1,1):
-			print(i,direction.rotated(i*step))
+			#print(i,direction.rotated(i*step))
 			projectilePool.Shoot(direction.rotated(i*step))
 		$AudioStreamPlayer.stream = weaponData.shotSound
 		$AudioStreamPlayer.play()

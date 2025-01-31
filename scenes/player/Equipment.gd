@@ -15,10 +15,13 @@ func _ready() -> void:
 	if Global.selectedWeapon1:
 		weapon1=Global.selectedWeapon1
 		weapon1.name = "weapon1"
+		#weapon1.weaponData = weapon1.weaponData.duplicate()
 		add_child(weapon1)
 	if Global.selectedWeapon2:
 		weapon2=Global.selectedWeapon2
 		weapon2.name = "weapon2"
+		#weapon2.weaponData = weapon2.weaponData.duplicate()
+		
 		add_child(weapon2)
 	weapon1.sprite.texture = Global.weapons[weapon1.weaponData.name]["left"]
 	if weapon2:
@@ -42,7 +45,7 @@ func _on_weapon_upgrades_changed(_a,_b):
 		var id = Enums.StringToWeaponNumericStatID(name)
 		if id == 0:
 			continue
-		rightWepData.set(name,brokerFn.call(id,Enums.WeaponSlot.RIGHT_ARM,weapon1._baseStats.get(name)))
+		rightWepData.set(name,brokerFn.call(id,Enums.WeaponSlot.LEFT_ARM,weapon1._baseStats.get(name)))
 	
 	if not leftWepData:
 		return
@@ -57,7 +60,7 @@ func _on_weapon_upgrades_changed(_a,_b):
 		var id = Enums.StringToWeaponNumericStatID(name)
 		if id == 0:
 			continue
-		leftWepData.set(name,brokerFn.call(id,Enums.WeaponSlot.LEFT_ARM,weapon2._baseStats.get(name)))
+		leftWepData.set(name,brokerFn.call(id,Enums.WeaponSlot.RIGHT_ARM,weapon2._baseStats.get(name)))
 		
 		
 		

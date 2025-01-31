@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3lj6eyydhp8a"]
+[gd_scene load_steps=14 format=3 uid="uid://c3lj6eyydhp8a"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_iy1qu"]
 [ext_resource type="Texture2D" uid="uid://bpnh4htq7lysy" path="res://scenes/UI/menuUIImages/bgimage.png" id="2_1qemf"]
 [ext_resource type="FontFile" uid="uid://c0twuvkqjtx5x" path="res://asssets/fonts/Audiowide-Regular.ttf" id="2_4iq5s"]
+[ext_resource type="PackedScene" path="res://scenes/main_menu/SettingsMenu.tscn" id="2_l5nak"]
 [ext_resource type="Texture2D" uid="uid://b0hxj3wp38l8h" path="res://scenes/UI/menuUIImages/CroppedButtons/start1.png" id="4_1wdu6"]
 [ext_resource type="Texture2D" uid="uid://by887fiaj4h4e" path="res://scenes/UI/menuUIImages/CroppedButtons/start2.png" id="5_lp2mk"]
 [ext_resource type="Texture2D" uid="uid://c6o1rlxik4tbc" path="res://scenes/UI/menuUIImages/CroppedButtons/options1.png" id="6_3rs08"]
@@ -23,6 +24,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iy1qu")
+
+[node name="SettingsMenu" parent="." instance=ExtResource("2_l5nak")]
 
 [node name="SplashArt" type="Panel" parent="."]
 layout_mode = 1
@@ -89,9 +92,11 @@ texture_hover = ExtResource("9_o8boh")
 
 [node name="MenuMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_q5e6l")
+bus = &"Music"
 
 [node name="ButtonHoverPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_vsguw")
+bus = &"FX"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer3/SettingsButton" to="." method="_on_settings_button_pressed"]

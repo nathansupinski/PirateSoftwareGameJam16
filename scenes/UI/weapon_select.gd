@@ -48,11 +48,11 @@ func _on_confirm_pressed() -> void:
 func _indexToWeapon(index : int) -> Weapon:
 	match index:
 		0:
-			return load("res://scenes/weapons/teslaGun.tscn").instantiate()
+			return load("res://scenes/weapons/teslaGun.tscn").instantiate(1)
 		1:
-			return  load("res://scenes/weapons/120mmCannon.tscn").instantiate()
+			return  load("res://scenes/weapons/120mmCannon.tscn").instantiate(1)
 		2:
-			return load("res://scenes/weapons/40mmGrenadelauncher.tscn").instantiate()
+			return load("res://scenes/weapons/40mmGrenadelauncher.tscn").instantiate(1)
 		_:
 			return Weapon.new()
 

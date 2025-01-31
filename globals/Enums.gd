@@ -35,7 +35,8 @@ enum PlayerNumericStatID {
 	MAX_HP,
 	SPEED,
 	ENERGY,
-	MAX_ENERGY
+	MAX_ENERGY,
+	PICKUP_RADIUS
 }
 
 # !!!IMPORTANT!!!
@@ -56,7 +57,7 @@ static func StringToWeaponNumericStatID(str : String):
 		"weaponRange":
 			return WeaponNumericStatID.WEAPON_RANGE
 		"fireRate":
-			return WeaponNumericStatID.WEAPON_RANGE
+			return WeaponNumericStatID.FIRE_RATE
 		"rawDamage":
 			return WeaponNumericStatID.RAW_DAMAGE
 		"projectileSpeed":
@@ -95,4 +96,10 @@ enum WeaponType{
 	TESLA_GUN,
 	AUTO_CANNON,
 	GRENADE_LAUNCHER,
+}
+
+enum CrabColor{
+	YELLOW,
+	BLUE,
+	RED
 }

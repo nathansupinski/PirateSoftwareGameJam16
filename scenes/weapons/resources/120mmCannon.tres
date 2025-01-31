@@ -9,7 +9,6 @@ name = "120mmCannon"
 tags = Array[String](["chain", "aoe"])
 weaponRange = 600.0
 shotSound = ExtResource("2_nqt2q")
-fireRate = 0.5
 rawDamage = 50.0
 damageType = 0
 projectileSpeed = 300.0
