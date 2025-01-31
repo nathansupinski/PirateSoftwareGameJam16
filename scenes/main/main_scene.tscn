@@ -1,8 +1,9 @@
-[gd_scene load_steps=227 format=4 uid="uid://4ntwb1ehol58"]
+[gd_scene load_steps=229 format=4 uid="uid://4ntwb1ehol58"]
 
 [ext_resource type="PackedScene" uid="uid://2xun3rd2y6uf" path="res://scenes/player/player.tscn" id="1_ba5lr"]
 [ext_resource type="Script" path="res://scenes/main/main_scene.gd" id="1_ujghv"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="2_ekddv"]
+[ext_resource type="Script" path="res://scenes/main/game_timer.gd" id="2_p112v"]
 [ext_resource type="Script" path="res://scenes/main/loading_screen.gd" id="2_q6kdw"]
 [ext_resource type="Script" path="res://addons/gaea/modifiers/2D/modifier_2d.gd" id="3_3r5g0"]
 [ext_resource type="Texture2D" uid="uid://b84vauvebf66f" path="res://scenes/UI/menuUIImages/rivetplate.png" id="3_vtlqg"]
@@ -87,6 +88,7 @@
 [ext_resource type="Script" path="res://addons/gaea/others/falloff_map.gd" id="66_ywhek"]
 [ext_resource type="Script" path="res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd" id="77_8h0t4"]
 [ext_resource type="AudioStream" uid="uid://brnlg7ae7ar2d" path="res://sound/menu_highlight.wav" id="87_8v43a"]
+[ext_resource type="AudioStream" uid="uid://daxnst8hemkoi" path="res://sound/music_gameover.wav" id="88_345v2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n8bbf"]
 texture = ExtResource("3_vtlqg")
@@ -6225,6 +6227,23 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "100/100"
 
+[node name="MarginContainer3" type="MarginContainer" parent="PlayerHUD"]
+offset_right = 74.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="GameTimer" type="Timer" parent="PlayerHUD/MarginContainer3"]
+unique_name_in_owner = true
+one_shot = true
+script = ExtResource("2_p112v")
+
+[node name="TimeDisplay" type="Label" parent="PlayerHUD/MarginContainer3"]
+z_index = 10
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "15:00"
+
 [node name="DeathScreen" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("7_55pnv")
@@ -6262,6 +6281,10 @@ navigation_polygon = SubResource("NavigationPolygon_5y31q")
 
 [node name="MenuHoverSoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("87_8v43a")
+
+[node name="DeathMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("88_345v2")
 
 [connection signal="visibility_changed" from="UpgradeMenu" to="UpgradeMenu" method="_on_visibility_changed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]

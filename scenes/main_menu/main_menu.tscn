@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://bpnh4htq7lysy" path="res://scenes/UI/menuUIImages/bgimage.png" id="2_1qemf"]
 [ext_resource type="FontFile" uid="uid://c0twuvkqjtx5x" path="res://asssets/fonts/Audiowide-Regular.ttf" id="2_4iq5s"]
 [ext_resource type="Texture2D" uid="uid://b0hxj3wp38l8h" path="res://scenes/UI/menuUIImages/CroppedButtons/start1.png" id="4_1wdu6"]
-[ext_resource type="AudioStream" uid="uid://d32b4ar01jlot" path="res://sound/music_menu.wav" id="4_r3m2w"]
 [ext_resource type="Texture2D" uid="uid://by887fiaj4h4e" path="res://scenes/UI/menuUIImages/CroppedButtons/start2.png" id="5_lp2mk"]
 [ext_resource type="Texture2D" uid="uid://c6o1rlxik4tbc" path="res://scenes/UI/menuUIImages/CroppedButtons/options1.png" id="6_3rs08"]
 [ext_resource type="Texture2D" uid="uid://2d6t4ml8m5p7" path="res://scenes/UI/menuUIImages/CroppedButtons/options2.png" id="7_j5246"]
 [ext_resource type="Texture2D" uid="uid://lc0ryrn5gqds" path="res://scenes/UI/menuUIImages/CroppedButtons/exit1.png" id="8_bkn0f"]
 [ext_resource type="Texture2D" uid="uid://c2hog2uqb4tn" path="res://scenes/UI/menuUIImages/CroppedButtons/exit2.png" id="9_o8boh"]
+[ext_resource type="AudioStream" uid="uid://bg5awugs0wf7i" path="res://sound/music_theme.wav" id="10_q5e6l"]
 [ext_resource type="AudioStream" uid="uid://brnlg7ae7ar2d" path="res://sound/menu_highlight.wav" id="11_vsguw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qc4oc"]
@@ -88,7 +88,7 @@ texture_normal = ExtResource("8_bkn0f")
 texture_hover = ExtResource("9_o8boh")
 
 [node name="MenuMusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_r3m2w")
+stream = ExtResource("10_q5e6l")
 
 [node name="ButtonHoverPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_vsguw")

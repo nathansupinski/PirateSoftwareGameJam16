@@ -6,6 +6,7 @@ extends Node2D
 @onready var death_screen: CanvasLayer = $DeathScreen
 @onready var level_music_player: AudioStreamPlayer = $LevelMusicPlayer
 @onready var enemy_died_player_2d: AudioStreamPlayer = $EnemyDiedPlayer2D
+@onready var death_music_player: AudioStreamPlayer = $DeathMusicPlayer
 
 const BUG_SPLAT_SOUNDS = [
 	preload("res://sound/enemies/bug_splat_1.wav"),
@@ -52,6 +53,8 @@ func _unhandled_input(event):
 		pauseMenu.show()
 		
 func _on_player_died(killingEntity: Character):
+	level_music_player.stop()
+	death_music_player.play()
 	print("Player died to " + killingEntity.characterName)
 	get_tree().paused = true
 	death_screen.show()

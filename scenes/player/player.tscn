@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://2xun3rd2y6uf"]
+[gd_scene load_steps=32 format=3 uid="uid://2xun3rd2y6uf"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_mb422"]
 [ext_resource type="Script" path="res://classes/CharacterStateMachine.gd" id="2_28vnp"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ccmupmlm2yi7x" path="res://scenes/weapons/teslaGun.tscn" id="13_yae1s"]
 [ext_resource type="PackedScene" uid="uid://mcnq3xxu6nrp" path="res://scenes/weapons/40mmGrenadelauncher.tscn" id="18_gbncf"]
 [ext_resource type="PackedScene" path="res://scenes/UI/LevelUpText.tscn" id="18_hby4a"]
+[ext_resource type="AudioStream" uid="uid://cx7uiajm5b8vr" path="res://sound/player/player_hit.wav" id="19_jg6es"]
 [ext_resource type="AudioStream" uid="uid://c35f51h8sr45o" path="res://sound/pickup_xp.wav" id="19_jjw5j"]
 [ext_resource type="AudioStream" uid="uid://c5kiqturrn6ed" path="res://sound/pickup_health.wav" id="20_winew"]
 
@@ -255,7 +256,7 @@ z_index = 2
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_mb422")
-maxHealth = 500
+maxHealth = 20
 characterName = "Player"
 spriteSheets = SubResource("Resource_r6bhy")
 
@@ -347,5 +348,8 @@ current = true
 
 [node name="hpPickupPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_winew")
+
+[node name="damageTakenPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_jg6es")
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
