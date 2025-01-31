@@ -15,10 +15,13 @@ const weaponsPreviews : Dictionary = {
 	}
 }
 
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var confirm: TextureButton = %Confirm
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	confirm.mouse_entered.connect(audio_stream_player.play)
 	pass # Replace with function body.
 
 

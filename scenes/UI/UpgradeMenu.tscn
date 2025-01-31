@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnrhxasvmpu8n"]
+[gd_scene load_steps=7 format=3 uid="uid://bnrhxasvmpu8n"]
 
 [ext_resource type="Script" path="res://scenes/UI/upgrade_menu.gd" id="1_c6ru5"]
 [ext_resource type="PackedScene" uid="uid://bjij5to5h5sye" path="res://scenes/UI/UpgradePanel.tscn" id="1_tpnox"]
+[ext_resource type="AudioStream" uid="uid://brnlg7ae7ar2d" path="res://sound/menu_highlight.wav" id="3_gv3g8"]
 
 [sub_resource type="Animation" id="Animation_jknky"]
 length = 0.001
@@ -203,3 +204,7 @@ disabled = true
 libraries = {
 "": SubResource("AnimationLibrary_2ja0r")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gv3g8")
+bus = &"FX"

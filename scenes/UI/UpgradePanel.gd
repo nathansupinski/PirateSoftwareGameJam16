@@ -16,9 +16,7 @@ func _ready() -> void:
 func SetCard(newCard: UpgradeCard) -> void:
 	card = newCard
 	upgrade_name.text = card.name
-	if is_instance_of(newCard.upgrade,WeaponUpgrade):
-		upgrade_name.text += " (%s)" % "(left)"\
-		if(newCard.upgrade as WeaponUpgrade).weaponSlot == Enums.WeaponSlot.LEFT_ARM else "(Right)"
+
 	if card.upgrade.modifier is PlayerNumericModifier or card.upgrade.modifier is WeaponNumericModifier:
 		upgrade_description.text = card.description % card.upgrade.modifier.value.getValueForRarity(card.rarity)
 	elif card.upgrade.modifier is DamageTypeModifier:

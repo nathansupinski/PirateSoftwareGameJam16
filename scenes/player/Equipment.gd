@@ -119,7 +119,7 @@ func getDisplayName(weapon: Weapon) -> String:
 	var wepType = StringToType(weapon.weaponData.name)
 	match wepType:
 		Enums.WeaponType.GRENADE_LAUNCHER:
-			return "40mm Grenade Launcher"
+			return "Grenade Launcher"
 		Enums.WeaponType.TESLA_GUN:
 			return "Tesla Gun"
 		Enums.WeaponType.AUTO_CANNON:

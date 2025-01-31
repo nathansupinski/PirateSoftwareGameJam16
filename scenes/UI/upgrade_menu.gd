@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var upgrade_1: UpgradePanel = $HBoxContainer/MarginContainer/Upgrade1
 @onready var upgrade_2: UpgradePanel = $HBoxContainer/MarginContainer2/Upgrade2
 @onready var upgrade_3: UpgradePanel = $HBoxContainer/MarginContainer3/Upgrade3
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var upgradeResources
 var card1: UpgradeCard
