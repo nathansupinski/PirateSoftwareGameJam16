@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cvnv67ltdmxgn" path="res://icon.svg" id="2_eu7w7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26e6b"]
+radius = 27.0
+height = 60.0
 
 [node name="Pickup" type="Area2D"]
 collision_layer = 16

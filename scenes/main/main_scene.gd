@@ -6,6 +6,7 @@ extends Node2D
 @onready var death_screen: CanvasLayer = $DeathScreen
 @onready var level_music_player: AudioStreamPlayer = $LevelMusicPlayer
 @onready var enemy_died_player_2d: AudioStreamPlayer = $EnemyDiedPlayer2D
+@onready var death_music_player: AudioStreamPlayer = $DeathMusicPlayer
 
 const BUG_SPLAT_SOUNDS = [
 	preload("res://sound/enemies/bug_splat_1.wav"),
@@ -19,8 +20,18 @@ var totalEnemies: int = 0
 func _ready():
 	get_tree().paused = false
 	level_music_player.play()
-	#TODO: abstract all spawning code into a wave manager or something
-	#spawn starting wave
+
+	SignalBus.playerDied.connect(_on_player_died)
+	SignalBus.playerDamaged.connect(_on_player_damaged)
+	SignalBus.enemyDied.connect(_on_enemy_died)
+	
+	var mapPixelSize = 256 * 64 #world size in NoiseGenerator * tile size
+	player.position = Vector2i(mapPixelSize/2, mapPixelSize/2) #place player in the center of the world TODO: check for anything in the way and translate
+	
+	SignalBus.gameStart.connect(_on_start_game)
+	pass
+
+func _on_start_game() -> void:
 	spawnEnemiesInRing(Crab, 20, true)
 
 	#spawn a wave every 10s
@@ -30,12 +41,6 @@ func _ready():
 	timer.wait_time = 10;
 	timer.timeout.connect(spawnWave)
 	timer.start()
-	
-	#var test = get_world_2d()
-	SignalBus.playerDied.connect(_on_player_died)
-	SignalBus.playerDamaged.connect(_on_player_damaged)
-	SignalBus.enemyDied.connect(_on_enemy_died)
-	pass
 
 # Called every frame. 'delta' is the elapswed time since the previous frame.
 func _process(delta):
@@ -48,6 +53,8 @@ func _unhandled_input(event):
 		pauseMenu.show()
 		
 func _on_player_died(killingEntity: Character):
+	level_music_player.stop()
+	death_music_player.play()
 	print("Player died to " + killingEntity.characterName)
 	get_tree().paused = true
 	death_screen.show()

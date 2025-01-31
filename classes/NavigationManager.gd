@@ -6,10 +6,14 @@ var debugNav = false # enable to turn on debug logging and visible nav mesh, nee
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.procGenDone.connect(_on_gen_finished)
-	SignalBus.procGenChunkGenerated.connect(_on_gen_chunk_generated)
-	SignalBus.procGenChunkErased.connect(_on_gen_chunk_erased)
+	#SignalBus.procGenChunkGenerated.connect(_on_gen_chunk_generated)
+	#SignalBus.procGenChunkErased.connect(_on_gen_chunk_erased)
+	#SignalBus.procGenChunkRendered.connect(_on_chunk_render)
 	if debugNav:
 		NavigationServer3D.set_debug_enabled(true)
+
+func _on_chunk_render(chunkPosition: Vector2i):
+	print("chunk render")
 
 func _on_gen_chunk_erased(chunkPosition: Vector2i):
 	if navRegions.has(chunkPosition):
@@ -19,10 +23,10 @@ func _on_gen_chunk_erased(chunkPosition: Vector2i):
 			print("navRegion disabled at ", chunkPosition)
 
 func _on_gen_chunk_generated(chunkPosition: Vector2i):
-	var chunkSize = 16.00
+	var chunkSize = 9.00
 	var tileSize = 64.00
 	var globalChunkPosition = chunkPosition * chunkSize * tileSize
-	var chunkRect = Rect2i(globalChunkPosition, Vector2(chunkSize * tileSize,chunkSize * tileSize))
+	var globalChunkRect = Rect2i(globalChunkPosition, Vector2(chunkSize * tileSize,chunkSize * tileSize))
 	
 	if navRegions.has(chunkPosition):
 		var navRegion = navRegions[chunkPosition]
@@ -30,16 +34,19 @@ func _on_gen_chunk_generated(chunkPosition: Vector2i):
 		if debugNav:
 			print("navRegion re-enabled at ", chunkPosition)
 	else:
-		createNavRegion(chunkRect, chunkPosition, globalChunkPosition)
+		createNavRegion(globalChunkRect, chunkPosition)
 
 func _on_gen_finished():
 	print("proc gen first pass done.")
+	$"../NavigationRegion2D".bake_navigation_polygon()
+	$"../NavigationRegion2D".bake_finished.connect(func(): print('BAKE DONE'))
+	print("trying new gen")
 	
-func createNavRegion(chunkRect: Rect2i, chunkPosition: Vector2i, globalChunkPosition) -> void:
+func createNavRegion(globalChunkRect: Rect2i, chunkPosition: Vector2i) -> void:
 	#wait for next physics frame so terrain colliders can spawn
 	await get_tree().physics_frame
 	
-	var collisionChecker: VisibleArea2D = create_area(globalChunkPosition,Vector2(64 * 64,64 * 64))
+	var collisionChecker: VisibleArea2D = create_area(globalChunkRect.position,globalChunkRect.size)
 	collisionChecker.set_collision_mask_value(1, true)
 	
 	if debugNav:
@@ -62,10 +69,10 @@ func createNavRegion(chunkRect: Rect2i, chunkPosition: Vector2i, globalChunkPosi
 	
 	# Define the polygon's geometry (chunk size)
 	var polygon_points = ([
-		Vector2(chunkRect.position.x, chunkRect.position.y),  # Top-left
-		Vector2(chunkRect.position.x + chunkRect.size.x, chunkRect.position.y),  # Top-right
-		Vector2(chunkRect.position.x + chunkRect.size.x, chunkRect.position.y + chunkRect.size.y),  # Bottom-right
-		Vector2(chunkRect.position.x, chunkRect.position.y + chunkRect.size.y)  # Bottom-left
+		Vector2(globalChunkRect.position.x, globalChunkRect.position.y),  # Top-left
+		Vector2(globalChunkRect.position.x + globalChunkRect.size.x, globalChunkRect.position.y),  # Top-right
+		Vector2(globalChunkRect.position.x + globalChunkRect.size.x, globalChunkRect.position.y + globalChunkRect.size.y),  # Bottom-right
+		Vector2(globalChunkRect.position.x, globalChunkRect.position.y + globalChunkRect.size.y)  # Bottom-left
 	])
 	navPolygon.add_outline(polygon_points)
 	navPolygon.make_polygons_from_outlines()
@@ -75,9 +82,10 @@ func createNavRegion(chunkRect: Rect2i, chunkPosition: Vector2i, globalChunkPosi
 	navPolygon.source_geometry_mode = NavigationPolygon.SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN
 	navPolygon.parsed_geometry_type = NavigationPolygon.PARSED_GEOMETRY_STATIC_COLLIDERS
 	
+	var chunkSize = 9.00
 	# baking params for chunk offset TODO: figure out the correct values for baking_rect and border_size so we can set the correct agent radius
-	var p_chunk_size = 16 * 64 # pixel chunk size. Chunk size * tile size
-	var baking_bounds: Rect2 = chunkRect.grow(16)
+	var p_chunk_size = chunkSize * 64 # pixel chunk size. Chunk size * tile size
+	var baking_bounds: Rect2 = globalChunkRect.grow(8)
 	navPolygon.agent_radius = 0 # agent radius is an offset around all the sides of the nav region to prevent agent getting stuck on corners. have to keep this at zero so the nav mesh cunks connect until we figure out baking_rect and border_size
 	#navPolygon.baking_rect = baking_bounds
 	#navPolygon.border_size = p_chunk_size
@@ -87,7 +95,7 @@ func createNavRegion(chunkRect: Rect2i, chunkPosition: Vector2i, globalChunkPosi
 	navRegion.navigation_polygon = navPolygon
 	
 	#bake collisions in navmesh
-	navRegion.bake_navigation_polygon(true)
+	navRegion.bake_navigation_polygon(false)
 	
 	#store ref to baked navRegion in dictionary
 	navRegions[chunkPosition] = navRegion
@@ -103,11 +111,12 @@ func create_area(position: Vector2, size: Vector2) -> VisibleArea2D:
 
 	# Set the position of the Area2D
 	area.position = position
-
+	
 	# Add a CollisionShape2D as a child of the Area2D
 	var collision_shape = CollisionShape2D.new()
 	area.add_child(collision_shape)
-
+	collision_shape.position = position
+	
 	# Create a RectangleShape2D to define the collision area
 	var shape = RectangleShape2D.new()
 	shape.size = size
@@ -117,3 +126,4 @@ func create_area(position: Vector2, size: Vector2) -> VisibleArea2D:
 	add_child(area)
 
 	return area
+	

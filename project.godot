@@ -25,6 +25,12 @@ ProjectileContainer="*res://globals/ProjectileContainer.tscn"
 Global="*res://globals/Global.gd"
 StatBroker="*res://globals/StatBroker.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

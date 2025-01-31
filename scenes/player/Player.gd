@@ -10,6 +10,7 @@ const ROTATION_IMAGES = 40
 @onready var xp_pickup_audio: AudioStreamPlayer = $xpPickupAudio
 @onready var audio_listener_2d: AudioListener2D = $AudioListener2D
 @onready var hp_pickup_player: AudioStreamPlayer = $hpPickupPlayer
+@onready var damage_taken_player: AudioStreamPlayer = $damageTakenPlayer
 
 var mouseAngle : float 
 signal energyChanged
@@ -35,7 +36,7 @@ var pickupRadius : float = 100 :
 func _init():
 	super()
 	speed = 400
-	maxHealth = 800
+	maxHealth = 20
 	currentHealth = maxHealth
 	healthChanged.emit(currentHealth)
 	print("init hp", currentHealth)
@@ -129,6 +130,7 @@ func handleCollision():
 		#print_debug(collider.name)
 
 func hurtByEnemy(area):
+	damage_taken_player.play()
 	if not hurtTimer.is_stopped():
 		print(hurtTimer.time_left, hurtTimer.is_stopped()) ## I think getting damaged by 10 enemies at once is too punishing
 		return
