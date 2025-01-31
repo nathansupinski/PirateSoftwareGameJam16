@@ -8,6 +8,7 @@ func _ready() -> void:
 	time_display.visible = false
 	game_timer.wait_time = 900 #15 minutes
 	SignalBus.gameStart.connect(start_timer)
+	game_timer.timeout.connect(SignalBus.gameWon.emit)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

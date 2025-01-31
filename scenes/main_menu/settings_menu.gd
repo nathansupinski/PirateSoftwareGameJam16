@@ -11,9 +11,6 @@ func _ready() -> void:
 	music_volume_slider.value_changed.connect(_on_music_volume_changed)
 	sfx_volume_slider.value_changed.connect(_on_sfx_volume_changed)
 	back_button.pressed.connect(_on_back_clicked)
-	
-	
-	setVolume("Master", -30) #MUTE GAME FOR TESTING
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

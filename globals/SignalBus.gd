@@ -22,3 +22,4 @@ signal enemyDied(enemyPosition: Vector2i)
 
 #game state
 signal gameStart
+signal gameWon

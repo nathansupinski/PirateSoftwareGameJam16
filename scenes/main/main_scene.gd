@@ -7,6 +7,8 @@ extends Node2D
 @onready var level_music_player: AudioStreamPlayer = $LevelMusicPlayer
 @onready var enemy_died_player_2d: AudioStreamPlayer = $EnemyDiedPlayer2D
 @onready var death_music_player: AudioStreamPlayer = $DeathMusicPlayer
+@onready var victory_screen: CanvasLayer = $VictoryScreen
+@onready var victory_stream_player: AudioStreamPlayer = $VictoryStreamPlayer
 
 const BUG_SPLAT_SOUNDS = [
 	preload("res://sound/enemies/bug_splat_1.wav"),
@@ -23,6 +25,7 @@ func _ready():
 	SignalBus.playerDied.connect(_on_player_died)
 	SignalBus.playerDamaged.connect(_on_player_damaged)
 	SignalBus.enemyDied.connect(_on_enemy_died)
+	SignalBus.gameWon.connect(on_game_won)
 	
 	var mapPixelSize = 256 * 64 #world size in NoiseGenerator * tile size
 	player.position = Utils.getValidSpawnPosition(Vector2i(mapPixelSize/2, mapPixelSize/2)) #place player in the center of the world TODO: check for anything in the way and translate
@@ -57,3 +60,10 @@ func _on_enemy_died(enemyPosition: Vector2i) -> void:
 	var soundIndex = randi_range(0,2)
 	enemy_died_player_2d.stream = BUG_SPLAT_SOUNDS[soundIndex]
 	enemy_died_player_2d.play() #TODO: make this use AudioStreamPlayer2D for positional audio 
+
+func on_game_won() -> void:
+	level_music_player.stop()
+	victory_stream_player.play()
+	print("Player won")
+	get_tree().paused = true
+	victory_screen.show()
