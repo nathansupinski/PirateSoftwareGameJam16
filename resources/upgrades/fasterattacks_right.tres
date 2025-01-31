@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="UpgradeCard" load_steps=8 format=3 uid="uid://sefq0vi3jghh"]
+
+[ext_resource type="Script" path="res://classes/resourceClasses/UpgradeCard.gd" id="1_7nuqm"]
+[ext_resource type="Script" path="res://classes/resourceClasses/WeaponNumericModifier.gd" id="2_ghbt2"]
+[ext_resource type="Script" path="res://classes/resourceClasses/NumericModifierValue.gd" id="3_thbel"]
+[ext_resource type="Script" path="res://classes/resourceClasses/WeaponUpgrade.gd" id="4_54la2"]
+
+[sub_resource type="Resource" id="Resource_8llrr"]
+script = ExtResource("3_thbel")
+comon_value = 0.97
+uncomon_value = 0.95
+rare_value = 0.92
+epic_value = 0.88
+legendary_value = 0.85
+
+[sub_resource type="Resource" id="Resource_mq6s1"]
+script = ExtResource("2_ghbt2")
+statID = 201
+operation = 0
+value = SubResource("Resource_8llrr")
+
+[sub_resource type="Resource" id="Resource_yd1fr"]
+script = ExtResource("4_54la2")
+weaponSlot = 1
+weaponTypes = Array[int]([2])
+modifier = SubResource("Resource_mq6s1")
+
+[resource]
+script = ExtResource("1_7nuqm")
+name = "Faster Attacks"
+description = "Increase fire rate by %s percent"
+upgrade = SubResource("Resource_yd1fr")

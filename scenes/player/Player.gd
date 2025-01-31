@@ -84,6 +84,11 @@ func rotationToTorsoIndex(radians : float) -> int:
 func HasWeaponType(type : Enums.WeaponType):
 	return $Equipment.IsWeaponTypeEquipped(type)
 	
+func LeftWeaponIsType(type : Enums.WeaponType) -> bool:
+	return $Equipment.Weapon1Type()==type
+func RightWeaponIsType(type : Enums.WeaponType) -> bool:
+	return $Equipment.Weapon2Type()==type
+
 func _physics_process(delta):
 	move_and_slide()
 	handleCollision()

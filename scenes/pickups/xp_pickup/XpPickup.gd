@@ -12,13 +12,13 @@ static func new_xpPickup(position: Vector2, value = null) -> XpPickup:
 	if value == null:
 		var roll = randi_range(0,100)
 		if roll > 90:
-			value = 3
+			value = 6
 			#new_xp.get_node("Sprite2D").texture = preload("res://scenes/pickups/xp_pickup/sprites/GEM 1 - RED - Spritesheet.png")
 		elif roll > 80:
 			#new_xp.get_node("Sprite2D").texture = preload("res://scenes/pickups/xp_pickup/sprites/GEM 1 - PURPLE - Spritesheet.png")
-			value = 2
+			value = 4
 		else:
-			value = 1
+			value = 2
 	new_xp.xpValue = value
 	new_xp.position = position
 	new_xp.y_sort_enabled = true

@@ -19,6 +19,7 @@ func _ready() -> void:
 	upgrade_3.pressed.connect(_upgrade_3_pressed)
 	#RollCards()
 	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -32,7 +33,12 @@ func _on_level_up() -> void:
 func RollCards() -> void:
 	card1 = generateUpgradeCard()
 	card2 = generateUpgradeCard()
+	while card2.name==card1.name:
+		card2 = generateUpgradeCard()
 	card3 = generateUpgradeCard()
+	while card3.name==card2.name or\
+	  card3.name==card1.name:
+		card3=generateUpgradeCard()
 	upgrade_1.SetCard(card1)
 	upgrade_2.SetCard(card2)
 	upgrade_3.SetCard(card3)
@@ -40,25 +46,38 @@ func RollCards() -> void:
 	
 func is_valid_card(card : UpgradeCard) -> bool:
 	var p : Player = Global.GetPlayer()
+	#print(p)
 	if not p:
 		push_error("Couldn't find player")
+		return true
 		
 	if is_instance_of(card.upgrade,WeaponUpgrade):
 		var upgrade : WeaponUpgrade = card.upgrade
 		if not upgrade.weaponTypes:
 			push_error("Card %s doesn't have any weapon types assigned! " % card.name)
+			return false
+		#breakpoint
 		for type in upgrade.weaponTypes:
-			if not p.HasWeaponType(type):
-				return false
+			match upgrade.weaponSlot:
+				Enums.WeaponSlot.LEFT_ARM:
+					if p.LeftWeaponIsType(type):
+						return true
+				Enums.WeaponSlot.RIGHT_ARM:
+					if  p.RightWeaponIsType(type):
+						return true
+		return false
+		
 	return true
 		
 func generateUpgradeCard() -> UpgradeCard:
 	
 	var upgradeIndexRoll = randi_range(0, upgradeResources.size() -1)
+	var upgradeRarityRoll = rollUpgradeRarity()
+	
 	while not is_valid_card(upgradeResources[upgradeIndexRoll]):
 		print("try %d" % upgradeIndexRoll)
 		upgradeIndexRoll = randi_range(0, upgradeResources.size() -1)
-	var upgradeRarityRoll = rollUpgradeRarity()
+		
 	if upgradeResources[upgradeIndexRoll] is UpgradeCard:
 		var card:UpgradeCard = upgradeResources[upgradeIndexRoll].duplicate()
 		card.rarity = upgradeRarityRoll
