@@ -11,12 +11,20 @@ func _ready() -> void:
 	#SignalBus.procGenChunkRendered.connect(_on_chunk_loaded)
 	SignalBus.procGenChunkGenerated.connect(_on_chunk_loaded)
 	SignalBus.procGenChunkErased.connect(_on_chunk_unloaded)
+	SignalBus.gameStart.connect(spawnMapHp)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func spawnMapHp() -> void:
+	for n in range(20):
+		var spawnLoc = Utils.clampSpawnArea(Vector2i(randi_range(Utils.mapEdgeOffset, Utils.mapSize),randi_range(Utils.mapEdgeOffset, Utils.mapSize)))
+		var hpPickup = HpPickup.new_hpPickup(Utils.getValidSpawnPosition(spawnLoc))
+		add_child(hpPickup)
+		print("hp spawned")
 
 func _on_chunk_loaded(chunkPosition: Vector2i) -> void:
 	await get_tree().process_frame
