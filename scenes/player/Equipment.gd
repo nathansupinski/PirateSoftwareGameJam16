@@ -5,8 +5,8 @@ class_name Equipment extends Node2D
 
 signal weapon2_changed(weapon)
 
-@export var weapon1 : Weapon 
-@export var weapon2 : Weapon
+@export var weapon1 : Weapon #left wep
+@export var weapon2 : Weapon #right wep
 
 
 
@@ -111,3 +111,15 @@ func FireWeapon2(direction : Vector2) -> void:
 func CancelChargeWeapon2() -> void:
 	if weapon2:
 		weapon2.CancelCharge()
+		
+func getDisplayName(weapon: Weapon) -> String:
+	var wepType = StringToType(weapon.weaponData.name)
+	match wepType:
+		Enums.WeaponType.GRENADE_LAUNCHER:
+			return "40mm Grenade Launcher"
+		Enums.WeaponType.TESLA_GUN:
+			return "Tesla Gun"
+		Enums.WeaponType.AUTO_CANNON:
+			return "120mm Cannon"
+		_:
+			return ""

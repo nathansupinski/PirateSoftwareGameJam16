@@ -5,10 +5,14 @@ var card: UpgradeCard
 @onready var color_rect: ColorRect = $ColorRect
 @onready var upgrade_description: Label = %UpgradeDescription
 @onready var upgrade_rarity: Label = %UpgradeRarity
+@onready var player: Player
+@onready var weapon_name: Label = %WeaponName
+@onready var texture_rect: TextureRect = $Panel/MarginContainer/VBoxContainer/TextureRect
 
-#func _ready() -> void:
-	#
-
+func _ready() -> void:
+	player = get_node("/root/MainScene/GameYsortLayers/Player")
+	pass
+	
 func SetCard(newCard: UpgradeCard) -> void:
 	card = newCard
 	upgrade_name.text = card.name
@@ -18,6 +22,17 @@ func SetCard(newCard: UpgradeCard) -> void:
 		upgrade_description.text = card.description % card.upgrade.modifier.value
 	upgrade_rarity.text = _getRarityName(card.rarity)
 	_setColor(card.rarity)
+	setIcon(newCard)
+	if newCard.upgrade is WeaponUpgrade:
+		if newCard.upgrade.weaponSlot == Enums.WeaponSlot.LEFT_ARM:
+			weapon_name.text = player.equipment.getDisplayName(player.equipment.weapon1)
+		elif newCard.upgrade.weaponSlot == Enums.WeaponSlot.RIGHT_ARM:
+			weapon_name.text = player.equipment.getDisplayName(player.equipment.weapon2)
+		elif newCard.upgrade.weaponSlot == Enums.WeaponSlot.BACKPACK:
+			weapon_name.text = 'Backpack slot'
+	else:
+		weapon_name.text = ''
+		
 
 func _setColor(rarity: Enums.Rarity):
 	match rarity:
@@ -44,6 +59,37 @@ func _getRarityName(rarity: Enums.Rarity):
 			return "Epic"
 		Enums.Rarity.LEGENDARY:
 			return "Legendary"
+
+func setIcon(card: UpgradeCard) -> void:
+	if card.upgrade.modifier is PlayerNumericModifier:
+		match card.upgrade.modifier.statID:
+			Enums.PlayerNumericStatID.MAX_HP:
+				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/healthBoost.png")
+			Enums.PlayerNumericStatID.SPEED:
+				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/speedBoost.png")
+			Enums.PlayerNumericStatID.PICKUP_RADIUS:
+				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/pickuprangeBoost.png")
+	
+	if card.upgrade.modifier is WeaponNumericModifier:
+		match card.upgrade.modifier.statID:
+			Enums.WeaponNumericStatID.WEAPON_RANGE:
+				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/attackrangeBoost.png")
+			Enums.WeaponNumericStatID.FIRE_RATE:
+				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/firerateBoost.png")
+			Enums.WeaponNumericStatID.RAW_DAMAGE:
+				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/damageBoost.png")
+			Enums.WeaponNumericStatID.PROJECTILE_SPEED:
+				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/projectilevelocityBoost.png")
+			Enums.WeaponNumericStatID.PROJECTILE_COUNT:
+				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/multishotBoost.png")
+			Enums.WeaponNumericStatID.PROJECTILE_CHAIN:
+				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/ricochetBoost.png")
+			Enums.WeaponNumericStatID.AREA_OF_EFFECT:
+				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/blastradiusBoost.png")
+	
+				
+
+
 ###Temporary export for testing
 #@export var upgrade : Upgrade :
 	#set(value):
