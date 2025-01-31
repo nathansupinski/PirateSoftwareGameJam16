@@ -124,22 +124,23 @@ func _upgrade_3_pressed() -> void:
 	
 func load_resources_from_folder(folder_path: String) -> Array:
 	var resources: Array = []
-
-	var dir = DirAccess.open(folder_path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		
-		while file_name != "":
-			if file_name.ends_with(".tres") or file_name.ends_with(".res"): # Filter only resources
-				var resource_path = folder_path + "/" + file_name
-				var resource = ResourceLoader.load(resource_path)
-				if resource:
-					resources.append(resource)
-					print("Loaded resource: ", resource_path)
-			file_name = dir.get_next()
-	else:
-		print("Failed to open directory: ", folder_path)
+	for i in range(1,17):
+			resources.append(ResourceLoader.load("res://resources/upgrades/upgrade%s.tres"%i))
+	#var dir = DirAccess.open(folder_path)
+	#if dir:
+		#dir.list_dir_begin()
+		#var file_name = dir.get_next()
+		#
+		#while file_name != "":
+			#if file_name.ends_with(".tres") or file_name.ends_with(".res"): # Filter only resources
+				#var resource_path = folder_path + "/" + file_name
+				#var resource = ResourceLoader.load(resource_path)
+				#if resource:
+					#resources.append(resource)
+					#print("Loaded resource: ", resource_path)
+			#file_name = dir.get_next()
+	#else:
+		#print("Failed to open directory: ", folder_path)
 
 	return resources
 
