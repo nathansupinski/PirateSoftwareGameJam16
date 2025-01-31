@@ -64,7 +64,9 @@ func _process(delta):
 func _on_player_upgrades_changed(card: UpgradeCard) -> void:
 	print("updating player stats")
 	speed = StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.SPEED, baseSpeed)
+	var before = maxHealth
 	setMaxHealth(StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.MAX_HP, baseMaxHealth))
+	setCurrentHealth(currentHealth+ (maxHealth-before))
 	pickupRadius = StatBroker.transformPlayerNumeric(Enums.PlayerNumericStatID.PICKUP_RADIUS, basePickupRadius)
 
 	#StatBroker.transformWeaponProperty()
