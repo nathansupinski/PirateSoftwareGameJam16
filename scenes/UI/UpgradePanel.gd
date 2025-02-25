@@ -36,17 +36,7 @@ func SetCard(newCard: UpgradeCard) -> void:
 		
 
 func _setColor(rarity: Enums.Rarity):
-	match rarity:
-		Enums.Rarity.COMMON:
-			color_rect.color = Color("959c97")
-		Enums.Rarity.UNCOMMON:
-			color_rect.color = Color("09ed46")
-		Enums.Rarity.RARE:
-			color_rect.color = Color("221be3")
-		Enums.Rarity.EPIC:
-			color_rect.color = Color("cb17eb")
-		Enums.Rarity.LEGENDARY:
-			color_rect.color = Color("e8890c")
+	color_rect.color = Utils.getColorForRarity(rarity)
 
 func _getRarityName(rarity: Enums.Rarity):
 	match rarity:
@@ -62,34 +52,7 @@ func _getRarityName(rarity: Enums.Rarity):
 			return "Legendary"
 
 func setIcon(card: UpgradeCard) -> void:
-	if card.upgrade.modifier is PlayerNumericModifier:
-		match card.upgrade.modifier.statID:
-			Enums.PlayerNumericStatID.MAX_HP:
-				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/healthBoost.png")
-			Enums.PlayerNumericStatID.SPEED:
-				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/speedBoost.png")
-			Enums.PlayerNumericStatID.PICKUP_RADIUS:
-				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/pickuprangeBoost.png")
-	
-	if card.upgrade.modifier is WeaponNumericModifier:
-		match card.upgrade.modifier.statID:
-			Enums.WeaponNumericStatID.WEAPON_RANGE:
-				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/attackrangeBoost.png")
-			Enums.WeaponNumericStatID.FIRE_RATE:
-				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/firerateBoost.png")
-			Enums.WeaponNumericStatID.RAW_DAMAGE:
-				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/damageBoost.png")
-			Enums.WeaponNumericStatID.PROJECTILE_SPEED:
-				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/projectilevelocityBoost.png")
-			Enums.WeaponNumericStatID.PROJECTILE_COUNT:
-				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/multishotBoost.png")
-			Enums.WeaponNumericStatID.PROJECTILE_CHAIN:
-				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/ricochetBoost.png")
-			Enums.WeaponNumericStatID.AREA_OF_EFFECT:
-				texture_rect.texture = preload("res://scenes/UI/upgradeSprites/blastradiusBoost.png")
-	
-				
-
+	texture_rect.texture = Utils.getIconTexture(card)
 
 ###Temporary export for testing
 #@export var upgrade : Upgrade :

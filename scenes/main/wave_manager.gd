@@ -47,45 +47,45 @@ func spawnWave() -> void:
 			spawnEnemiesInRing(30,Enums.CrabColor.YELLOW, 100, 50, 20)
 		13:
 			spawnEnemiesInRing(28,Enums.CrabColor.YELLOW, 100, 50, 20)
-			spawnEnemiesInRing(2,Enums.CrabColor.BLUE, 120, 65, 25)
+			spawnEnemiesInRing(2,Enums.CrabColor.BLUE, 150, 65, 25)
 		12:
 			spawnEnemiesInRing(25,Enums.CrabColor.YELLOW, 100, 50, 20)
-			spawnEnemiesInRing(5,Enums.CrabColor.BLUE, 120, 65, 25)
+			spawnEnemiesInRing(5,Enums.CrabColor.BLUE, 150, 65, 25)
 		11:
 			spawnEnemiesInRing(20,Enums.CrabColor.YELLOW, 100, 50, 20)
-			spawnEnemiesInRing(10,Enums.CrabColor.BLUE, 120, 65, 25)
+			spawnEnemiesInRing(10,Enums.CrabColor.BLUE, 150, 65, 25)
 		10:
-			spawnEnemiesInRing(10,Enums.CrabColor.YELLOW, 100, 50, 20)
-			spawnEnemiesInRing(20,Enums.CrabColor.BLUE, 120, 65, 25)
+			spawnEnemiesInRing(10,Enums.CrabColor.YELLOW, 120, 50, 20)
+			spawnEnemiesInRing(20,Enums.CrabColor.BLUE, 150, 65, 25)
 		9:
-			spawnEnemiesInRing(5,Enums.CrabColor.YELLOW, 100, 50, 20)
-			spawnEnemiesInRing(25,Enums.CrabColor.BLUE, 120, 65, 25)
+			spawnEnemiesInRing(5,Enums.CrabColor.YELLOW, 120, 50, 20)
+			spawnEnemiesInRing(25,Enums.CrabColor.BLUE, 150, 65, 25)
 		8:
-			spawnEnemiesInRing(30,Enums.CrabColor.BLUE, 120, 65, 25)
+			spawnEnemiesInRing(30,Enums.CrabColor.BLUE, 150, 65, 25)
 		7:
-			spawnEnemiesInRing(30,Enums.CrabColor.BLUE, 120, 65, 25)
-			spawnEnemiesInRing(2,Enums.CrabColor.RED, 150, 100, 30)
+			spawnEnemiesInRing(30,Enums.CrabColor.BLUE, 150, 65, 25)
+			spawnEnemiesInRing(2,Enums.CrabColor.RED, 200, 100, 30)
 		6:
-			spawnEnemiesInRing(28,Enums.CrabColor.BLUE, 120, 65, 25)
-			spawnEnemiesInRing(4,Enums.CrabColor.RED, 150, 100, 30)
+			spawnEnemiesInRing(28,Enums.CrabColor.BLUE, 150, 65, 25)
+			spawnEnemiesInRing(4,Enums.CrabColor.RED, 200, 100, 30)
 		5:
-			spawnEnemiesInRing(25,Enums.CrabColor.BLUE, 120, 65, 25)
-			spawnEnemiesInRing(5,Enums.CrabColor.RED, 150, 100, 30)
+			spawnEnemiesInRing(25,Enums.CrabColor.BLUE, 150, 65, 25)
+			spawnEnemiesInRing(5,Enums.CrabColor.RED, 200, 100, 30)
 		4:
-			spawnEnemiesInRing(20,Enums.CrabColor.BLUE, 120, 65, 25)
-			spawnEnemiesInRing(10,Enums.CrabColor.RED, 150, 100, 30)
+			spawnEnemiesInRing(20,Enums.CrabColor.BLUE, 150, 65, 25)
+			spawnEnemiesInRing(10,Enums.CrabColor.RED, 200, 100, 30)
 		3:
-			spawnEnemiesInRing(15,Enums.CrabColor.BLUE, 120, 65, 25)
-			spawnEnemiesInRing(15,Enums.CrabColor.RED, 150, 100, 30)
+			spawnEnemiesInRing(15,Enums.CrabColor.BLUE, 150, 65, 25)
+			spawnEnemiesInRing(15,Enums.CrabColor.RED, 200, 100, 30)
 		2:
-			spawnEnemiesInRing(10,Enums.CrabColor.BLUE, 120, 65, 25)
-			spawnEnemiesInRing(20,Enums.CrabColor.RED, 150, 100, 30)
+			spawnEnemiesInRing(10,Enums.CrabColor.BLUE, 150, 65, 25)
+			spawnEnemiesInRing(20,Enums.CrabColor.RED, 200, 100, 30)
 		1:
-			spawnEnemiesInRing(30,Enums.CrabColor.RED, 150, 100, 30)
+			spawnEnemiesInRing(30,Enums.CrabColor.RED, 200, 100, 30)
 		0:
-			spawnEnemiesInRing(30,Enums.CrabColor.YELLOW, 100, 50, 20)
-			spawnEnemiesInRing(30,Enums.CrabColor.BLUE, 120, 65, 25)
-			spawnEnemiesInRing(30,Enums.CrabColor.RED, 150, 100, 30)
+			spawnEnemiesInRing(30,Enums.CrabColor.YELLOW, 120, 50, 20)
+			spawnEnemiesInRing(30,Enums.CrabColor.BLUE, 150, 65, 25)
+			spawnEnemiesInRing(30,Enums.CrabColor.RED, 200, 100, 30)
 		_: #base case
 			print("SPAWNED BASE CASE WTF?")
 			spawnEnemiesInRing(50,Enums.CrabColor.YELLOW, 100, 50, 20)

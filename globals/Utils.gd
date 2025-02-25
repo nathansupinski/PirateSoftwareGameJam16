@@ -89,4 +89,46 @@ func clampSpawnArea(position: Vector2i) -> Vector2i:
 		clamp(position.x, spawnBounds.position.x, spawnBounds.position.x + spawnBounds.size.x - 1),
 		clamp(position.y, spawnBounds.position.y, spawnBounds.position.y + spawnBounds.size.y - 1)
 )
+
+func getColorForRarity(rarity: Enums.Rarity) -> Color:
+	match rarity:
+		Enums.Rarity.COMMON:
+			return Color("959c97")
+		Enums.Rarity.UNCOMMON:
+			return Color("09ed46")
+		Enums.Rarity.RARE:
+			return Color("221be3")
+		Enums.Rarity.EPIC:
+			return Color("cb17eb")
+		Enums.Rarity.LEGENDARY:
+			return Color("e8890c")
+	return Color("959c97")
 	
+func getIconTexture(card: UpgradeCard) -> Texture2D:
+	if card.upgrade.modifier is PlayerNumericModifier:
+		match card.upgrade.modifier.statID:
+			Enums.PlayerNumericStatID.MAX_HP:
+				return preload("res://scenes/UI/upgradeSprites/healthBoost.png")
+			Enums.PlayerNumericStatID.SPEED:
+				return preload("res://scenes/UI/upgradeSprites/speedBoost.png")
+			Enums.PlayerNumericStatID.PICKUP_RADIUS:
+				return preload("res://scenes/UI/upgradeSprites/pickuprangeBoost.png")
+	
+	if card.upgrade.modifier is WeaponNumericModifier:
+		match card.upgrade.modifier.statID:
+			Enums.WeaponNumericStatID.WEAPON_RANGE:
+				return preload("res://scenes/UI/upgradeSprites/attackrangeBoost.png")
+			Enums.WeaponNumericStatID.FIRE_RATE:
+				return preload("res://scenes/UI/upgradeSprites/firerateBoost.png")
+			Enums.WeaponNumericStatID.RAW_DAMAGE:
+				return preload("res://scenes/UI/upgradeSprites/damageBoost.png")
+			Enums.WeaponNumericStatID.PROJECTILE_SPEED:
+				return preload("res://scenes/UI/upgradeSprites/projectilevelocityBoost.png")
+			Enums.WeaponNumericStatID.PROJECTILE_COUNT:
+				return preload("res://scenes/UI/upgradeSprites/multishotBoost.png")
+			Enums.WeaponNumericStatID.PROJECTILE_CHAIN:
+				return preload("res://scenes/UI/upgradeSprites/ricochetBoost.png")
+			Enums.WeaponNumericStatID.AREA_OF_EFFECT:
+				return preload("res://scenes/UI/upgradeSprites/blastradiusBoost.png")
+		
+	return preload("res://icon.svg")

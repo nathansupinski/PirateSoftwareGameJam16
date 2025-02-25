@@ -43,6 +43,9 @@ enum PlayerNumericStatID {
 # make sure to assign an enum value to anything in WeaponPropertyStatID so that there is 
 # not an ID collision with WeaponNumericStatID. This allows for function reuse
 enum WeaponNumericStatID {
+	TEST_ONLY = 300, #there is a godot bug where exported enums(like this exported in the upgrades resources) 
+	#default the first value to 0 even if it has a different value.
+	#the test_only part of this enum is a workaround to avoid weapon_range getting assigned the wrong value by godot
 	WEAPON_RANGE = 200,
 	FIRE_RATE = 201,
 	RAW_DAMAGE = 202,

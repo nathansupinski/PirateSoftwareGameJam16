@@ -15,7 +15,7 @@ legendary_value = 80.0
 
 [sub_resource type="Resource" id="Resource_mq6s1"]
 script = ExtResource("2_ktaa7")
-statID = 0
+statID = 200
 operation = 2
 value = SubResource("Resource_8llrr")
 
